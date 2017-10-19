@@ -88,9 +88,12 @@
 					</div>
 										
 					<div class="wrap_btn">
-						<button type="submit" id="btnLogin" title="로그인 " class="btn_login03"   style="width:390px;"><span>로그인</span></button>
+						<button type="button" id="btnLogin" title="로그인 " class="btn_login03"  onclick="btnLogin_click();" style="width:390px;"><span>로그인</span></button>
 					</div>
 					</form>
+					
+				
+                </c:if>
 				</div>
 			</div>
 		</div>
@@ -151,10 +154,47 @@
 	                alert("비밀번호를 입력하세요.");
 	                return false;
 	            }
+	            
+	            return true;
 		    }
 	  </script>
 
 
+
+<script type="text/javascript">
+
+	function btnLogin_click(){
+		if(checkValue()){
+			 alert("hihihihihi "+$("#id").val()+'   '+$("#pw").val());
+
+		
+			//POST방식으로 바꿀것
+			$.ajax({
+				url:"loginProcess",
+				type:'GET',
+				dataType:'json',
+	              data : {  "id" :  $("#id").val(),
+            					"pw" :  $("#pw").val() },	
+				contentType: 'text/html;charset=UTF-8',
+				mimeType: 'application/json',
+				success:function(data) {
+					if(data.flagdata) {
+						alert(" 세션!!저장되었다!1");
+						history.back();
+						//이전페이지 주소 알아서 redirect해줄것
+					} else {
+						alert("아이디,패스워드를 확인해주세요 ");
+					}
+				},
+				error:function(data,status,er) {
+					alert("error: "+data+" status: "+status+" er:"+er);
+				}
+			})
+		}
+	}
+	
+
+</script>
 
 
 

@@ -1,5 +1,8 @@
 package com.sunny.test.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -36,28 +39,27 @@ public class LoginController {
 	    // 로그아웃
 	    @RequestMapping("logout")
 	    public String logout(HttpSession session) {
-	        session.setAttribute("userLoginInfo", null);
+	        session.setAttribute("LoginUser", null);
 	        return "redirect:login";
 	    }
 	         
 	    // 로그인 처리
-	    @RequestMapping(value="loginProcess", method = RequestMethod.POST)
-	    public ModelAndView loginProcess(HttpSession session, HttpServletRequest request) throws Exception{    
+	    @RequestMapping(value="loginProcess", method = RequestMethod.GET)
+	    public Map<String, Object> loginProcess(HttpSession session, HttpServletRequest request) throws Exception{    
+	    	
 	        ModelAndView mav = new ModelAndView();
 	        mav.setViewName("Login_OK_TEST");
 	        String id = request.getParameter("id");
     			String pw = request.getParameter("pw");
-    			
-    			System.out.println("id : "+id +",  pw : "+ pw);
-    			
-	        UserVO loginUser = loginService.getUserByIdPwd(id, pw);
-	        if (loginUser != null) {
-	            session.setAttribute("userLoginInfo", loginUser);
-	        }
-	        
-	        System.out.println(session.getAttribute("user_name"));
-	        
-	        return new ModelAndView("Common/Login_OK_TEST");    
+    			String pre_url = request.getHeader("referer");
+ 
+    			System.out.println("id : "+id +",  pw : "+ pw+",  pre_url : "+pre_url);
+
+    			final Map<String, Object> map = new HashMap<String, Object>();
+    	        map.put("flagdata", loginService.getUserByIdPwd ( id, pw, session));
+    	        
+    	        return map;
+    	         		
 	    }
 	
 	   
