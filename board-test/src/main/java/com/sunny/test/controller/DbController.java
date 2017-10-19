@@ -29,7 +29,6 @@ public class DbController {
     @Autowired
     PromoService promoService;
     
-
     @Autowired
     ProductService productService;
     
@@ -58,6 +57,7 @@ public class DbController {
     	
         return new ModelAndView("Promotion/make_Promo");        
     }
+    
     
     //베네핏가져오기
     @RequestMapping(value="/getBenefitList", method = RequestMethod.GET)     
