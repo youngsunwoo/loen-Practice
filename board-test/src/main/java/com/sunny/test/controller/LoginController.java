@@ -49,12 +49,11 @@ public class LoginController {
 	    	
 	        ModelAndView mav = new ModelAndView();
 	        mav.setViewName("Login_OK_TEST");
+	        
 	        String id = request.getParameter("id");
     			String pw = request.getParameter("pw");
     			String pre_url = request.getHeader("referer");
  
-    			System.out.println("id : "+id +",  pw : "+ pw+",  pre_url : "+pre_url);
-
     			final Map<String, Object> map = new HashMap<String, Object>();
     	        map.put("flagdata", loginService.getUserByIdPwd ( id, pw, session));
     	        
