@@ -169,11 +169,7 @@
 			    	            },
 			  				error:function(){ alert("Error"); }
 			            });
-			        		
-		            
-		            
 		        });
-		 
 		    });
 		    
 		    
@@ -201,6 +197,7 @@
 		        	  product_info_html += '<tr><th>선택상품</th><th>금 액</th><'
 		        	  product_info_html += '<tr><td>' + obj.product_name + '</td><td>' + obj.price + '</td></tr>' ;
 		        	  product_info_html += '</table>'
+		        	  product_info_html += '<input type="hidden" name = "product_code" vlaue=' + obj.price + '>';
 		          $("#Product_div").append(product_info_html);
 		      }
 		    
@@ -235,7 +232,7 @@
 	          });
 	      }
 	      
-	      //혜택 뿌려주기 
+	      //혜택 뿌려주기  
 	      function showBenefitInfo(obj) {
 	          $("#BenefitInfo").remove();
 	          console.log(obj);

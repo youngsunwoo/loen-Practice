@@ -38,10 +38,24 @@ public class DbController {
          return new ModelAndView("index");        
     }
 
-   
-    //프로모션만들기 
-    @RequestMapping(value="/promo")      
+    //프로모션만들기 ( 입력폼 )
+    @RequestMapping(value="Promotion/makeNewPromotion")      
     public ModelAndView promo() {
+        return new ModelAndView("Promotion/make_Promo");        
+    }
+    
+    //프로모션 만들기 ( 저장 )
+    @RequestMapping(value="/insertPromotion", method = RequestMethod.POST)      
+    public ModelAndView insertPromotion(HttpServletRequest httpServletRequest) {
+    	
+    		String promo_type = httpServletRequest.getParameter("promo_type");
+		String benefit_code = httpServletRequest.getParameter("benefit_code");
+		String product_code = httpServletRequest.getParameter("benefit_code");
+		
+		System.out.println(">>insertPromotion >>> promo_type : " + promo_type + ",    benefit_code : " + benefit_code+",   product_code : "+ product_code);
+		
+		//promoService.insertPromotion(promo_type,benefit_code,product_code)
+    	
         return new ModelAndView("Promotion/make_Promo");        
     }
     
