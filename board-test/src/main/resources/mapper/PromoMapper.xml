@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunny.test.dao.PromoMapper">
+    <select id="getBenefit" parameterType="map" resultType="com.sunny.test.vo.BenefitVO">
+        SELECT goal_cnt, offer, unit 
+        FROM BENEFIT
+   		WHERE promo_type = #{promo_type}
+        AND   benefit_code = #{benefit_code}
+    </select>
+</mapper>
+
