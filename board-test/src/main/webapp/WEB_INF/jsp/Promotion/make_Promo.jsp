@@ -162,7 +162,7 @@
 		         	$.ajax({
 			                url : '/getProductInfo',
 			                type: "get",	
-				              data : {  "product_code" :   $("input[name=procudt_code]:checked").val() },	
+				              data : {  "product_code" :   $("input[name=product_code]:checked").val() },	
 			               dataType : 'json',
 			    	   		  	success:  function(obj) {
 			    	   		  		showProductInfo(obj);
@@ -181,7 +181,7 @@
 		        	  product_list_html += '<tr><th>상 품 명</th><th>금 액</th><th>선 택</th></tr>'
 		          for (var i = 0; i < obj.length; i++) {
 			        	  product_list_html += '<tr><td>' + obj[i].product_name + '</td><td>' + obj[i].price + '</td><td> ' 
-			        	  product_list_html  += '<input type="radio" name="procudt_code" value="' + obj[i].product_code + '" > </tr>' ;
+			        	  product_list_html  += '<input type="radio" name="product_code" value="' + obj[i].product_code + '" > </tr>' ;
 			          }
 		        	  product_list_html += '</table>'
 		        	  

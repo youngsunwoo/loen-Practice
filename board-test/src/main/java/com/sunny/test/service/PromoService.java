@@ -32,12 +32,12 @@ public class PromoService {
     }
     
     
-    public  int insertTest() throws Exception{
-    	 		System.out.println("insert result : " + PromoMapper.insertTest());
-    			return PromoMapper.insertTest();
+    public int insertTest() throws Exception{
+    	
+    		return promoMapper.insertTest();
     }
     
-    public  Boolean insertPromotion(HttpSession session, String promo_type, String benefit_code, String product_code) throws Exception{
+    public int insertPromotion(HttpSession session, String promo_type, String benefit_code, String product_code) throws Exception{
     	
     	
     		PromotionVO promotion  = new PromotionVO();  
@@ -58,23 +58,20 @@ public class PromoService {
 	    	String insertDate = ymd.format(date) + '%';
 	    	
 	    String promo_sqe = String.valueOf(promoMapper.getMaxPromoId(insertDate));
-	    	    	
-	    String promotion_id =  ymd.format(date) +"_"+promo_sqe;
-	    System.out.println("PromoService > MakeNewPromotion > promotion_id  : " + promotion_id);
+	    String promotion_id =  ymd.format(date) +"_"+promo_sqe;	    
 	    promotion.setPromo_id(promotion_id);
 	    	
-    	
     		//세션에서 user_id 가져오기 (user_id) 
 	    UserVO loginUser = (UserVO) session.getAttribute("LoginUser");
 	    
-	    promotion.setUser_id(loginUser.getUser_name());
+	    promotion.setUser_id(loginUser.getUser_id());
+	    
 	    
 	    promotion.setDue_date(date);
 	    
-	   PromotionVO p = new PromotionVO("171021_003", date, "wooys",date ,"0", "1", "01", "00001", "", "", 0);
-	   System.out.println("insert result : " + PromoMapper.InsertPromotion(p));
-		
-	   return PromoMapper.InsertPromotion(p);
+	    promotion.toString();
+	    
+	   return promoMapper.InsertPromotion(promotion);
 }
  
 }

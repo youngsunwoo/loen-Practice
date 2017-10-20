@@ -6,7 +6,7 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 
 public class PromotionVO {
 	
-	private String Promo_id; // 생성일자_순번(4자리) (ex. 171019_0001)
+	private String promo_id; // 생성일자_순번(4자리) (ex. 171019_0001)
 	private Date create_date;
 	private String user_id;
 	private Date due_date; 
@@ -24,11 +24,11 @@ public class PromotionVO {
 	
 	
 	
-	public PromotionVO(String Promo_id, Date create_date, String user_id, Date due_date, String state,
+	public PromotionVO(String promo_id, Date create_date, String user_id, Date due_date, String state,
 			String promo_type, String benefit_code, String product_code, String event_url, String banner_url,
 			int join_count) {
 		super();
-		Promo_id = Promo_id;
+		this.promo_id = promo_id;
 		this.create_date = create_date;
 		this.user_id = user_id;
 		this.due_date = due_date;
@@ -43,6 +43,16 @@ public class PromotionVO {
 	
 	
 	
+	@Override
+	public String toString() {
+		return "PromotionVO [promo_id=" + promo_id + ", create_date=" + create_date + ", user_id=" + user_id
+				+ ", due_date=" + due_date + ", state=" + state + ", promo_type=" + promo_type + ", benefit_code="
+				+ benefit_code + ", product_code=" + product_code + ", event_url=" + event_url + ", banner_url="
+				+ banner_url + ", join_count=" + join_count + "]";
+	}
+
+
+
 	public PromotionVO(String promo_type, String benefit_code, String product_code) {
 		super();
 		this.promo_type = promo_type;
@@ -53,10 +63,10 @@ public class PromotionVO {
 
 
 	public String getPromo_id() {
-		return Promo_id;
+		return promo_id;
 	}
-	public void setPromo_id(String Promo_id) {
-		Promo_id = Promo_id;
+	public void setPromo_id(String promo_id) {
+		this.promo_id = promo_id;
 	}
 	public Date getCreate_date() {
 		return create_date;

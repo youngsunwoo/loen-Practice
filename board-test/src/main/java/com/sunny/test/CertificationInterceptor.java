@@ -18,6 +18,7 @@ public class CertificationInterceptor implements HandlerInterceptor {
 			throws Exception {
 	    HttpSession session = request.getSession();
         UserVO loginVO = (UserVO) session.getAttribute("LoginUser");
+        
  
         if(ObjectUtils.isEmpty(loginVO)){
             response.sendRedirect("/login");

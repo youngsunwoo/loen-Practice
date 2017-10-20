@@ -51,7 +51,7 @@ public class DbController {
     	
     		String promo_type = httpServletRequest.getParameter("promo_type");
 		String benefit_code = httpServletRequest.getParameter("benefit_code");
-		String product_code = httpServletRequest.getParameter("benefit_code");
+		String product_code = httpServletRequest.getParameter("product_code");
 		
 		System.out.println("Controller > promo_type : "+ promo_type );
 		
