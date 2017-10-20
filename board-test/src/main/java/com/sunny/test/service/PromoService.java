@@ -5,12 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
 import com.sunny.test.dao.PromoMapper;
 import com.sunny.test.vo.BenefitVO;
 import com.sunny.test.vo.PromotionVO;
+import com.sunny.test.vo.UserVO;
  
 @Service
 public class PromoService {
@@ -28,29 +31,50 @@ public class PromoService {
         return promoMapper.getBenefit(para);
     }
     
-    public  Boolean insertPromotion(String promo_type, String benefit_code, String procudt_code) throws Exception{
+    
+    public  int insertTest() throws Exception{
+    	 		System.out.println("insert result : " + PromoMapper.insertTest());
+    			return PromoMapper.insertTest();
+    }
+    
+    public  Boolean insertPromotion(HttpSession session, String promo_type, String benefit_code, String product_code) throws Exception{
     	
-    		//실행일자 구하기 (create_date)
     	
-    		//해당일자의 max promorionId 구하기, +1 해서 신규 promorion_id 생 (promorion Id)
+    		PromotionVO promotion  = new PromotionVO();  
+    		
+    		promotion.setPromo_type(promo_type);
+    		promotion.setBenefit_code(benefit_code);
+    		promotion.setProduct_code(product_code);
+    		
+    		//현재 일자 구하기 (create_date)
+	    	java.util.Date date = new java.util.Date(); 
+	    	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+	    	java.text.SimpleDateFormat ymd = new java.text.SimpleDateFormat("yyMMdd"); 
+	    	String currentTime = sdf.format(date);
+	    	
+	    	promotion.setCreate_date(date);
+	    	
+    		//해당일자의 max promorionId 구하기, +1 해서 신규 promorion_id 생성  (promorion Id)
+	    	String insertDate = ymd.format(date) + '%';
+	    	
+	    String promo_sqe = String.valueOf(promoMapper.getMaxPromoId(insertDate));
+	    	    	
+	    String promotion_id =  ymd.format(date) +"_"+promo_sqe;
+	    System.out.println("PromoService > MakeNewPromotion > promotion_id  : " + promotion_id);
+	    promotion.setPromo_id(promotion_id);
+	    	
     	
     		//세션에서 user_id 가져오기 (user_id) 
-    	
-    		//due_date, state는 고정값으로 insert문에서 제어가능
-    		//사실 max ID도 가능함
-    	
-    		//여기서 만들어서 다같이 객체로 쿼리에 넘겨버릴까? 
-    		//받아온값들만 넘기고 쿼리에서 제어해서 저장할까? 
-    		//          ㄴ> 넘길때 (1) 객체를 넘길까? (2) 맵을 생성새 넘길까?
-    	 	//                        ㄴ> 생성자를 써야하나 setter를 써야하나..   
-    	
-    		//
-    		//PromotionVO promotion = new PromotionVO();
-    		
-    		
-    
-		return true;
-		//PromoMapper.getBenefit(para);
+	    UserVO loginUser = (UserVO) session.getAttribute("LoginUser");
+	    
+	    promotion.setUser_id(loginUser.getUser_name());
+	    
+	    promotion.setDue_date(date);
+	    
+	   PromotionVO p = new PromotionVO("171021_003", date, "wooys",date ,"0", "1", "01", "00001", "", "", 0);
+	   System.out.println("insert result : " + PromoMapper.InsertPromotion(p));
+		
+	   return PromoMapper.InsertPromotion(p);
 }
  
 }

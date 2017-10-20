@@ -6,7 +6,7 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 
 public class PromotionVO {
 	
-	private String Promotion_id; // 생성일자_순번(4자리) (ex. 171019_0001)
+	private String Promo_id; // 생성일자_순번(4자리) (ex. 171019_0001)
 	private Date create_date;
 	private String user_id;
 	private Date due_date; 
@@ -24,11 +24,11 @@ public class PromotionVO {
 	
 	
 	
-	public PromotionVO(String promotion_id, Date create_date, String user_id, Date due_date, String state,
+	public PromotionVO(String Promo_id, Date create_date, String user_id, Date due_date, String state,
 			String promo_type, String benefit_code, String product_code, String event_url, String banner_url,
 			int join_count) {
 		super();
-		Promotion_id = promotion_id;
+		Promo_id = Promo_id;
 		this.create_date = create_date;
 		this.user_id = user_id;
 		this.due_date = due_date;
@@ -52,11 +52,11 @@ public class PromotionVO {
 
 
 
-	public String getPromotion_id() {
-		return Promotion_id;
+	public String getPromo_id() {
+		return Promo_id;
 	}
-	public void setPromotion_id(String promotion_id) {
-		Promotion_id = promotion_id;
+	public void setPromo_id(String Promo_id) {
+		Promo_id = Promo_id;
 	}
 	public Date getCreate_date() {
 		return create_date;

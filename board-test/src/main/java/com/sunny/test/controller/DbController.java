@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import com.sunny.test.service.ProductService;
 import com.sunny.test.service.PromoService;
 import com.sunny.test.vo.BenefitVO;
 import com.sunny.test.vo.ProductVO;
+import com.sunny.test.vo.PromotionVO;
  
 @RestController
 public class DbController {
@@ -38,24 +40,32 @@ public class DbController {
     }
 
     //프로모션만들기 ( 입력폼 )
-    @RequestMapping(value="Promotion/makeNewPromotion")      
+    @RequestMapping(value="Promotion/FormNewPromotion")      
     public ModelAndView promo() {
         return new ModelAndView("Promotion/make_Promo");        
     }
     
     //프로모션 만들기 ( 저장 )
-    @RequestMapping(value="/insertPromotion", method = RequestMethod.POST)      
-    public ModelAndView insertPromotion(HttpServletRequest httpServletRequest) {
+    @RequestMapping(value="Promotion/insertPromotion", method = RequestMethod.POST)      
+    public ModelAndView MakeNewPromotion(HttpServletRequest httpServletRequest) throws Exception{
     	
     		String promo_type = httpServletRequest.getParameter("promo_type");
 		String benefit_code = httpServletRequest.getParameter("benefit_code");
 		String product_code = httpServletRequest.getParameter("benefit_code");
 		
-		System.out.println(">>insertPromotion >>> promo_type : " + promo_type + ",    benefit_code : " + benefit_code+",   product_code : "+ product_code);
+		System.out.println("Controller > promo_type : "+ promo_type );
 		
-		//promoService.insertPromotion(promo_type,benefit_code,product_code)
-    	
+		promoService.insertPromotion(httpServletRequest.getSession(), promo_type, benefit_code, product_code);
+	
         return new ModelAndView("Promotion/make_Promo");        
+    }
+    
+    @RequestMapping(value="test")      
+    public ModelAndView test(HttpServletRequest httpServletRequest) throws Exception{
+    	
+    		promoService.insertTest();
+	
+        return new ModelAndView("index");        
     }
     
     

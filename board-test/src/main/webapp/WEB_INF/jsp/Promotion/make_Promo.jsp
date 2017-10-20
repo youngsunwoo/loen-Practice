@@ -43,7 +43,7 @@
         <br>
        
         <!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 /getBenefit.jsp -->
-        <form method="post" action="/insertPromotion" name="Promo_info" onsubmit="return checkValue()">
+        <form method="post" action="/Promotion/insertPromotion" name="Promo_info" onsubmit="return checkValue()">
             <table>
                  <tr>
                     <td id="title">보상형태</td>
