@@ -7,9 +7,6 @@ public class ProductVO {
 	
 	public ProductVO() {
 		super();
-		this.product_code = product_code;
-		this.product_name = product_name;
-		this.price = price;
 	}
 	
 	public ProductVO(String product_code, String product_name, int price) {

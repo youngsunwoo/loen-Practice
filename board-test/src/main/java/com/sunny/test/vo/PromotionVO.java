@@ -2,7 +2,6 @@ package com.sunny.test.vo;
 
 import java.util.Date;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
 
 public class PromotionVO {
 	

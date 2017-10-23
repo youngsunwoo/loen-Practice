@@ -7,9 +7,6 @@ public class BenefitVO {
 	
 	public BenefitVO() {
 		super();
-		this.goal_cnt = goal_cnt;
-		this.offer = offer;
-		this.unit = unit;
 	}
 	
 	public BenefitVO(int goal_cnt, int offer, String unit) {
