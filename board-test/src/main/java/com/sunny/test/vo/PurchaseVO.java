@@ -1,6 +1,6 @@
 package com.sunny.test.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class PurchaseVO {
 	
@@ -8,19 +8,25 @@ public class PurchaseVO {
 	private Date PurchaseDate;
 	private String UserId;
 	private String ProductCode;
-	private String state;
+	private String State;
 	
 	public PurchaseVO() {
 		super();
 	}
 	
-	public PurchaseVO(String purchaseId, Date purchaseDate, String userId, String productCode, String state) {
+	
+	public PurchaseVO(String productCode) {
+		super();
+		ProductCode = productCode;
+	}
+	
+	public PurchaseVO(String purchaseId, Date purchaseDate, String userId, String productCode, String State) {
 		super();
 		PurchaseId = purchaseId;
 		PurchaseDate = purchaseDate;
 		UserId = userId;
 		ProductCode = productCode;
-		this.state = state;
+		this.State = State;
 	}
 
 	public String getPurchaseId() {
@@ -56,11 +62,11 @@ public class PurchaseVO {
 	}
 
 	public String getState() {
-		return state;
+		return State;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setState(String State) {
+		this.State = State;
 	}
 	
 	

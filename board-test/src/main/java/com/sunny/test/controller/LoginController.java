@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sunny.test.dao.UserMapper;
-import com.sunny.test.service.PromoService;
 import com.sunny.test.service.UserService;
-import com.sunny.test.vo.UserVO;
 
 @RestController
 public class LoginController {

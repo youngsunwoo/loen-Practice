@@ -14,6 +14,12 @@ public class JoinListVO {
 		super();
 	}
 	
+	public JoinListVO(String promoId) {
+		super();
+		PromoId = promoId;
+	}
+
+	
 	public JoinListVO(String promoId, String joinUserID, String purchaseId, Date joinDate, String joinFrom) {
 		super();
 		PromoId = promoId;

@@ -19,9 +19,11 @@ public class PromotionVO {
 	
 	
 
-	public PromotionVO(){}
+	public PromotionVO(){
+		super();
+	}
 	
-	
+
 	
 	public PromotionVO(String promo_id, Date create_date, String user_id, Date due_date, String state,
 			String promo_type, String benefit_code, String product_code, String event_url, String banner_path,

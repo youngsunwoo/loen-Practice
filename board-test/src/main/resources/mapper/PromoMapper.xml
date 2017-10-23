@@ -16,9 +16,11 @@
    	   WHERE Promo_id like #{insertDate}
     </select>
     
-    <insert id="insertTest" >
-        insert into TEST VALUES ('test2')
-    </insert>
+    <update id="UpdatePromotionJoinCnt" >
+        UPDATE Promotion
+        SET join_cnt = join_cnt + 1
+        WHERE Promo_id = #{PromoId}
+    </update>
  	
    <insert id="InsertPromotion" parameterType="com.sunny.test.vo.PromotionVO">
         INSERT into Promotion
@@ -26,6 +28,14 @@
         (#{promo_id},#{create_date},#{user_id},#{due_date},'0',#{promo_type},#{benefit_code},#{product_code},#{event_url},#{banner_url},0)
    </insert>
    
+   
+   <insert id="InsertJoinList" parameterType="com.sunny.test.vo.PromotionVO">
+        INSERT into JoinList
+        VALUES
+        (#{PromoId},#{JoinUserID},#{PurchaseId},#{JoinDate},NULL)
+   </insert>
+        
+        
    <select id="getPromotionById" parameterType="String" resultType="com.sunny.test.vo.PromotionVO">     
         SELECT promo_id,
 			   create_date,

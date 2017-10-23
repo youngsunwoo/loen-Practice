@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunny.test.dao.PurchaseMapper">
+
+
+    <insert id="InsertPurchase" parameterType="com.sunny.test.vo.PurchaseVO">
+        INSERT into Purchase
+        VALUES
+        (#{PurchaseId},#{PurchaseDate},#{UserId},#{ProductCode},'0')
+   </insert>
+    
+     <select id="getMaxPurchaseId" parameterType="String" resultType="Integer">
+    	   SELECT IFNULL(CAST(MAX(SUBSTRING(purchase_id,8,3)) AS signed integer)+1 ,0)
+       FROM Purchase
+   	   WHERE purchase_id like #{insertDate}
+    </select> 
+    
+</mapper>
+
