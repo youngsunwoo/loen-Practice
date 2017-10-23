@@ -56,11 +56,11 @@ public class PromotionController {
     		String promo_type = httpServletRequest.getParameter("promo_type");
 		String benefit_code = httpServletRequest.getParameter("benefit_code");
 		String product_code = httpServletRequest.getParameter("product_code");
-		product_code = "00001";
-					
 
 			
 		System.out.println("Controller > promo_type : "+ promo_type );
+
+		System.out.println("Controller > product_code : "+ product_code );
 		
 		promoService.insertPromotion(httpServletRequest.getSession(), promo_type, benefit_code, product_code);
 	

@@ -25,7 +25,7 @@
    <insert id="InsertPromotion" parameterType="com.sunny.test.vo.PromotionVO">
         INSERT into Promotion
         VALUES
-        (#{promo_id},#{create_date},#{user_id},#{due_date},'0',#{promo_type},#{benefit_code},#{product_code},#{event_url},#{banner_url},0)
+        (#{promo_id},#{create_date},#{user_id},#{due_date},'0',#{promo_type},#{benefit_code},#{product_code},#{event_url},#{banner_path},0)
    </insert>
    
    

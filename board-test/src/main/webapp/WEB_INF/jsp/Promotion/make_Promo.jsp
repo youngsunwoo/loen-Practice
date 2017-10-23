@@ -196,10 +196,9 @@
 		        	  product_info_html += '<tr><td>' + obj.product_name + '</td><td>' + obj.price + '</td></tr>' ;
 		        	  product_info_html += '<tr><td>	<img width="80" height="35" src="/img/product/'+obj.product_code+'.jpg" ></td></tr>' ;
 		        	  product_info_html += '</table>'
-		        	  product_info_html += '<input type="hidden" name = "product_code" vlaue=' + obj.price + '>';
+		        	  product_info_html += '<input type="hidden" name = "product_code" value=' + obj.product_code + '>';
 		          $("#Product_div").append(product_info_html);
 		          
-		         
 		      }
 		    
 	   
