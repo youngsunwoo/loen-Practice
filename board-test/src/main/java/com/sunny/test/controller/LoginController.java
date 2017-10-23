@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sunny.test.service.LoginService;
+import com.sunny.test.dao.UserMapper;
 import com.sunny.test.service.PromoService;
+import com.sunny.test.service.UserService;
 import com.sunny.test.vo.UserVO;
 
 @RestController
 public class LoginController {
 	
 	 @Autowired
-	 LoginService loginService;
+	 UserService userService;
 	    
 	 @RequestMapping("page1")
 	    public String page1() {
@@ -55,7 +56,7 @@ public class LoginController {
     			String pre_url = request.getHeader("referer");
  
     			final Map<String, Object> map = new HashMap<String, Object>();
-    	        map.put("flagdata", loginService.getUserByIdPwd ( id, pw, session));
+    	        map.put("flagdata", userService.getUserByIdPwd ( id, pw, session));
     	        
     	        return map;
     	         		

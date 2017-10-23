@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sunny.test.dao.LoginMapper">
+<mapper namespace="com.sunny.test.dao.UserMapper">
     <select id="getUserByIdPwd" parameterType="map" resultType="com.sunny.test.vo.UserVO">
         SELECT user_id, user_name, user_pw, age, gender, point
         FROM USER
    		WHERE user_id = #{user_id}
         AND   user_pw = #{user_pw}
+    </select>
+    
+    
+     <select id="getUserById" parameterType="map" resultType="com.sunny.test.vo.UserVO">
+        SELECT user_id, user_name, user_pw, age, gender, point
+        FROM USER
+   		WHERE user_id = #{user_id}
     </select>
 </mapper>
 
