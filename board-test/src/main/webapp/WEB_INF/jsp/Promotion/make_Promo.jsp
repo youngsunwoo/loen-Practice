@@ -80,10 +80,8 @@
 						</div>
 					</td>
 	            </tr>
-	            
 	            <tr> <td> <br> <div id="Product_div"> </div> </td> </tr>  
 	            
-	          
             </table>
             <br>
             <input type="submit" value="제출하기 ">  
@@ -162,7 +160,7 @@
 		         	$.ajax({
 			                url : '/getProductInfo',
 			                type: "get",	
-				              data : {  "product_code" :   $("input[name=product_code]:checked").val() },	
+				              data : {  "product_code" :   $("input[name=product_radio]:checked").val() },	
 			               dataType : 'json',
 			    	   		  	success:  function(obj) {
 			    	   		  		showProductInfo(obj);
@@ -181,7 +179,7 @@
 		        	  product_list_html += '<tr><th>상 품 명</th><th>금 액</th><th>선 택</th></tr>'
 		          for (var i = 0; i < obj.length; i++) {
 			        	  product_list_html += '<tr><td>' + obj[i].product_name + '</td><td>' + obj[i].price + '</td><td> ' 
-			        	  product_list_html  += '<input type="radio" name="product_code" value="' + obj[i].product_code + '" > </tr>' ;
+			        	  product_list_html  += '<input type="radio" name="product_radio" value="' + obj[i].product_code + '" > </tr>' ;
 			          }
 		        	  product_list_html += '</table>'
 		        	  
@@ -194,11 +192,14 @@
 		          $("#ProductInfo").remove();
 		          console.log(obj);
 		          var product_info_html  = '<table id="ProductInfo">'
-		        	  product_info_html += '<tr><th>선택상품</th><th>금 액</th><'
+		        	  product_info_html += '<tr><th>선택상품</th><th>금 액</th>'
 		        	  product_info_html += '<tr><td>' + obj.product_name + '</td><td>' + obj.price + '</td></tr>' ;
+		        	  product_info_html += '<tr><td>	<img width="80" height="35" src="/img/product/'+obj.product_code+'.jpg" ></td></tr>' ;
 		        	  product_info_html += '</table>'
 		        	  product_info_html += '<input type="hidden" name = "product_code" vlaue=' + obj.price + '>';
 		          $("#Product_div").append(product_info_html);
+		          
+		         
 		      }
 		    
 	   
@@ -244,7 +245,7 @@
 	          }
 	        	  benefit_list_html += '</table>';
 	          $("#benefit_div").append(benefit_list_html);
-	      }
+	      } 
       
     
     </script>

@@ -15,8 +15,8 @@ public class PromotionVO {
 	private String benefit_code; // 01-할인쿠폰, 02-포인트정립...등;
 	private String product_code; // 프로모션할 상품 코드 ;
 	private String event_url;
-	private String banner_url;
-	private int join_count;
+	private String banner_path;
+	private int join_cnt;
 	
 	
 
@@ -25,8 +25,8 @@ public class PromotionVO {
 	
 	
 	public PromotionVO(String promo_id, Date create_date, String user_id, Date due_date, String state,
-			String promo_type, String benefit_code, String product_code, String event_url, String banner_url,
-			int join_count) {
+			String promo_type, String benefit_code, String product_code, String event_url, String banner_path,
+			int join_cnt) {
 		super();
 		this.promo_id = promo_id;
 		this.create_date = create_date;
@@ -37,8 +37,8 @@ public class PromotionVO {
 		this.benefit_code = benefit_code;
 		this.product_code = product_code;
 		this.event_url = event_url;
-		this.banner_url = banner_url;
-		this.join_count = join_count;
+		this.banner_path = banner_path;
+		this.join_cnt = join_cnt;
 	}
 	
 	
@@ -47,8 +47,8 @@ public class PromotionVO {
 	public String toString() {
 		return "PromotionVO [promo_id=" + promo_id + ", create_date=" + create_date + ", user_id=" + user_id
 				+ ", due_date=" + due_date + ", state=" + state + ", promo_type=" + promo_type + ", benefit_code="
-				+ benefit_code + ", product_code=" + product_code + ", event_url=" + event_url + ", banner_url="
-				+ banner_url + ", join_count=" + join_count + "]";
+				+ benefit_code + ", product_code=" + product_code + ", event_url=" + event_url + ", banner_path="
+				+ banner_path + ", join_cnt=" + join_cnt + "]";
 	}
 
 
@@ -116,17 +116,17 @@ public class PromotionVO {
 	public void setEvent_url(String event_url) {
 		this.event_url = event_url;
 	}
-	public String getBanner_url() {
-		return banner_url;
+	public String getbanner_path() {
+		return banner_path;
 	}
-	public void setBanner_url(String banner_url) {
-		this.banner_url = banner_url;
+	public void setbanner_path(String banner_path) {
+		this.banner_path = banner_path;
 	}
-	public int getJoin_count() {
-		return join_count;
+	public int getjoin_cnt() {
+		return join_cnt;
 	}
-	public void setJoin_count(int join_count) {
-		this.join_count = join_count;
+	public void setjoin_cnt(int join_cnt) {
+		this.join_cnt = join_cnt;
 	}
 	
 	

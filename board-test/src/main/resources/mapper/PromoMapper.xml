@@ -11,7 +11,7 @@
     
     
     <select id="getMaxPromoId" parameterType="String" resultType="Integer">
-    	   SELECT CAST(MAX(SUBSTRING(promo_id,8,3)) AS signed integer)+1 
+    	   SELECT IFNULL(CAST(MAX(SUBSTRING(promo_id,8,3)) AS signed integer)+1 ,0)
        FROM Promotion
    	   WHERE Promo_id like #{insertDate}
     </select>
@@ -25,6 +25,22 @@
         VALUES
         (#{promo_id},#{create_date},#{user_id},#{due_date},'0',#{promo_type},#{benefit_code},#{product_code},#{event_url},#{banner_url},0)
    </insert>
+   
+   <select id="getPromotionById" parameterType="String" resultType="com.sunny.test.vo.PromotionVO">     
+        SELECT promo_id,
+			   create_date,
+			   user_id,
+			   due_date, 
+			   state, 
+			   promo_type, 
+			   benefit_code, 
+			   product_code, 
+			   event_url,
+			   banner_path,
+			   join_cnt
+       FROM Promotion
+       WHERE Promo_id = #{promo_id}
+    </select>
     
 </mapper>
 

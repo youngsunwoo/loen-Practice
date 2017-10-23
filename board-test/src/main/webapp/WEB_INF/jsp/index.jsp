@@ -18,5 +18,6 @@
  		<br>
         나이  : ${sessionScope.LoginUser.age} 
 </div>
+
 </body>
 </html>

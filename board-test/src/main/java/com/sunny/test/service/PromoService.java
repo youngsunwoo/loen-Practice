@@ -37,6 +37,13 @@ public class PromoService {
     		return promoMapper.insertTest();
     }
     
+    //프로모션 아이디로 상세정보 가져오기  
+    public PromotionVO getPromotionById(String promo_id) throws Exception{
+    		return promoMapper.getPromotionById(promo_id);
+    }
+    
+
+    
     public int insertPromotion(HttpSession session, String promo_type, String benefit_code, String product_code) throws Exception{
     	
     	
@@ -72,6 +79,6 @@ public class PromoService {
 	    promotion.toString();
 	    
 	   return promoMapper.InsertPromotion(promotion);
-}
+    }
  
 }
