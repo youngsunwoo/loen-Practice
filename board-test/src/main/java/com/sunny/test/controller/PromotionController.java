@@ -1,0 +1,93 @@
+package com.sunny.test.controller;
+
+import java.io.IOException;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sunny.test.service.ProductService;
+import com.sunny.test.service.PromoService;
+import com.sunny.test.vo.BenefitVO;
+import com.sunny.test.vo.ProductVO;
+import com.sunny.test.vo.PromotionVO;
+ 
+@RestController
+public class PromotionController {
+    
+    @Autowired
+    PromoService promoService;
+    
+    
+    @RequestMapping(value="/")      
+    public ModelAndView root() {
+         return new ModelAndView("index");        
+    }
+
+    //프로모션만들기 ( 입력폼 )
+    @RequestMapping(value="Promotion/FormNewPromotion")      
+    public ModelAndView promo() {
+        return new ModelAndView("Promotion/make_Promo");        
+    }
+    
+    //프로모션 상세보기 
+    @RequestMapping(value="Promotion/PromotiomDetail")      
+    public ModelAndView promoDetail() {
+        return new ModelAndView("Promotion/promotion_Detail");        
+    }
+    
+    //프로모션 만들기 ( 저장 )
+    @RequestMapping(value="Promotion/insertPromotion", method = RequestMethod.POST)      
+    public ModelAndView MakeNewPromotion(HttpServletRequest httpServletRequest) throws Exception{
+    	
+    		String promo_type = httpServletRequest.getParameter("promo_type");
+		String benefit_code = httpServletRequest.getParameter("benefit_code");
+		String product_code = httpServletRequest.getParameter("product_code");
+		product_code = "00001";
+		
+		System.out.println("Controller > promo_type : "+ promo_type );
+		
+		promoService.insertPromotion(httpServletRequest.getSession(), promo_type, benefit_code, product_code);
+	
+        return new ModelAndView("Promotion/make_Promo");        
+    }
+    
+    
+    
+    @RequestMapping(value="test")      
+    public ModelAndView test(HttpServletRequest httpServletRequest) throws Exception{
+    	
+    		promoService.insertTest();
+	
+        return new ModelAndView("index");        
+    }
+    
+    
+    //베네핏가져오기
+    @RequestMapping(value="/getBenefitList", method = RequestMethod.GET)     
+    public 	List<BenefitVO> getbenefit(HttpServletRequest httpServletRequest) throws Exception{
+    		
+    		String promo_type = httpServletRequest.getParameter("promo_type");
+    		String benefit_code = httpServletRequest.getParameter("benefit_code");
+    	
+    		System.out.println("promo_type : " + promo_type + ",    benefit_code : " + benefit_code);
+
+      	List<BenefitVO> benefits = promoService.getBenefit(promo_type, benefit_code);
+        return benefits;
+    }
+    
+   
+}
