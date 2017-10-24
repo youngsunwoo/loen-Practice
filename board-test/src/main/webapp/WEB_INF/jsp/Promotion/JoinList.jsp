@@ -8,27 +8,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>프로모션 참여자</title>
-
-
-<link rel="stylesheet" href="/PaperBootstrap.css" type="text/css">
-    
-</head>
+<title>Benefit List</title>
+</head> 
 <body>
-    <h3>게시글 목록 : ${list}</h3>
+    <h3>게시글 프로모션 참여자 목록</h3>
     
      <table class="table">
         <tr>
-            <th>목표인원 </th>
-            <th>제공혜택 </th>
-            <th>혜택단위 </th>
+            <th>I  D </th>
+            <th>이 름 </th>
         </tr>
 
-     <c:forEach var="benefit" items="${list}">
+     <c:forEach var="joinUser" items="${joinUsers}">
         <tr>
-            <td>${benefit.goal_cnt}</td>
-            <td>${benefit.offer}</td>
-            <td>${benefit.unit}</td>
+            <td>${joinUser.user_id}</td>
+            <td>${joinUser.user_name}</td>
         </tr>
         </c:forEach>
 

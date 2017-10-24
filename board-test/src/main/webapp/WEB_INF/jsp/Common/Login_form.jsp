@@ -4,6 +4,7 @@
     
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<link rel="stylesheet" href="/PaperBootstrap.css" type="text/css">
 
 <html>
 <head>

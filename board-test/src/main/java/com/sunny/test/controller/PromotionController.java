@@ -57,11 +57,6 @@ public class PromotionController {
 		String benefit_code = httpServletRequest.getParameter("benefit_code");
 		String product_code = httpServletRequest.getParameter("product_code");
 
-			
-		System.out.println("Controller > promo_type : "+ promo_type );
-
-		System.out.println("Controller > product_code : "+ product_code );
-		
 		promoService.insertPromotion(httpServletRequest.getSession(), promo_type, benefit_code, product_code);
 	
         return new ModelAndView("Promotion/make_Promo");        
@@ -74,7 +69,7 @@ public class PromotionController {
     		ModelAndView mav = new ModelAndView();
 
     		String promo_id = promotion_id;
-    		PromotionVO  promotion = promoService.getPromotionById("171020_056");
+    		PromotionVO  promotion = promoService.getPromotionById(promotion_id);
     		UserVO ownUser = userService.getUserById(promotion.getUser_id());
     		ProductVO product = productService.getProductInfo(promotion.getProduct_code());
     		List<BenefitVO> benefits = promoService.getBenefit(promotion.getPromo_type(), promotion.getBenefit_code());
@@ -83,7 +78,7 @@ public class PromotionController {
     		mav.addObject("ownUser",ownUser);
     		mav.addObject("benefits",benefits);
     		
-    		mav.setViewName("test");
+    		mav.setViewName("Promotion/promotion_Detail");
     		
     		return mav;
         
@@ -106,6 +101,24 @@ public class PromotionController {
 		promoService.JoinPromotion(httpServletRequest.getSession(), purchase, join);
 	
         return new ModelAndView("Promotion/make_Promo");        
+    }
+    
+    
+    
+    //get Users who joined the Promotion By PromoId
+    @RequestMapping(value="Promotion/Detail/JoinList", method = RequestMethod.GET)      
+    public ModelAndView getJoinUsersByPromoId(@RequestParam String promotion_id, HttpSession session) throws Exception{
+    		ModelAndView mav = new ModelAndView();
+
+    		String promo_id = promotion_id;
+    		
+    		List<UserVO> joinUsers = userService.getJoinUsersByPromoId(promotion_id);
+    		
+    		mav.addObject("joinUsers",joinUsers);
+    		mav.setViewName("Promotion/JoinList");
+    		
+    		return mav;
+        
     }
     
     

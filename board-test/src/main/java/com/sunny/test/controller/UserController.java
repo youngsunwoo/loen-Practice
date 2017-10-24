@@ -1,6 +1,7 @@
 package com.sunny.test.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,37 +10,37 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sunny.test.service.UserService;
+import com.sunny.test.vo.BenefitVO;
+import com.sunny.test.vo.ProductVO;
+import com.sunny.test.vo.PromotionVO;
+import com.sunny.test.vo.UserVO;
+
 
 @RestController
-public class LoginController {
+public class UserController {
 	
 	 @Autowired
 	 UserService userService;
-	    
-	 @RequestMapping("page1")
-	    public String page1() {
-	        return "page1";
-	    }
-	    // 세션 사용 안하는 화면
-	    @RequestMapping("page2")
-	    public String page2() {
-	        return "page2";
-	    }
-	    // 로그인 화면
+	 
+	 	// 로그인 화면
 	    @RequestMapping("login")
 	    public ModelAndView login() {
 	            return new ModelAndView("Common/Login_form");    
 	    }
+	    
 	    // 로그아웃
 	    @RequestMapping("logout")
 	    public String logout(HttpSession session) {
 	        session.setAttribute("LoginUser", null);
 	        return "redirect:login";
 	    }
+	    
+	    
 	         
 	    // 로그인 처리
 	    @RequestMapping(value="loginProcess", method = RequestMethod.GET)
@@ -58,7 +59,9 @@ public class LoginController {
     	        return map;
     	         		
 	    }
-	
+
 	   
-	
+	    
+	   
+
 }

@@ -1,6 +1,7 @@
 package com.sunny.test.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -30,7 +31,6 @@ public class UserService {
         para.put("user_pw", pw);
         
         UserVO loginUser = userMapper.getUserByIdPwd(para);
-
         
         if (loginUser != null) {
         		session.setAttribute("LoginUser", loginUser);
@@ -38,7 +38,11 @@ public class UserService {
         }
         
         return false;
-        
     }
+    
+    
+    public List<UserVO> getJoinUsersByPromoId(String Promoid) throws Exception{
+		return userMapper.getJoinUsersByPromoId(Promoid);
+}
     
 }
