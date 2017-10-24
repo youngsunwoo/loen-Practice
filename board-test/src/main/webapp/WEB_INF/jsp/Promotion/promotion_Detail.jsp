@@ -1,18 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-    
-  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<style>
+	.process{
+		margin-bottom: 15px;
+		background-image: url("/img/promo_process_bg.png");
+		background-repeat: no-repeat
+	}
+</style>
+
 </head>
 <body>
-
+	<div>
+		<h2>님의 Promotion </h2>
+	</div>
+	
+	<div>
+		<img width="80" height="35" src="/img/term_img.png" alt=""> <p>2017.10.20 - 2017.10.25</p> 
+	</div>
+	<br>	
+	
+	<div class="process" width="950" height="180" >
+	<h3>test</h3>
+	</div>
+	
+	
 <h3>게시글 목록 : ${list}</h3>
     <div>
     프로모션 아이디 : ${promotion.promo_id}
@@ -52,6 +69,7 @@
 		   </tr>
 		  </table>
 	 </div>
+	
 	
 </body>
 </html>

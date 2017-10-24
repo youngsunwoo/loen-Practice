@@ -79,9 +79,6 @@ public class PromotionController {
     		ProductVO product = productService.getProductInfo(promotion.getProduct_code());
     		List<BenefitVO> benefits = promoService.getBenefit(promotion.getPromo_type(), promotion.getBenefit_code());
     		
-    		System.out.println("프로모션아이디 : "+promotion.getPromo_id()+", 주최자아이디 : "+promotion.getUser_id());
-    		System.out.println("주최자 이름 : "+ownUser.getUser_name()+", 상품명 : "+product.getproduct_name());
-
     		mav.addObject("promotion",promotion);
     		mav.addObject("ownUser",ownUser);
     		mav.addObject("benefits",benefits);
@@ -118,8 +115,6 @@ public class PromotionController {
     		
     		String promo_type = httpServletRequest.getParameter("promo_type");
     		String benefit_code = httpServletRequest.getParameter("benefit_code");
-    	
-    		System.out.println("promo_type : " + promo_type + ",   benefit_code : " + benefit_code);
 
       	List<BenefitVO> benefits = promoService.getBenefit(promo_type, benefit_code);
         return benefits;

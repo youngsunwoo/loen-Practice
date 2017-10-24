@@ -103,8 +103,7 @@ public class PromoService {
 	    
 	    System.out.println(purchaseId);
     		//구매 내역 insert 
-	    purchaseMapper.InsertPurchase(purchase) ;
-	    	
+	    System.out.println("purchaseMapper.InsertPurchase(purchase) : " + purchaseMapper.InsertPurchase(purchase));
 
 		//////////////////////////////////
 		// 		   조인내역 Insert	    	   //
