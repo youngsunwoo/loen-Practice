@@ -3,7 +3,8 @@
     
     
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
 <link rel="stylesheet" href="/PaperBootstrap.css" type="text/css">
 
 <html>

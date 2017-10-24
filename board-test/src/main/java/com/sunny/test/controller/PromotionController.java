@@ -40,7 +40,11 @@ public class PromotionController {
     public ModelAndView root() {
          return new ModelAndView("index");        
     }
-
+    
+    @RequestMapping(value="/test")      
+    public ModelAndView test() {
+         return new ModelAndView("Promotion/make_Promo2_test");        
+    }
     
     
     //The Form to make Promotion
@@ -52,21 +56,27 @@ public class PromotionController {
     //Insert Promotion Information to Database
     @RequestMapping(value="Promotion/insertPromotion", method = RequestMethod.POST)      
     public ModelAndView MakeNewPromotion(HttpServletRequest request) throws Exception{
-    	
+		ModelAndView mav = new ModelAndView();
+		
     		String promo_type = request.getParameter("promo_type");
 		String benefit_code = request.getParameter("benefit_code");
 		String product_code = request.getParameter("product_code");
 
 		int result = promoService.insertPromotion(request.getSession(), promo_type, benefit_code, product_code);
 		
-
+		
+		// 저장한 Promotion ID 필요.... 
+		
+		
 		if (result != 0) {
-			
+    			mav.addObject("result",result);
 		}else {
-			
+			mav.addObject("result",result);
 		}
-	
-        return new ModelAndView("Promotion/make_Promo");        
+		
+		mav.setViewName("Promotion/make_Promo");
+		
+        return mav;
     }
     
         
@@ -75,7 +85,6 @@ public class PromotionController {
     public ModelAndView promoDetail(@RequestParam String promotion_id, HttpSession session) throws Exception{
     		ModelAndView mav = new ModelAndView();
 
-    		String promo_id = promotion_id;
     		PromotionVO  promotion = promoService.getPromotionById(promotion_id);
     		UserVO ownUser = userService.getUserById(promotion.getUser_id());
     		ProductVO product = productService.getProductInfo(promotion.getProduct_code());
@@ -83,6 +92,7 @@ public class PromotionController {
     		
     		mav.addObject("promotion",promotion);
     		mav.addObject("ownUser",ownUser);
+    		mav.addObject("product",product);
     		mav.addObject("benefits",benefits);
     		
     		mav.setViewName("Promotion/promotion_Detail");
@@ -123,7 +133,6 @@ public class PromotionController {
     		
     		mav.addObject("joinUsers",joinUsers);
     		mav.setViewName("Promotion/JoinList");
-    		
     		return mav;
         
     }

@@ -5,8 +5,10 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/resource/style/web/event/melonweb_wholeevent.css?tm=20170929" type="text/css">
 
-
+<script src="ex04.js">
+</script>
 
 <!DOCTYPE html>
 <html>
@@ -45,7 +47,26 @@
         <br>
        
         <!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 /getBenefit.jsp -->
-        <form method="post" action="/Promotion/insertPromotion" name="Promo_info" id="Promo_info">
+        
+      <ul class="choice_list">
+		<li>
+			<a href="#">
+			<span class="img"><img src="http://cdnimg.melon.co.kr/resource/image/cds/event/web/201708/lipton/img_op_0101.png" alt="" width="264" height="528"></span>
+			<span class="chk"><img src="http://cdnimg.melon.co.kr/resource/image/cds/event/web/201708/lipton/btn_check.png" alt="" width="30" height="60"></span>
+			<span class="txt"><img src="http://cdnimg.melon.co.kr/resource/image/cds/event/web/201708/lipton/txt_op_0101.png" alt="정신없이 바쁜 일상" width="104" height="112"></span>
+			</a>
+		</li>
+		
+		<li>
+			<a href="#">
+			<span class="img"><img src="http://cdnimg.melon.co.kr/resource/image/cds/event/web/201708/lipton/img_op_0102.png" alt="" width="264" height="528"></span>
+			<span class="chk"><img src="http://cdnimg.melon.co.kr/resource/image/cds/event/web/201708/lipton/btn_check.png" alt="" width="30" height="60"></span>
+			<span class="txt"><img src="http://cdnimg.melon.co.kr/resource/image/cds/event/web/201708/lipton/txt_op_0102.png" alt="일과 후 편안한 휴식시간" width="130" height="112"></span>
+			</a>
+		</li>
+	  </ul>
+        
+        <form method="post" action="/Promotion/insertPromotion" name="Promo_info" onsubmit="return checkValue()">
             <table>
                  <tr>
                     <td id="title">보상형태</td>
@@ -54,6 +75,10 @@
                         <input type="radio" name="promo_type" value="2">다함께
                     </td>
                 </tr>
+                
+                
+                
+                
                 
                 <tr>
                     <td id="title">보상종류</td>
@@ -68,6 +93,7 @@
                 </tr>
                 
                   <tr> <td> <br> <div id="benefit_div"></div> </td> </tr>  
+              
                 <tr> 
                    <td>
 		            		<div>
@@ -85,13 +111,13 @@
 	            
             </table>
             <br>
-            <button id="button1" onclick="submitPromotion();">제출하기</button>
+            <input type="submit" value="제출하기 ">  
            </form>
     </div>
     
-    <!----------------------------------- *************** Script ***************----------------------------------->
-    
-       
+    <br>
+</body>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	
 	
@@ -107,30 +133,7 @@
 		        }
 		    }
 	
-		    	
-		
-		    	
-		   function submitPromotion() {
-		    			 alert("submitPromotion");
-
-		    	 		 var formData = $("#Promo_info").serialize();
-
-		    	 		 $.ajax({
-		    	 			url : '/Promotion/insertPromotion',
-			                type: "POST",	
-		    	 			    data : formData,
-			                dataType : "text",
-			                success: function(data) {
-			                    console.log(data);
-			                },
-		    	 		 	   error:function() { alert("Error"); }
-		    	 		
-		    	 		});
-		    	 		 
-		   }
-	   		
-	   
-	   
+	
 		/////////////////////////////////////////////////////////
 		//                  상품관련된 JavaScript                 //
 		/////////////////////////////////////////////////////////
@@ -184,7 +187,7 @@
 		         	$.ajax({
 			                url : '/getProductInfo',
 			                type: "get",	
-				            data : {  "product_code" :   $("input[name=product_radio]:checked").val() },	
+				              data : {  "product_code" :   $("input[name=product_radio]:checked").val() },	
 			               dataType : 'json',
 			    	   		  	success:  function(obj) {
 			    	   		  		showProductInfo(obj);
@@ -272,7 +275,4 @@
       
     
     </script>
-    
-    
-</body>
 </html>

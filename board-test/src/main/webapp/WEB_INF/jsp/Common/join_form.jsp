@@ -1,26 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
     
-    
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<link rel="stylesheet" href="https://cdnimg.melon.co.kr/static/member/resource/style/me1/qy/y/1edydz6hfyj.css" type="text/css">
    
 <html>
 <head>
     <title>회원가입 화면</title>
     
-   <!-- css 파일 분리 -->
-   <!--  <link href='../../css/join_style.css' rel='stylesheet' style='text/css'/>
-   -->
    
+	<link rel="stylesheet" href="https://cdnimg.melon.co.kr/static/member/resource/style/me1/qy/y/1edydz6hfyj.css" type="text/css">
+	   
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>	
     <script type="text/javascript">
     
         // 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
         function checkValue()
         {
             if(!document.userInfo.id.value){
-                alert("아이디를 입력하세요.");
+                $('#inner').append('아이디를 입력하세요.');
                 return false;
             }
             
@@ -37,16 +34,15 @@
         }
         
 	    	//중복체크 
-		function check_exist() {
+		function checkDuplicate() {
 			alert("버튼1을 누르셨습니다.");
 		}
     </script>
     
 </head>
 <body>
-    <!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
-    
-    
+
+
     
     <div id="wrap" class="join">
     
@@ -83,10 +79,10 @@
 																<input type="text" id="UserId" name="UserId" title="아이디 입력 편집창" placeholder="25자 이하로 입력" class="text53" style="width:276px;">
 															</div>
 															<div class="wrap_input_check">
-																<input type="button" id="duplicateCheck" name="duplicateCheck" value = "중복체크">
+																<input type="button" id="duplicateCheck" name="duplicateCheck" class="btn btn-default" value = "중복체크" onclick="checkDuplicate()">
 															</div>
 														</div>
-														<p id="memberId_msg" class="txt_error03" style="display:none;"></p>
+														<p id="UserId_msg" class="txt_error03" style="display:none;"></p>
 													</div>
 												</td>
 											</tr>
