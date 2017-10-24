@@ -51,13 +51,20 @@ public class PromotionController {
     
     //Insert Promotion Information to Database
     @RequestMapping(value="Promotion/insertPromotion", method = RequestMethod.POST)      
-    public ModelAndView MakeNewPromotion(HttpServletRequest httpServletRequest) throws Exception{
+    public ModelAndView MakeNewPromotion(HttpServletRequest request) throws Exception{
     	
-    		String promo_type = httpServletRequest.getParameter("promo_type");
-		String benefit_code = httpServletRequest.getParameter("benefit_code");
-		String product_code = httpServletRequest.getParameter("product_code");
+    		String promo_type = request.getParameter("promo_type");
+		String benefit_code = request.getParameter("benefit_code");
+		String product_code = request.getParameter("product_code");
 
-		promoService.insertPromotion(httpServletRequest.getSession(), promo_type, benefit_code, product_code);
+		int result = promoService.insertPromotion(request.getSession(), promo_type, benefit_code, product_code);
+		
+
+		if (result != 0) {
+			
+		}else {
+			
+		}
 	
         return new ModelAndView("Promotion/make_Promo");        
     }
@@ -87,10 +94,10 @@ public class PromotionController {
     
     //Join to Promotion
     @RequestMapping(value="Promotion/JoinPromotion", method = RequestMethod.POST)      
-    public ModelAndView JoinPromotion(HttpServletRequest httpServletRequest) throws Exception{
+    public ModelAndView JoinPromotion(HttpServletRequest request) throws Exception{
     	
-    		String productCode = httpServletRequest.getParameter("productCode");
-		String promoId = httpServletRequest.getParameter("promoId");
+    		String productCode = request.getParameter("productCode");
+		String promoId = request.getParameter("promoId");
 		
     		PurchaseVO purchase = new PurchaseVO(productCode);
     		
@@ -98,7 +105,7 @@ public class PromotionController {
 		
     		System.out.println("productCode : "+productCode);
     		System.out.println("promoId : "+promoId);
-		promoService.JoinPromotion(httpServletRequest.getSession(), purchase, join);
+		promoService.JoinPromotion(request.getSession(), purchase, join);
 	
         return new ModelAndView("Promotion/make_Promo");        
     }
@@ -124,10 +131,10 @@ public class PromotionController {
     
     //베네핏가져오기
     @RequestMapping(value="/getBenefitList", method = RequestMethod.GET)     
-    public 	List<BenefitVO> getbenefit(HttpServletRequest httpServletRequest) throws Exception{
+    public 	List<BenefitVO> getbenefit(HttpServletRequest request) throws Exception{
     		
-    		String promo_type = httpServletRequest.getParameter("promo_type");
-    		String benefit_code = httpServletRequest.getParameter("benefit_code");
+    		String promo_type = request.getParameter("promo_type");
+    		String benefit_code = request.getParameter("benefit_code");
 
       	List<BenefitVO> benefits = promoService.getBenefit(promo_type, benefit_code);
         return benefits;

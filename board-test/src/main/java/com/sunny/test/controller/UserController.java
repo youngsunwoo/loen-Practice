@@ -27,6 +27,13 @@ public class UserController {
 	 @Autowired
 	 UserService userService;
 	 
+	 
+		// 로그인 화면
+	    @RequestMapping("join")
+	    public ModelAndView join() {
+	            return new ModelAndView("Common/join_form");    
+	    }
+	    
 	 	// 로그인 화면
 	    @RequestMapping("login")
 	    public ModelAndView login() {
@@ -46,9 +53,6 @@ public class UserController {
 	    @RequestMapping(value="loginProcess", method = RequestMethod.GET)
 	    public Map<String, Object> loginProcess(HttpSession session, HttpServletRequest request) throws Exception{    
 	    	
-	        ModelAndView mav = new ModelAndView();
-	        mav.setViewName("Login_OK_TEST");
-	        
 	        String id = request.getParameter("id");
     			String pw = request.getParameter("pw");
     			String pre_url = request.getHeader("referer");
@@ -61,7 +65,29 @@ public class UserController {
 	    }
 
 	   
-	    
+	 // 회원가입
+	    @RequestMapping(value="joinProcess")//, method = RequestMethod.POST)
+	    public Map<String, Object> joinProcess(HttpSession session, HttpServletRequest request) throws Exception{    
+	    	
+	        ModelAndView mav = new ModelAndView();
+	        mav.setViewName("index");
+	        
+	       // String id = request.getParameter("id");
+    			//String pw = request.getParameter("pw");
+ 
+    			UserVO newUser = new UserVO("user3", "1234", "LOEN", 32, "1", 0);
+    			
+    			if(userService.insertUser(newUser) != 0) {
+    				System.out.println("UserController > JoinProcess > inserUser Functiont : "+newUser.getUser_name());
+    			}
+    			
+    			
+    			 final Map<String, Object> map = new HashMap<String, Object>();
+    	        map.put("flagdata", "");
+    	        
+    	        return map;
+    	         		
+	    }
 	   
 
 }
