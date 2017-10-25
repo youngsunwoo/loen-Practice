@@ -1,6 +1,7 @@
 package com.sunny.test;
 
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,7 +21,10 @@ public class CertificationInterceptor implements HandlerInterceptor {
         UserVO loginVO = (UserVO) session.getAttribute("LoginUser");
         
         if(ObjectUtils.isEmpty(loginVO)){
-            response.sendRedirect("/login");
+        	
+        		request.setAttribute("destination", request.getRequestURI());
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+        		dispatcher.forward(request, response);
             return false;
         }else{
         		//특정시간이 지나면 세션 만료 (초단위) 

@@ -172,7 +172,7 @@
 		
 			//POST방식으로 바꿀것
 			$.ajax({
-				url:"loginProcess",
+				url:"/loginProcess",
 				type:'GET',
 				dataType:'json',
 	              data : {  "id" :  $("#id").val(),
@@ -182,7 +182,7 @@
 				success:function(data) {
 					if(data.flagdata) {
 						alert(" 세션!!저장되었다!1");
-						history.back();
+					 	location.replace("<%=request.getAttribute("destination")%>")
 						//이전페이지 주소 알아서 redirect해줄것
 					} else {
 						alert("아이디,패스워드를 확인해주세요 ");
