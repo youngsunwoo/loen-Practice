@@ -42,7 +42,7 @@ public class PromoService {
     		return promoMapper.getPromotionById(promo_id);
     }
     
-    public int insertPromotion(HttpSession session, String promo_type, String benefit_code, String product_code) throws Exception{
+    public PromotionVO insertPromotion(HttpSession session, String promo_type, String benefit_code, String product_code) throws Exception{
     	
     		PromotionVO promotion  = new PromotionVO();  
     		
@@ -67,13 +67,15 @@ public class PromoService {
 	    UserVO loginUser = (UserVO) session.getAttribute("LoginUser");
 	    
 	    promotion.setUser_id(loginUser.getUser_id());
-	    
-	    
 	    promotion.setDue_date(date);
 	    
 	    promotion.toString();
 	    
-	   return promoMapper.InsertPromotion(promotion);
+	   int result = promoMapper.InsertPromotion(promotion);
+	   if (result > 0) {
+	   		return promotion;
+	   }
+	   return null;
     }
     
     

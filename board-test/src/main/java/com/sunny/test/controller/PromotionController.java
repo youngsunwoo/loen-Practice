@@ -55,28 +55,15 @@ public class PromotionController {
     
     //Insert Promotion Information to Database
     @RequestMapping(value="Promotion/insertPromotion", method = RequestMethod.POST)      
-    public ModelAndView MakeNewPromotion(HttpServletRequest request) throws Exception{
+    public PromotionVO MakeNewPromotion(HttpServletRequest request) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		
     		String promo_type = request.getParameter("promo_type");
 		String benefit_code = request.getParameter("benefit_code");
 		String product_code = request.getParameter("product_code");
 
-		int result = promoService.insertPromotion(request.getSession(), promo_type, benefit_code, product_code);
+		return promoService.insertPromotion(request.getSession(), promo_type, benefit_code, product_code);
 		
-		
-		// 저장한 Promotion ID 필요.... 
-		
-		
-		if (result != 0) {
-    			mav.addObject("result",result);
-		}else {
-			mav.addObject("result",result);
-		}
-		
-		mav.setViewName("Promotion/make_Promo");
-		
-        return mav;
     }
     
         
@@ -100,6 +87,23 @@ public class PromotionController {
     		return mav;
         
     }
+    
+    
+    //get(show) Promotion Detail Information
+    @RequestMapping(value="Promotion/SharePopup", method = RequestMethod.GET)      
+    public ModelAndView sharePopup(@RequestParam String promotion_id, HttpSession session) throws Exception{
+    		ModelAndView mav = new ModelAndView();
+
+    		mav.addObject("promotion_id",promotion_id);
+    		
+    		mav.setViewName("Promotion/sharePopup");
+    		
+    		return mav;
+        
+    }
+    
+    
+    
     
     
     //Join to Promotion

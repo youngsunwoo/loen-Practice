@@ -45,7 +45,7 @@
         <br>
        
         <!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 /getBenefit.jsp -->
-        <form method="post" action="/Promotion/insertPromotion" name="Promo_info" id="Promo_info">
+        <form method="post" name="Promo_info" id="Promo_info">
             <table>
                  <tr>
                     <td id="title">보상형태</td>
@@ -119,9 +119,13 @@
 		    	 			url : '/Promotion/insertPromotion',
 			                type: "POST",	
 		    	 			    data : formData,
-			                dataType : "text",
+			                dataType : "json",
 			                success: function(data) {
-			                    console.log(data);
+			                    if(data == null){
+			                    	
+			                    }else{
+			                    	 openShareWindow(data);
+			                    }
 			                },
 		    	 		 	   error:function() { alert("Error"); }
 		    	 		
@@ -129,7 +133,11 @@
 		    	 		 
 		   }
 	   		
-	   
+	   	function openShareWindow(data){
+	   		
+			var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=440, height=550';
+		 	window.open("/Promotion/SharePopup?promotion_id="+data.promo_id, 'test', popupOption);
+	   	}
 	   
 		/////////////////////////////////////////////////////////
 		//                  상품관련된 JavaScript                 //
