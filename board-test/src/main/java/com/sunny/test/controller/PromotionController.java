@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.sunny.test.service.ProductService;
 import com.sunny.test.service.PromoService;
 import com.sunny.test.service.UserService;
@@ -42,8 +43,26 @@ public class PromotionController {
     }
     
     @RequestMapping(value="/test")      
-    public ModelAndView test() {
-         return new ModelAndView("Promotion/make_Promo2_test");        
+    public ModelAndView test() throws Exception{
+    		ModelAndView mav = new ModelAndView();
+
+		PromotionVO  promotion = promoService.getPromotionById("171020_056");
+		UserVO ownUser = userService.getUserById(promotion.getUser_id());
+		ProductVO product = productService.getProductInfo(promotion.getProduct_code());
+		List<BenefitVO> benefits = promoService.getBenefit(promotion.getPromo_type(), promotion.getBenefit_code());
+		
+		
+		
+		mav.addObject("promotion",promotion);
+		mav.addObject("ownUser",ownUser);
+		mav.addObject("product",product);
+		mav.addObject("benefits",benefits);
+		String benefits_json = new Gson().toJson(benefits);
+		
+		mav.addObject("benefits",benefits_json);
+		
+		mav.setViewName("Promotion/promotion_Detail_test");     
+         return mav ;      
     }
     
     
@@ -80,7 +99,11 @@ public class PromotionController {
     		mav.addObject("promotion",promotion);
     		mav.addObject("ownUser",ownUser);
     		mav.addObject("product",product);
-    		mav.addObject("benefits",benefits);
+
+    		String benefits_json = new Gson().toJson(benefits);
+    		
+    		System.out.println(benefits_json);
+    		mav.addObject("benefits",benefits_json);
     		
     		mav.setViewName("Promotion/promotion_Detail");
     		

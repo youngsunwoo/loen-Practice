@@ -135,13 +135,13 @@
 													<div class="wrap">
 														<div class="box_select_gender">
 															<ul class="wrap_list_radio">
-																<li class="d_input_check">
+																<li class="d_input_check" id="genderCheckM">
 																	<div class="box_check_radio">
 													                    <input type="radio" name="gender" id="genderM" class="input_check">
 													                    <label for="genderM" class="label_check"><span class="icon"></span>남자</label>
 													                </div>
 																</li>
-																<li class="d_input_check">
+																<li class="d_input_check"  id="genderCheckW">
 																	<div class="box_check_radio">
 													                    <input type="radio" name="gender" id="genderW" class="input_check">
 													                    <label for="genderW" class="label_check"><span class="icon"></span>여자</label>
@@ -207,8 +207,12 @@
 			alert('test : '+i)
 			if(i==0){	//성별 남
 				$("#memberGender").val("1");
+				$("#genderCheckM").addClass("on");
+				$("#genderCheckW").removeClass("on");
 			}else{		//성별 여
 				$("#memberGender").val("2");
+				$("#genderCheckM").removeClass("on");
+				$("#genderCheckW").addClass("on");
 			}
 		});
 	});
