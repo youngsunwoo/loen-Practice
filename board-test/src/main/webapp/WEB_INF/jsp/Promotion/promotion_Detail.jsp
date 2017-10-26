@@ -185,7 +185,7 @@
 			
 		$(document).ready(function () {
 				
-				//가져오기 
+				//가져오기     
 			    var benefits = ${benefits} 
 			    var joinCnt =  ${promotion.join_cnt}
 			    var stepwidth = $(benefitDiv).width()/(benefits.length+1);
