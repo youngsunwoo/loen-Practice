@@ -42,6 +42,17 @@ public class PromotionController {
          return new ModelAndView("index");        
     }
     
+    
+    
+    //The Form to make Promotion
+    @RequestMapping(value="test")      
+    public ModelAndView test() {
+        return new ModelAndView("Promotion/promotion_form");        
+    }
+    
+    
+    
+    /*
     @RequestMapping(value="/test")      
     public ModelAndView test() throws Exception{
     		ModelAndView mav = new ModelAndView();
@@ -64,7 +75,7 @@ public class PromotionController {
 		mav.setViewName("Promotion/promotion_Detail_test");     
          return mav ;      
     }
-    
+    */
     
     //The Form to make Promotion
     @RequestMapping(value="Promotion/FormNewPromotion")      

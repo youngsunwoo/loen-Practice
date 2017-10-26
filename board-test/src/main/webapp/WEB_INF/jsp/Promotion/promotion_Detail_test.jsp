@@ -44,51 +44,14 @@
                 <div class="connecting-line" style="background: #5BC0D8; width: 32%; margin-left: 10%;"></div>
                 <ul class="nav nav-tabs" role="tablist" id="stepContent">
                 
- <!--         
+ 
 
-                    <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
-                            </span>
-                        </a>
-                    </li>
-
-					<li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Test">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li role="presentation" class="disabled">
-                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-pencil"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li role="presentation" class="disabled">
-                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
-                            <span class="round-tab">
-                                <i class="glyphicon glyphicon-picture"></i>
-                            </span>
-                        </a>
-                    </li>
-
-                    <li role="presentation" class="disabled">
-                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-                            <span class="round-tab">
-                           		 <div class="numberCircle">30</div>
-                            </span>
-                        </a>
-                    </li> -->
+                   
                 </ul>
             </div>
 
             <form role="form">
-                <div class="tab-content">
+                <div class="tab-content" id = "tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <h3>Step one</h3>
                         <p>first step</p>
@@ -130,6 +93,33 @@
 	 
 <script>
 	$(document).ready(function () {
+		
+		//가져오기 
+	    var benefits = ${benefits} 
+	    var joinCnt =  ${promotion.join_cnt}
+	    	    
+	    var benefit_list_html  = ''
+	    
+	    var tab_content_html  = ''
+	
+	    
+	    
+	    for (var i = 0; i < benefits.length; i++) {
+    	    		var obj = benefits[i];
+    	    			if (joinCnt > obj.goal_cnt) {
+    	    			 	benefit_list_html += '<li role="presentation" class="active" style="width: 20%;">'
+    	    			}else{
+	   	   			benefit_list_html += '<li role="presentation" class="disabled"  style="width: 20%;">'
+    	    			}
+			   	benefit_list_html += '<a href="#' +obj.offer +obj.unit+'" data-toggle="tab" aria-controls="step1" role="tab" title="" data-original-title="' +obj.offer +obj.unit+'">'
+			   	benefit_list_html += '<span class="round-tab"> '+  obj.goal_cnt   +' </span>    </a>   </li>		'
+			   	
+	    }
+	    $("#stepContent").append(benefit_list_html);
+	    	
+	    var stepsWidth = 1/benefits.length+1
+	    
+		
 	    //Initialize tooltips
 	    $('.nav-tabs > li a[title]').tooltip();
 	    
@@ -137,7 +127,6 @@
 	    //목표 갯수에 따른 width변
 	    $('.wizard .nav-tabs > li').css('width', '20%'); 
 	    
-
 	    
 	    $('#stepContent').append
 	   
@@ -166,32 +155,6 @@
 	
 	    });
 	    
-	    
-
-	    
-  		alert('${promotion.promo_id}');
-  		alert(' ${benefit.get(1).getGoal_cnt}');
-    	
-	    
-	    var benefits = ${benefits} 
-	    	    
-	    var benefit_list_html  = ''
-	
-	    
-	    for (var i = 0; i < benefits.length; i++) {
-    	    		var obj = benefits[i];
-    	    			if (${promotion.join_cnt} > obj.goal_cnt) {
-    	    			 	benefit_list_html += '<li role="presentation" class="active" >'
-    	    			}else{
-	   	   			benefit_list_html += '<li role="presentation" class="disabled" >'
-    	    			}
-			   	benefit_list_html += '<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="' +obj.product_name + '"">'
-			   	benefit_list_html += '<span class="round-tab"> '+  obj.goal_cnt   +' </span>    </a>   </li>		'	    
-	    }
-	    $("#stepContent").append(benefit_list_html);
-	    	
-
-	   
 	});
 	
 	function nextTab(elem) {

@@ -129,14 +129,19 @@
 			                },
 		    	 		 	   error:function() { alert("Error"); }
 		    	 		
-		    	 		});
+		    	 		 });
 		    	 		 
 		   }
 	   		
 	   	function openShareWindow(data){
 	   		
-			var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=440, height=550';
+			var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=600, height=550';
 		 	window.open("/Promotion/SharePopup?promotion_id="+data.promo_id, 'test', popupOption);
+		 	
+
+		 	location.replace("Promotion/Detail?promotion_id="+data.promo_id)
+		 	
+		 	
 	   	}
 	   
 		/////////////////////////////////////////////////////////

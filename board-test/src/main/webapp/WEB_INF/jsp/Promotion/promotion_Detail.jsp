@@ -16,20 +16,58 @@
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" type="text/css">
-
-<link rel="stylesheet" href="/PaperBootstrap.css" type="text/css">
-   
 <link rel="stylesheet" href="https://cdnimg.melon.co.kr/static/member/resource/style/me1/qy/y/1edydz6hfyj.css" type="text/css">
-	
-	
 <link rel="stylesheet" href="/css/steps.css" type="text/css">
+
+
+
+<style type="text/css">
+
+/*Form Wizard*/
+.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
+.bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
+.bs-wizard > .bs-wizard-step + .bs-wizard-step {}
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
+.bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
+.bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #fbe8aa;}
+.bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
+.bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}
+.bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
+.bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {width: 100%;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {background-color: #f5f5f5;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {opacity: 0;}
+.bs-wizard > .bs-wizard-step:first-child  > .progress {left: 50%; width: 50%;}
+.bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
+/*END Form Wizard*/
+
+.evenvtBt {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+    
+
+
+</style>
 
 </head>
 <body>
 
  <div id="wrap" class="join">
 	<div id="member_header" 
-		style="  background: #2a2c37 url(http://cdnimg.melon.co.kr/resource/image/web/event/bg_vip_benefit01.jpg) no-repeat 0 0; width: 1008px;">
+		style="  background: url(http://cdnimg.melon.co.kr/resource/image/web/event/bg_vip_benefit01.jpg) no-repeat 0 0; width: 1008px;">
 	
 			<!-- GNB -->
 			<div id="gnb" >
@@ -63,8 +101,26 @@
 				    주최자 아이디 : ${promotion.user_id}  <br>
 				    주최자 이름 : ${ownUser.user_name}  <br>
 				    </div>
+				    
      	 </div>
+     	 
+     	 
+     	  			<div>
+					    <table>
+					    	<tr>
+					    	    <td>
+					    	    		<img src="/img/caution.png" width="20" height="20" style="position: relative;margin: 8px;">
+					    	    
+					    	    </td>
+					     	<td>
+					    	       <p>다운로드 파일은 MP3 파일을 지원하는 모든 기기에서 재생되며, 기간 연장이 필요 없습니다.</p>
+					    	       <p>음악 외 어학을 무제한으로 들으실 수 있으며, 음악 곡 수만큼 어학을 다운로드 하실 수 있습니다	</p>
+					    	    </td>
+					    	</tr>
+					    </table>
+				    </div>
       </div>
+      
 
 	</div>
 	
@@ -84,67 +140,18 @@
 			</div>
 			
 			
+			
+			
 			<!-- 혜택 출력하기 위해서 추가한 내역 -->
 			
-				<div class="container">
-				<div class="row">
-					<section>
-			        <div class="wizard">
-			            <h1>Test</h1>
-			            ${promotion.join_cnt}
-			            
-			            <div class="wizard-inner">
-			                <div class="connecting-line"></div>
-			                <div class="connecting-line" style="background: #5BC0D8; width: 32%; margin-left: 10%;"></div>
-			                <ul class="nav nav-tabs" role="tablist" id="stepContent">
-			                
-			 
 			
-			                   
-			                </ul>
-			            </div>
 			
-			            <form role="form">
-			                <div class="tab-content" id = "tab-content">
-			                    <div class="tab-pane active" role="tabpanel" id="step1">
-			                        <h3>Step one</h3>
-			                        <p>first step</p>
-			                        <ul class="list-inline pull-right">
-			                            <li><button type="button" class="btn btn-primary next-step">next</button></li>
-			                        </ul>
-			                    </div>
-			                    <div class="tab-pane" role="tabpanel" id="step2">
-			                        <h3>Step two</h3>
-			                        <p>Second step</p>
-			                        <ul class="list-inline pull-right">
-			                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-			                            <li><button type="button" class="btn btn-primary next-step">next</button></li>
-			                        </ul>
-			                    </div>
-			                    <div class="tab-pane" role="tabpanel" id="step3">
-			                        <h3>Step three</h3>
-			                        <p>Third step</p>
-			                        <ul class="list-inline pull-right">
-			                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-			                            <li><button type="button" class="btn btn-default next-step">next</button></li>
-			                        </ul>
-			                    </div>
-			                    <div class="tab-pane" role="tabpanel" id="complete">
-			                        <h3>Complete steps</h3>
-			                        <p>You have successfully completed every steps.</p>
-			                        <ul class="list-inline pull-right">
-			                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-			                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Submit</button></li>
-			                        </ul>
-			                    </div>
-			                    <div class="clearfix"></div>
-			                </div>
-			            </form>
-			       	    </div>
-			   		 </section>
-			 	</div>
-				</div>
-	
+			<div class="row bs-wizard" id="benefitDiv" style="border-bottom:0;margin-top: 120px;margin-bottom: 80px;width: 1008px;padding: 10px;">
+                
+               
+            </div>
+			
+				
 	
 	
 			<!-- 혜택 출력용 끝 -->
@@ -152,19 +159,20 @@
 			
 		
 			<div class="wrap_btn">
-				  <table class="table">
-							   <tr>
-								   <form action="/Promotion/JoinPromotion" method="post" onsubmit="return checkValue()">
-								  		 <input type="hidden" name ="promoId" value="${promotion.promo_id}">
-								  		 <input type="hidden" name ="productCode" value="${promotion.product_code}">
-								  		 
-										<td><input type="submit" href="#"  value="이벤트참여하기" class="btn btn-success"/></td>
-										<td><input type="button" href="#" value="참여자확인하기 BT" onclick="fnPopup()" class="btn btn-default" /> </td>
-					   			   </form>
-							   </tr>
-			  </table>
+				 
+				<form action="/Promotion/JoinPromotion" method="post" onsubmit="return checkValue()">
+				 <input type="hidden" name ="promoId" value="${promotion.promo_id}">
+				 <input type="hidden" name ="productCode" value="${promotion.product_code}">
+						  		 
+				  <center>
+				  <input type="submit" href="#" class="evenvtBt" value="이벤트참여하기" />
+				  <input type="button" href="#" class="evenvtBt" value="참여자확인하기" onclick="fnPopup()" class="btn btn-default" />
+				  </center>
+					 
+					  
+				 </form>
+							   
 			</div>
-	</div>
 					 
 
 </div>
@@ -174,6 +182,49 @@
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 	<script type="text/javascript">
+			
+		$(document).ready(function () {
+				
+				//가져오기 
+			    var benefits = ${benefits} 
+			    var joinCnt =  ${promotion.join_cnt}
+			    var stepwidth = $(benefitDiv).width()/(benefits.length+1);
+			    
+			    	    
+			    var benefit_list_html  = ''
+			    var tab_content_html  = ''
+			
+			    
+	    			benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">'
+				benefit_list_html += '<div class="text-center bs-wizard-stepnum"> START! </div>'
+				benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>'
+				benefit_list_html += '<a href="#" class="bs-wizard-dot"></a>'
+				benefit_list_html += '</div>'
+				
+			    for (var i = 0; i < benefits.length; i++) {
+		    	    		var obj = benefits[i];
+		    	    			if (joinCnt > obj.goal_cnt) {
+		    	    			 	benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">'
+		    	    			}else{
+			   	   			benefit_list_html += '<div class="col-xs-3 bs-wizard-step disabled" style="width:'+stepwidth+'px;">'
+		    	    			}
+					   	benefit_list_html += '<div class="text-center bs-wizard-stepnum">'+ obj.goal_cnt +'명 </div>'
+					   	benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>'
+						benefit_list_html += '<a href="#" class="bs-wizard-dot"></a>'
+						benefit_list_html += ' <div class="bs-wizard-info text-center">제공예정 혜택</div>'
+						benefit_list_html += ' <div>'+obj.offer +obj.unit+'</div>'
+						benefit_list_html += '</div>'
+			    }
+			    $("#benefitDiv").append(benefit_list_html)
+			
+			    
+			}
+		)
+	    
+	    </script>
+	    
+	    
+	   <script type="text/javascript">
 	
 	
 	   //이벤트주최가는 참여 불가 처리 
@@ -192,84 +243,6 @@
 	</script>
 	 
 	 
-	 
-	 <!--  혜택 출력하는 쪽에 필요한 Script -->
-	 
-			 
-		<script>
-			$(document).ready(function () {
-				
-				//가져오기 
-			    var benefits = ${benefits} 
-			    var joinCnt =  ${promotion.join_cnt}
-			    	    
-			    var benefit_list_html  = ''
-			    
-			    var tab_content_html  = ''
-			
-			    
-			    
-			    for (var i = 0; i < benefits.length; i++) {
-		    	    		var obj = benefits[i];
-		    	    			if (joinCnt > obj.goal_cnt) {
-		    	    			 	benefit_list_html += '<li role="presentation" class="active" style="width: 20%;">'
-		    	    			}else{
-			   	   			benefit_list_html += '<li role="presentation" class="disabled"  style="width: 20%;">'
-		    	    			}
-					   	benefit_list_html += '<a href="#' +obj.offer +obj.unit+'" data-toggle="tab" aria-controls="step1" role="tab" title="" data-original-title="' +obj.offer +obj.unit+'">'
-					   	benefit_list_html += '<span class="round-tab"> '+  obj.goal_cnt   +' </span>    </a>   </li>		'
-					   	
-			    }
-			    $("#stepContent").append(benefit_list_html);
-			    	
-			    var stepsWidth = 1/benefits.length+1
-			    
-				
-			    //Initialize tooltips
-			    $('.nav-tabs > li a[title]').tooltip();
-			    
-			    
-			    //목표 갯수에 따른 width변
-			    $('.wizard .nav-tabs > li').css('width', '20%'); 
-			    
-			    
-			    $('#stepContent').append
-			   
-			    
-			    //Wizard
-			    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-			
-			        var $target = $(e.target);
-			    
-			        if ($target.parent().hasClass('disabled')) {
-			            return false;
-			        }
-			    });
-			
-			    $(".next-step").click(function (e) {
-			
-			        var $active = $('.wizard .nav-tabs li.active');
-			        $active.next().removeClass('disabled');
-			        nextTab($active);
-			
-			    });
-			    $(".prev-step").click(function (e) {
-			
-			        var $active = $('.wizard .nav-tabs li.active');
-			        prevTab($active);
-			
-			    });
-			    
-			});
-			
-			function nextTab(elem) {
-			    $(elem).next().find('a[data-toggle="tab"]').click();
-			}
-			function prevTab(elem) {
-			    $(elem).prev().find('a[data-toggle="tab"]').click();
-			}
-		
-		</script>	
 	
 	
 </body>
