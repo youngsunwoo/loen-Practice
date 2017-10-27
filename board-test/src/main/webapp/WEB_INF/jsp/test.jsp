@@ -21,21 +21,23 @@
     </div>
     
     <div>
-     <table class="table">
-        <tr>
-            <th>목표인원 </th>
-            <th>제공혜택 </th>
-            <th>혜택단위 </th>
-        </tr>
-
-     <c:forEach var="benefit" items="${benefits}">
-        <tr>
-            <td>${benefit.goal_cnt}</td>
-            <td>${benefit.offer}</td>
-            <td>${benefit.unit}</td>
-        </tr>
-        </c:forEach>
-
+     <table>
+		   <tr>
+   					<td>
+                        <input type="radio" name="gender" value="1" checked>나혼자
+                        <input type="radio" name=""gender"" value="2">다함께
+                    </td>
+                  	  
+                  	  
+                  	  </tr>
+                  	  <tr>
+                    
+                    
+                    <td>
+                        <input type="radio" name="radio2" value="1" checked>radio2
+                        <input type="radio" name="radio2" value="2">radio2-1
+                    </td>
+	</tr>
 	</table>
 	</div>
 	    	
@@ -52,6 +54,27 @@
 		   </tr>
 		  </table>
 	 </div>
+	 
+	 
+	 <script type="text/javascript">
+		 $('input:radio[name=promo_type]').click(function() {
+		    
+	    	
+	   	 	alert('tt');
+			var i = $('input:radio[name=promo_type]').index(this);
+			alert('!!! test' + i)
+			
+
+			
+		});
+	    
+	 
+	    $('input:radio[name=radio2]').click(function() {
+			var i = $('input:radio[name=radio2]').index(this);
+			alert('!!! radio2radio2radio2 test' + i)
+		});
+	 
+	 </script>
 	
 </body>
 </html>

@@ -77,7 +77,7 @@
 	<form method="post" name="Promo_info" id="Promo_info">
      	<input type="hidden" id="promo_type" name="promo_type" >	
      	<input type="hidden" id="product_code" name = "product_code" >
-     	<input type="hidden" id="product_code" name = "benefit_code" value ="02" >
+     	<input type="hidden" id="benefit_code" name = "benefit_code" value ="02" >
      	
 	</form>
 	
@@ -92,60 +92,42 @@
 			
 			
 			<div class="box_select_gender">
-					<img style="width: 200px;margin-left: 50px;margin-right: 50px;" src="/img/promotion/together.png">
-		                 
-					<img style="width: 200px;margin-left: 50px;margin-right: 50px;" src="/img/promotion/alone.png">
-					
-					<div class="wrap" style="    margin: auto;    width: fit-content;">	<div class="box_select_gender">
-							<ul class="wrap_list_radio">
-								<li class="d_input_check" id="promotypeT" style="    margin-right: 75px;    margin-left: 75px;">
-									<div class="box_check_radio">
-									     <input type="radio" name="gender" id="genderM" class="input_check">
-										 <label for="genderM" class="label_check"><span class="icon"></span>다함께 받기</label>
-									</div>
-								</li>
-								<li class="d_input_check" id="promotypeA"  style="    margin-right: 75px;    margin-left: 75px;">
-									<div class="box_check_radio">
-										<input type="radio" name="gender" id="genderW" class="input_check">
-										 <label for="genderW" class="label_check"><span class="icon"></span>나혼자 받기</label>
-									 </div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					
-			<br>
-			<!--  혜택 선택용 div -->
-				<div id="benefitSelectDiv" style=" display: none;  border: 1px;margin-top: 30px;margin-bottom: 30px;width: 1008px;padding: 10px;text-align: center;">
-	                
+			
+			
 	                <div class="wrap" style="    margin: auto;    width: fit-content;">
-					<div class="box_select_gender">
-						<ul class="wrap_list_radio">
-							<li class="d_input_check" id="Benefit01">
-								<div class="box_check_radio">
-								     <input type="radio" name="benefit_radio" id="benefit01" class="input_check">
-									 <label for="genderM" class="label_check"><span class="icon"></span>할인쿠폰</label>
-								</div>
-							</li>
-							<li class="d_input_check" id="Benefit02">
-								<div class="box_check_radio">
-									<input type="radio" name="benefit_radio" id="benefit02" class="input_check">
-									 <label for="genderW" class="label_check"><span class="icon"></span>Point적립</label>
-								 </div>
-							</li>
-							
-							<li class="d_input_check" id="Benefit02">
-								<div class="box_check_radio">
-									<input type="radio" name="benefit_radio" id="benefit02" class="input_check">
-									 <label for="genderW" class="label_check"><span class="icon"></span>캐쉬백</label>
-								 </div>
-							</li>
-						</ul>
+					<img style="width: 200px;margin-left: 50px;margin-right: 50px;" id ="together_img" src="/img/promotion/together.png">
+		                 
+					<img style="width: 200px;margin-left: 50px;margin-right: 50px;" id ="alone_img"  src="/img/promotion/alone.png">
 					</div>
-					</div>
-	            </div>
-	            
+		
+			<!--  혜택 선택용 div -->
+			
+				<div id="benefitSelectDiv" style=" display: none;  border: 1px;margin-top: 30px;margin-bottom: 30px;width: 1008px;padding: 10px;text-align: center;">
+ 							<ul class="wrap_list_radio">
+ 								<li class="d_input_check" id="benefit01" style="    margin-right: 75px;    margin-left: 75px;">
+ 									<div class="box_check_radio">
+ 									     <input type="radio" name="gender" id="genderM" class="input_check">
+ 										 <label for="genderM" class="label_check"><span class="icon"></span>할인 쿠폰</label>
+ 									</div>
+ 								</li>
+ 								<li class="d_input_check" id="benefit02"  style="    margin-right: 75px;    margin-left: 75px;">
+ 									<div class="box_check_radio">
+ 										<input type="radio" name="gender" id="genderW" class="input_check">
+ 										 <label for="genderW" class="label_check"><span class="icon"></span>POINT 적립</label>
+ 									 </div>
+ 								</li>
+ 								<li class="d_input_check" id="benefit03"  style="    margin-right: 75px;    margin-left: 75px;">
+ 									<div class="box_check_radio">
+ 										<input type="radio" name="gender" id="genderW" class="input_check">
+ 										 <label for="genderW" class="label_check"><span class="icon"></span>캐시백</label>
+ 									 </div>
+ 								</li>
+ 							</ul>
+ 				 </div>
+ 			</div>
+			
 			<!--  혜택 선택용 div  -->
+			.
             
 			<!-- 혜택 출력하기 위해서 추가한 내역 -->
 			 	<button id="button1" onclick="get_Benefit();">혜택가져오기</button>
@@ -241,45 +223,44 @@
 	
     <script type="text/javascript">
     
-		$(document).ready(function(){
-			    $('input:radio[name=gender]').click(function() {
-			    
-			    	
-			   	 	alert('tt');
-					var i = $('input:radio[name=gender]').index(this);
-					if(i==0){	//다함께받기 	
-						$("#promo_type").val("1");
-						$("#promotypeT").addClass("on");
-						$("#promotypeA").removeClass("on");
-					}else{		//나혼자받기
-						$("#promo_type").val("2");
-						$("#promotypeT").removeClass("on");
-						$("#promotypeA").addClass("on");
-					}
-					$("#benefitSelectDiv").slideDown("slow");
-				});
-			    
-			 
-			    $('input:radio[name=benefit_radio]').click(function() {
-					alert('!!! test' + i)
-					var i = $('input:radio[name=benefit_radio]').index(this);
-					alert('test' + i)
-					if(i==0){	//성별 남
-						$("#Benefit01").addClass("on");
-						$("#Benefit02").removeClass("on");
-					}else{		//성별 여
-						$("#Benefit01").removeClass("on");
-						$("#Benefit02").addClass("on");
-					}
-				});
-			    
-			});
+    		
 		
 		$(document).ready(function(){
-		    $("#flip").click(function(){
-		    	
-		        $("#benefitDiv").slideDown("slow");
-		    });
+	
+			$('input:radio[name=gender]').click(function() {
+		   	 	alert('tt');
+					var i = $('input:radio[name=gender]').index(this);
+					if(i==0){	//다함께받기 	
+						$("#benefit_code").val("01");
+						$("#benefit01").addClass("on");
+						$("#benefit02").removeClass("on");
+					}else{		//나혼자받기
+						$("#benefit_code").val("02");
+						$("#benefit01").removeClass("on");
+						$("#benefit02").addClass("on");
+					}
+					$("#benefitDiv").slideDown("slow");
+				});
+			    
+			
+		    //프로모션 타입 선택  
+		    //다함께받기 
+			 $("#together_img").click(function(){
+
+					$("#promo_type").val("1");
+				   	$("#together_img").attr("src",'/img/promotion/together_chk.png');
+				   	$("#alone_img").attr("src",'/img/promotion/alone.png');
+				    $("#benefitSelectDiv").slideDown("slow");
+			 });
+			 //나혼자받기 
+			 $("#alone_img").click(function(){
+					$("#promo_type").val("2");
+				   	$("#together_img").attr("src",'/img/promotion/together.png');
+				   	$("#alone_img").attr("src",'/img/promotion/alone_chk.png');
+				    $("#benefitSelectDiv").slideDown("slow");
+					 
+			 });
+			
 		});
 		
 		
@@ -306,21 +287,14 @@
 				                    }
 				                },
 			    	 		 	   error:function() { alert("Error"); }
-			    	 		
 			    	 		 });
-			    	 		 
 			   }
 	 		
 	 		
 	 		function openShareWindow(data){
-		   		
 				var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=600, height=550';
 			 	window.open("/Promotion/SharePopup?promotion_id="+data.promo_id, 'test', popupOption);
-			 	
-
-			 	location.href("Promotion/Detail?promotion_id="+data.promo_id)
-			 	
-			 	
+			 	location.href("Promotion/Detail?promotion_id="+data.promo_id) 	
 		   	}
 </script>
 	

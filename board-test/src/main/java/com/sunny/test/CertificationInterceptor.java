@@ -1,6 +1,8 @@
 package com.sunny.test;
 
 
+import java.io.PrintWriter;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,10 +24,15 @@ public class CertificationInterceptor implements HandlerInterceptor {
         
         if(ObjectUtils.isEmpty(loginVO)){
         	
-        		request.setAttribute("destination", request.getRequestURI());
-        		RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
-        		dispatcher.forward(request, response);
-            return false;
+		         //PrintWriter out = response.getWriter();
+		        	 //out.println("<script>alert('로그인이 필요한 메뉴입니다.'); history.go(-1);</script>");
+		         //out.flush();
+		         
+		         //response.sendRedirect("/login");
+	        		request.setAttribute("destination", request.getRequestURI());
+	        		RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+	        		dispatcher.forward(request, response);
+	            return false;
         }else{
         		//특정시간이 지나면 세션 만료 (초단위) 
             session.setMaxInactiveInterval(30*60);

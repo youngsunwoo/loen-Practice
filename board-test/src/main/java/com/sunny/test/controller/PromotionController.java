@@ -52,30 +52,15 @@ public class PromotionController {
     
     
     
-    /*
-    @RequestMapping(value="/test")      
-    public ModelAndView test() throws Exception{
+    
+    @RequestMapping(value="/test1")      
+    public ModelAndView test1() throws Exception{
     		ModelAndView mav = new ModelAndView();
 
-		PromotionVO  promotion = promoService.getPromotionById("171020_056");
-		UserVO ownUser = userService.getUserById(promotion.getUser_id());
-		ProductVO product = productService.getProductInfo(promotion.getProduct_code());
-		List<BenefitVO> benefits = promoService.getBenefit(promotion.getPromo_type(), promotion.getBenefit_code());
-		
-		
-		
-		mav.addObject("promotion",promotion);
-		mav.addObject("ownUser",ownUser);
-		mav.addObject("product",product);
-		mav.addObject("benefits",benefits);
-		String benefits_json = new Gson().toJson(benefits);
-		
-		mav.addObject("benefits",benefits_json);
-		
-		mav.setViewName("Promotion/promotion_Detail_test");     
+		mav.setViewName("test");     
          return mav ;      
     }
-    */
+    
     
     //The Form to make Promotion
     @RequestMapping(value="Promotion/FormNewPromotion")      
