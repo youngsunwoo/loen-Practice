@@ -167,9 +167,6 @@
 
 	function btnLogin_click(){
 		if(checkValue()){
-			 alert("hihihihihi "+$("#id").val()+'   '+$("#pw").val());
-
-		
 			//POST방식으로 바꿀것
 			$.ajax({
 				url:"/loginProcess",
@@ -181,8 +178,8 @@
 				mimeType: 'application/json',
 				success:function(data) {
 					if(data.flagdata) {
-						alert(" 세션!!저장되었다!1");
-					 	location.replace("<%=request.getAttribute("destination")%>")
+
+						history.back();
 						//이전페이지 주소 알아서 redirect해줄것
 					} else {
 						alert("아이디,패스워드를 확인해주세요 ");

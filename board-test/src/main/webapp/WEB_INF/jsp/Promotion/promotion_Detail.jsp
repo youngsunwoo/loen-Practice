@@ -161,19 +161,10 @@
 			</div>
 			
 			
-			<div style="  margin: 50px;>
-			
+			<div style="  margin: 50px;">
 				<p id="joinedInfo" style="   font-size: 18px;"> </p>
 			
 			</div>
-			
-			
-			<div>
-			
-				<p id = "joinedInfo"> </p>
-			</div>
-			
-			
 			
 			<!-- 혜택 출력하기 위해서 추가한 내역 -->
 			
@@ -193,26 +184,63 @@
 		
 			<div class="wrap_btn">
 				 
-				<form action="/Promotion/JoinPromotion" method="post" onsubmit="return checkValue()">
-				 <input type="hidden" name ="promoId" value="${promotion.promo_id}">
-				 <input type="hidden" name ="productCode" value="${promotion.product_code}">
+				 <form method="post" name="joinPromoForm" id="joinPromoForm">
+				 	<input type="hidden" name ="promoId" value="${promotion.promo_id}">
+				 	<input type="hidden" name ="productCode" value="${promotion.product_code}">
+     	
+				</form>
+				 
 						  		 
 				  <center>
-				  <input type="submit" href="#" class="evenvtBt" value="이벤트참여하기" />
+				  <input type="button" href="#" class="evenvtBt"  onclick="joinPromotion();" value="이벤트참여하기" />
 				  <input type="button" href="#" class="evenvtBt" value="참여자확인하기" onclick="fnPopup()" class="btn btn-default" />
 				  </center>
 					 
 					  
-				 </form>
+				
 							   
 			</div>
 					 
 
 </div>
         
-      
 	 
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+	
+	<script type="text/javascript">
+	
+			function joinPromotion() {
+				
+				
+				 var formData = $("#joinPromoForm").serialize();
+				 checkValue();
+				 $.ajax({
+					url : '/Promotion/JoinPromotion',
+		           type: "POST",	
+				   data : formData,
+		           dataType : "json",
+		           success: function(data) {
+		               if(data == null){
+		               	
+		               }else{
+		               	 alert("프로모션 참여 완료!");
+		               	 openShareWindow(data);
+		                 location.reload();
+		               }
+		           },
+				 	   error:function() { alert("Error"); }
+				 });
+		}
+
+		
+		function openShareWindow(data){
+			var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=600, height=550';
+			window.open("/Promotion/SharePopup?promotion_id=${promotion.promo_id}&flag=1", 'test', popupOption);
+		}
+	
+	
+	</script>
 
 	<script type="text/javascript">
 			

@@ -79,7 +79,7 @@ public class PromoService {
     }
     
     
-    public int JoinPromotion(HttpSession session, PurchaseVO purchase, JoinListVO join) throws Exception{
+    public JoinListVO JoinPromotion(HttpSession session, PurchaseVO purchase, JoinListVO join) throws Exception{
     		
     		//////////////////////////////////
     		// 		   구매내역 Insert	    	   //
@@ -121,9 +121,12 @@ public class PromoService {
 		// 		   프로모션 Update	    	   //
 		//////////////////////////////////
 	    
-	    promoMapper.UpdatePromotionJoinCnt(join.getPromoId());
-    	
-   		return 1;
+	    int result = promoMapper.UpdatePromotionJoinCnt(join.getPromoId());
+		   if (result > 0) {
+		   		return join;
+		   }
+		   return null;
+	    
 }
  
 }

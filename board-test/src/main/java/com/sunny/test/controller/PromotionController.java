@@ -71,8 +71,7 @@ public class PromotionController {
     //Insert Promotion Information to Database
     @RequestMapping(value="Promotion/insertPromotion", method = RequestMethod.POST)      
     public PromotionVO MakeNewPromotion(HttpServletRequest request) throws Exception{
-		ModelAndView mav = new ModelAndView();
-		
+	
     		String promo_type = request.getParameter("promo_type");
 		String benefit_code = request.getParameter("benefit_code");
 		String product_code = request.getParameter("product_code");
@@ -110,24 +109,31 @@ public class PromotionController {
     
     //get(show) Promotion Detail Information
     @RequestMapping(value="Promotion/SharePopup", method = RequestMethod.GET)      
-    public ModelAndView sharePopup(@RequestParam String promotion_id, HttpSession session) throws Exception{
+    public ModelAndView sharePopup(HttpServletRequest request , HttpSession session) throws Exception{
     		ModelAndView mav = new ModelAndView();
-
-    		mav.addObject("promotion_id",promotion_id);
     		
-    		mav.setViewName("Promotion/sharePopup");
+    		String promotion_id = request.getParameter("promotion_id");
+		String flag = request.getParameter("flag");
+		System.out.println(flag);
+
+		mav.addObject("promotion_id",promotion_id);
+		
+		if(flag.equals("0")) {
+			mav.setViewName("Promotion/sharePopup");
+			
+		}if(flag.equals("1")) {
+
+			mav.setViewName("Promotion/sharePopupP");
+			System.out.println("sharePopupP");
+		}
     		
     		return mav;
-        
     }
     
     
-    
-    
-    
     //Join to Promotion
-    @RequestMapping(value="Promotion/JoinPromotion", method = RequestMethod.POST)      
-    public ModelAndView JoinPromotion(HttpServletRequest request) throws Exception{
+    @RequestMapping(value="Promotion/JoinPromotion", method = RequestMethod.POST)   
+    public JoinListVO JoinPromotion(HttpServletRequest request) throws Exception{
     	
     		String productCode = request.getParameter("productCode");
 		String promoId = request.getParameter("promoId");
@@ -138,9 +144,8 @@ public class PromotionController {
 		
     		System.out.println("productCode : "+productCode);
     		System.out.println("promoId : "+promoId);
-		promoService.JoinPromotion(request.getSession(), purchase, join);
-	
-        return new ModelAndView("Promotion/make_Promo");        
+    		return promoService.JoinPromotion(request.getSession(), purchase, join);
+	 
     }
     
     

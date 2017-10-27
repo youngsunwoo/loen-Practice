@@ -88,28 +88,11 @@
 						
 						
 						
-						<br>	
-								
-						<div style="margin:width:450px; text-align: center;">		
-							 <input type="submit" href="#" class="evenvtBt"  onclick="gotoMakePromo()" value="나도프로모션만들기" />
-				 			 <input type="submit" href="#" class="evenvtBt"  onclick="gotoMain()" value="메인페이지로" />
-						</div>																	
-						
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<script>
-
-		function gotoMakePromo() {
-			location.replace("/Promotion/FormNewPromotion")
-		}
-		function gotoMain() {
-			location.replace("") 	
-		}
-		</script>
 
 </body>
 </html>

@@ -18,6 +18,6 @@
  		<br>
         나이  : ${sessionScope.LoginUser.age} 
 </div>
-		<a href="/Promotion/FormNewPromotion">프로모션 이벤트생성하</a>
+		<a href="/Promotion/FormNewPromotion">프로모션 이벤트생성하기</a>
 </body>
 </html>

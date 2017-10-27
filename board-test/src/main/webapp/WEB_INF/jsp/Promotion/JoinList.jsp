@@ -11,13 +11,13 @@
 <title>Benefit List</title>
 </head> 
 <body>
-<div style="background: url(/img/background/joinList_bg.jpg) no-repeat 0 0; width: 100%;">
+<div style="background: url(/img/background/joinlist_bg.png) no-repeat 0 0; width: 100%;">
 
 
 
 			
-  	<div style="OVERFLOW-Y:auto; width:100%; height:150px;">
-     <table class="table">
+  	<div style="OVERFLOW-Y:auto;height: fit-content;width: fit-content;margin: auto;margin-top: 0px;">
+     <table class="table" style="    margin-top: 120px;">
         <tr>
             <th>I  D </th>
             <th>이 름 </th>
