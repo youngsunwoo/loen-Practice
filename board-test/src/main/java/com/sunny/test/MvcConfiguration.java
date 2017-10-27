@@ -30,7 +30,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter
 	}
 
 	public @Override void addInterceptors(InterceptorRegistry registry) {
-	    registry.addInterceptor(certificationInterceptor()).addPathPatterns("/**/*Promotion");
+	    registry.addInterceptor(certificationInterceptor()).addPathPatterns("/**");
 	}
 	//@Autowired
     //CertificationInterceptor certificationInterceptor;

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.sunny.test.Authentication;
 import com.sunny.test.service.ProductService;
 import com.sunny.test.service.PromoService;
 import com.sunny.test.service.UserService;
@@ -49,8 +50,6 @@ public class PromotionController {
     public ModelAndView test() {
         return new ModelAndView("Promotion/promotion_form");        
     }
-    
-    
     
     
     @RequestMapping(value="/test1")      
@@ -132,6 +131,7 @@ public class PromotionController {
     
     
     //Join to Promotion
+    @Authentication
     @RequestMapping(value="Promotion/JoinPromotion", method = RequestMethod.POST)   
     public JoinListVO JoinPromotion(HttpServletRequest request) throws Exception{
     	
@@ -142,8 +142,6 @@ public class PromotionController {
     		
     		JoinListVO join = new JoinListVO(promoId);
 		
-    		System.out.println("productCode : "+productCode);
-    		System.out.println("promoId : "+promoId);
     		return promoService.JoinPromotion(request.getSession(), purchase, join);
 	 
     }

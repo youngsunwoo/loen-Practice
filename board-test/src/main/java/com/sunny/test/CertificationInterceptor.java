@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +20,41 @@ public class CertificationInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		
+		
+		HandlerMethod handerMethod = (HandlerMethod)handler;
+		
+		Authentication auth = handerMethod.getMethod().getDeclaredAnnotation(Authentication.class);
+	
+		if(auth != null) { //어노테이션 선언한경우 
+			
+			HttpSession session = request.getSession();
+	        UserVO loginVO = (UserVO) session.getAttribute("LoginUser");
+	        
+	        if(ObjectUtils.isEmpty(loginVO)){
+	        
+				if(auth.type().equals("JSON")) {  // --->  순서 
+					//어노테이션 걸려있는애들중에 type가 위 조건으로 걸린애들 분기 
+					//Ex. @authentication(type="JSON") 
+					System.out.println("return JSON TEST");
+					return false;
+				}
+				
+				System.out.println("redirect Login Page");
+				
+				request.setAttribute("destination", request.getRequestURI());
+        			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+        			dispatcher.forward(request, response);
+
+    				return false;
+
+	        }
+		}
+	        //어노테이션 선언하지않은경우 
+			return true;
+		
+		
+		/*
 	    HttpSession session = request.getSession();
         UserVO loginVO = (UserVO) session.getAttribute("LoginUser");
         
@@ -33,11 +69,11 @@ public class CertificationInterceptor implements HandlerInterceptor {
 	        		RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
 	        		dispatcher.forward(request, response);
 	            return false;
-        }else{
-        		//특정시간이 지나면 세션 만료 (초단위) 
+        }else{        		//특정시간이 지나면 세션 만료 (초단위) 
             session.setMaxInactiveInterval(30*60);
         		return true;
         }
+        */
 	}
 
 	@Override
