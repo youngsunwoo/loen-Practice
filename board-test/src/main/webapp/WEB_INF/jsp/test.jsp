@@ -10,71 +10,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+
+
+.procudt_detail_icon {
+    display: inline-block;
+    width: 62px;
+    height: 16px;
+    background: url(//image.melon.co.kr/resource/image/web/cm/bg_icon_product.png) no-repeat 0 0;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: top;
+}
+
+.icon.mobile {
+    background-position: 0 -20px;
+}
+.icon.pc {
+    background-position: 0 -41px;
+}
+</style>
+
 </head>
 <body>
 
-<h3>게시글 목록 : ${list}</h3>
-    <div>
-    프로모션 아이디 : ${promotion.promo_id}
-    주최자 아이디 : ${promotion.user_id}
-    주최자 이름 : ${ownUser.user_name}
-    </div>
-    
-    <div>
-     <table>
-		   <tr>
-   					<td>
-                        <input type="radio" name="gender" value="1" checked>나혼자
-                        <input type="radio" name=""gender"" value="2">다함께
-                    </td>
-                  	  
-                  	  
-                  	  </tr>
-                  	  <tr>
-                    
-                    
-                    <td>
-                        <input type="radio" name="radio2" value="1" checked>radio2
-                        <input type="radio" name="radio2" value="2">radio2-1
-                    </td>
-	</tr>
-	</table>
-	</div>
-	    	
-	<div class="wrap_btn">
-	  <table>
-		   <tr>
-			   <form action="/Promotion/JoinPromotion" method="post">
-			  		 <input type="hidden" name ="promoId" value="${promotion.promo_id}">
-			  		 <input type="hidden" name ="productCode" value="${promotion.product_code}">
-			  		 
-					<td><input type="submit" href="#"  value="이벤트참여하기" /></td>
-					<td><input type="button" href="#" value="참여자확인하기" /></td>
-   			   </form>
-		   </tr>
-		  </table>
-	 </div>
-	 
-	 
-	 <script type="text/javascript">
-		 $('input:radio[name=promo_type]').click(function() {
-		    
-	    	
-	   	 	alert('tt');
-			var i = $('input:radio[name=promo_type]').index(this);
-			alert('!!! test' + i)
-			
-
-			
-		});
-	    
-	 
-	    $('input:radio[name=radio2]').click(function() {
-			var i = $('input:radio[name=radio2]').index(this);
-			alert('!!! radio2radio2radio2 test' + i)
-		});
-	 
-	 </script>
+<ul class="product_icon">
+	<li><span class="procudt_detail_icon">모바일 PC</span><span class="txt">무제한 듣기</span></li>
+	<li><span class="procudt_detail_icon mobile">모바일</span><span class="txt">무제한 다운로드</span></li>
+	<li><span class="procudt_detail_icon pc">모바일</span><span class="txt">무제한 다운로드</span></li>
+</ul>
 	
 </body>
 </html>

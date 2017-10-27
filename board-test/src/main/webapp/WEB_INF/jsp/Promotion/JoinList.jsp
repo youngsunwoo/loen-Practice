@@ -11,8 +11,12 @@
 <title>Benefit List</title>
 </head> 
 <body>
-    <h3>게시글 프로모션 참여자 목록</h3>
-    
+<div style="background: url(/img/background/joinList_bg.jpg) no-repeat 0 0; width: 100%;">
+
+
+
+			
+  	<div style="OVERFLOW-Y:auto; width:100%; height:150px;">
      <table class="table">
         <tr>
             <th>I  D </th>
@@ -27,6 +31,9 @@
         </c:forEach>
 
 	</table>
+	
+	</div>
+</div>
 
 </body>
 </html>

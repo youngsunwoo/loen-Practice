@@ -65,7 +65,7 @@ public class PromotionController {
     //The Form to make Promotion
     @RequestMapping(value="Promotion/FormNewPromotion")      
     public ModelAndView promo() {
-        return new ModelAndView("Promotion/make_Promo");        
+        return new ModelAndView("Promotion/promotion_form");        
     }
     
     //Insert Promotion Information to Database

@@ -58,7 +58,25 @@
     margin-right: 20px;
 }
     
+</style>
 
+<style type="text/css">
+.product_detail_icon {
+    display: inline-block;
+    width: 62px;
+    height: 16px;
+    background: url(//image.melon.co.kr/resource/image/web/cm/bg_icon_product.png) no-repeat 0 0;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: top;
+}
+
+.product_detail_icon.mobile {
+    background-position: 0 -20px;
+}
+.product_detail_icon.pc {
+    background-position: 0 -41px;
+}
 
 </style>
 
@@ -97,10 +115,12 @@
 					
 					
 				    <div>
-				    프로모션 아이디 : ${promotion.promo_id} <br>
-				    주최자 아이디 : ${promotion.user_id}  <br>
-				    주최자 이름 : ${ownUser.user_name}  <br>
-				    </div>
+					    <ul class="product_icon">
+							<li><span class="product_detail_icon">모바일 PC</span><span class="txt">무제한 듣기</span></li>
+							<li><span class="product_detail_icon mobile">모바일</span><span class="txt">무제한 다운로드</span></li>
+							<li><span class="product_detail_icon pc">모바일</span><span class="txt">무제한 다운로드</span></li>
+						</ul>
+					</div>
 				    
      	 </div>
      	 
@@ -129,16 +149,29 @@
 	<div id="member_header" 
 		style="  background: #f3f3f2; width: 1008px;">
 		
-		<div id="gnb">
-				<h2>
+			<div id="gnb">
 				<!-- 모일수록 커지는 혜택 img -->
 				<img src="/img/promo_1.png" width="250" height="85" style="position: relative;margin: auto;">
 
-				</h2>
+			
 				
 				<h2 class="mem_info_title"> SUNNY 님의 Promotion</h2>
+				
+				
 			</div>
 			
+			
+			<div style="  margin: 50px;>
+			
+				<p id="joinedInfo" style="   font-size: 18px;"> </p>
+			
+			</div>
+			
+			
+			<div>
+			
+				<p id = "joinedInfo"> </p>
+			</div>
 			
 			
 			
@@ -146,7 +179,7 @@
 			
 			
 			
-			<div class="row bs-wizard" id="benefitDiv" style="border-bottom:0;margin-top: 120px;margin-bottom: 80px;width: 1008px;padding: 10px;">
+			<div class="row bs-wizard" id="benefitDiv" style="border-bottom:0;margin-top: 20px;margin-bottom: 80px;width: 1008px;padding: 10px;">
                 
                
             </div>
@@ -217,6 +250,9 @@
 			    }
 			    $("#benefitDiv").append(benefit_list_html)
 			
+			    joined_info_html =  benefits[benefits.length-1].goal_cnt+ "명중 "+ joinCnt + "명 참여완료!"
+			        
+			    $("#joinedInfo").append(joined_info_html);
 			    
 			}
 		)

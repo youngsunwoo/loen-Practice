@@ -65,7 +65,7 @@
 </head>
 <body>
 
- <div id="wrap" class="join">
+ <div id="wrap" >
  
 	<div class="mask">
 		<div class="window"> 
@@ -77,19 +77,18 @@
 	<form method="post" name="Promo_info" id="Promo_info">
      	<input type="hidden" id="promo_type" name="promo_type" >	
      	<input type="hidden" id="product_code" name = "product_code" >
-     	<input type="hidden" id="benefit_code" name = "benefit_code" value ="02" >
+     	<input type="hidden" id="benefit_code" name = "benefit_code" value ="00" >
      	
 	</form>
 	
 	
 	<div id="member_header" 
-		style="  background: url(http://cdnimg.melon.co.kr/svc/images/promotion/web/201709/28590/928172752_detail_5.png) no-repeat 0 0; width: 1008px;">
+		style="  background: url(http://cdnimg.melon.co.kr/svc/images/promotion/web/201709/28590/928172752_detail_5.png) no-repeat 0 0; width: 1008px; height: auto;"">
 	
 		
 		<div id="gnb" style="height : 350px;">
-				<h2> 보상형태 선택하기 </h2>
+				
 		</div>
-			
 			
 			<div class="box_select_gender">
 			
@@ -102,7 +101,7 @@
 		
 			<!--  혜택 선택용 div -->
 			
-				<div id="benefitSelectDiv" style=" display: none;  border: 1px;margin-top: 30px;margin-bottom: 30px;width: 1008px;padding: 10px;text-align: center;">
+				<div id="benefitSelectDiv" style=" display: none;  border: 1px;margin-top: 30px; margin-bottom: 30px; width: 1008px;padding: 10px;text-align: center;">
  							<ul class="wrap_list_radio">
  								<li class="d_input_check" id="benefit01" style="    margin-right: 75px;    margin-left: 75px;">
  									<div class="box_check_radio">
@@ -124,14 +123,8 @@
  								</li>
  							</ul>
  				 </div>
- 			</div>
-			
-			<!--  혜택 선택용 div  -->
-			.
-            
-			<!-- 혜택 출력하기 위해서 추가한 내역 -->
-			 	<button id="button1" onclick="get_Benefit();">혜택가져오기</button>
-			
+ 				 <!-- 혜택 출력하기 위해서 추가한 내역 -->
+			 	
 				<div id="benefitDiv" style="border:1px;  display: none; margin-top: 30px;margin-bottom: 20px;width: 1008px;padding: 10px;">
 					<div id="benefitContents"  style=" width: fit-content; margin: auto;" style="width: fit-content;   margin: auto;">
 					</div>
@@ -139,6 +132,12 @@
 	
 	
 			<!-- 혜택 출력용 끝 -->
+ 				 
+ 			</div>
+			
+			<!--  혜택 선택용 div  -->
+			
+		
 			
 			</div>
 	</div>
@@ -163,7 +162,7 @@
     
     <div id="member_cont_wrap" class="clfix">
     
-		<h2>추천상품</h2>
+		<h2 style=" font-size: 20px;  margin: 15px;"> <p>추천상품</p></h2>
 		<div class="box_mem_info" style=" background: rgba(0, 0, 0, 0);">
 					
 				<div style=" margin:auto; width: fit-content;padding: 20px;">
@@ -188,7 +187,7 @@
      	 </div>
      	 
      	 
-     	 <div>
+     	 <div style="    width: fit-content;    margin: auto;    margin-top: 10px;">
 			<table>
 			  <tr>
 				 <td>
@@ -219,27 +218,71 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>	
 	
+	
+	<!----------------------------- 혜택관련 Script ------------------------------------>	
+
+	<script type="text/javascript">
+	
+		    //동적으로 혜택 가져오기 (Ajax)
+		    function get_Benefit(){
+		  	 	$.ajax({
+		            url : '/getBenefitList',
+		            type: "get",
+		            data : {  "promo_type" :  $("#promo_type").val(),
+		              		  "benefit_code" :  $("#benefit_code").val() },	
+		           // data : {  "promo_type" :  $("input[name=promo_type]:checked").val(),
+		          //  			"benefit_code" :  $("#benefit_code option:checked").val() },	
+		            dataType : 'json',
+			   		  	success:  function(obj) {
+			   		  		showBenefitInfo(obj);
+			            },
+						error:function(){ alert("Error"); }
+		        });
+		    }
+		    
+		    //혜택 뿌려주기  
+		    function showBenefitInfo(obj) {
+		        $("#BenefitInfo").remove();
+		        console.log(obj);
+		        var benefit_list_html = '<table id="BenefitInfo">'
+		        for (var i = 0; i < obj.length; i++) {
+		        	
+		      	  	benefit_list_html += '<tr><td> <div class = "benefit_goal"> <span>' + obj[i].goal_cnt + '명 달성 <span></div></td>'
+		      		benefit_list_html += '<td><div class = "benefit_info">' +obj[i].offer + obj[i].unit + '</div></td></tr>';
+		        }
+		      	  benefit_list_html += '</table>';
+		        $("#benefitContents").append(benefit_list_html);
+		        
+		        
+		    } 
+		    
+		    
+	</script>
+	
 	<!----------------------------- UI 및 값 선택관련 ------------------------------------>	
 	
     <script type="text/javascript">
     
-    		
-		
-		$(document).ready(function(){
-	
 			$('input:radio[name=gender]').click(function() {
-		   	 	alert('tt');
 					var i = $('input:radio[name=gender]').index(this);
 					if(i==0){	//다함께받기 	
 						$("#benefit_code").val("01");
 						$("#benefit01").addClass("on");
 						$("#benefit02").removeClass("on");
-					}else{		//나혼자받기
+						$("#benefit03").removeClass("on");
+					}else if(i==1){		//나혼자받기
 						$("#benefit_code").val("02");
 						$("#benefit01").removeClass("on");
 						$("#benefit02").addClass("on");
+						$("#benefit03").removeClass("on");
+					}else{
+						$("#benefit_code").val("03");
+						$("#benefit01").removeClass("on");
+						$("#benefit02").removeClass("on");
+						$("#benefit03").addClass("on");
 					}
-					$("#benefitDiv").slideDown("slow");
+					get_Benefit()
+		   		  	$("#benefitDiv").slideDown("slow");
 				});
 			    
 			
@@ -251,6 +294,12 @@
 				   	$("#together_img").attr("src",'/img/promotion/together_chk.png');
 				   	$("#alone_img").attr("src",'/img/promotion/alone.png');
 				    $("#benefitSelectDiv").slideDown("slow");
+				    
+				    var benefit_cd = $("#benefit_code").val()
+					 
+					 if(benefit_cd != '00'){
+						 get_Benefit()
+					 }
 			 });
 			 //나혼자받기 
 			 $("#alone_img").click(function(){
@@ -258,15 +307,19 @@
 				   	$("#together_img").attr("src",'/img/promotion/together.png');
 				   	$("#alone_img").attr("src",'/img/promotion/alone_chk.png');
 				    $("#benefitSelectDiv").slideDown("slow");
+				    
+				    var benefit_cd = $("#benefit_code").val()
+					 
+					 if(benefit_cd != '00'){
+						 get_Benefit()
+					 }
 					 
 			 });
+			 
 			
-		});
-		
+
 		
 	</script>
-	
-	
 	
 <script>
 	 		function submitPromotion() {
@@ -298,6 +351,7 @@
 		   	}
 </script>
 	
+
 
 
 	<!----------------------------- 상품관련 Script ------------------------------------>	
@@ -397,45 +451,6 @@
 
 
 
-	<!----------------------------- 혜택관련 Script ------------------------------------>	
-
-	<script type="text/javascript">
-	
-		    //동적으로 혜택 가져오기 (Ajax)
-		    function get_Benefit(){
-		  	 	$.ajax({
-		            url : '/getBenefitList',
-		            type: "get",
-			        data : {  "promo_type" :  '1',
-			         			"benefit_code" :  '02' },	
-		           // data : {  "promo_type" :  $("input[name=promo_type]:checked").val(),
-		          //  			"benefit_code" :  $("#benefit_code option:checked").val() },	
-		            dataType : 'json',
-			   		  	success:  function(obj) {
-			   		  		showBenefitInfo(obj);
-			   		  		$("#benefitDiv").slideDown("slow");
-			            },
-						error:function(){ alert("Error"); }
-		        });
-		    }
-		    
-		    //혜택 뿌려주기  
-		    function showBenefitInfo(obj) {
-		        $("#BenefitInfo").remove();
-		        console.log(obj);
-		        var benefit_list_html = '<table id="BenefitInfo">'
-		        for (var i = 0; i < obj.length; i++) {
-		        	
-		      	  	benefit_list_html += '<tr><td> <div class = "benefit_goal"> <span>' + obj[i].goal_cnt + '명 달성 <span></div></td>'
-		      		benefit_list_html += '<td><div class = "benefit_info">' +obj[i].offer + obj[i].unit + '</div></td></tr>';
-		        }
-		      	  benefit_list_html += '</table>';
-		        $("#benefitContents").append(benefit_list_html);
-		    } 
-	</script>
-	 
-	 
-	
 	
 </body>
 </html>

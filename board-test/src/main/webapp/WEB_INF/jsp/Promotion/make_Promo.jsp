@@ -259,8 +259,8 @@
 	    	 	$.ajax({
 	              url : '/getBenefitList',
 	              type: "get",
-	              data : {  "promo_type" :  $("input[name=promo_type]:checked").val(),
-	              			"benefit_code" :  $("#benefit_code option:checked").val() },	
+	              data : {  "promo_type" :  $("#promo_type").val(),
+	              			"benefit_code" :  $("#benefit_code").val() },	
 	              dataType : 'json',
 	  	   		  	success:  function(obj) {
 	  	   		  		showBenefitInfo(obj);
