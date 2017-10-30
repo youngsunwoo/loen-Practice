@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.sunny.test.vo.BenefitVO;
-import com.sunny.test.vo.JoinListVO;
 import com.sunny.test.vo.PromotionVO;
 
 public interface PromoMapper {
@@ -17,8 +16,6 @@ public interface PromoMapper {
     public int InsertPromotion(PromotionVO p)throws Exception ;
     
     public List<BenefitVO>getBenefit(Map<String, Object> para)throws Exception; 
-    
-    public int InsertJoinList(JoinListVO join) throws Exception; 
     
     public int UpdatePromotionJoinCnt(String PromoId)throws Exception; 
     

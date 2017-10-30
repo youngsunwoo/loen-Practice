@@ -9,11 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
- 
+
+import com.sunny.test.dao.ParticipateMapper;
 import com.sunny.test.dao.PromoMapper;
 import com.sunny.test.dao.PurchaseMapper;
 import com.sunny.test.vo.BenefitVO;
-import com.sunny.test.vo.JoinListVO;
+import com.sunny.test.vo.ParticipateListVO;
 import com.sunny.test.vo.PromotionVO;
 import com.sunny.test.vo.PurchaseVO;
 import com.sunny.test.vo.UserVO;
@@ -26,6 +27,9 @@ public class PromoService {
     
     @Autowired
     PurchaseMapper purchaseMapper;
+    
+    @Autowired
+    ParticipateMapper participateMapper;
  
     /* select dual */
     public  List<BenefitVO>getBenefit(String promo_type, String benefit_code) throws Exception{
@@ -79,7 +83,39 @@ public class PromoService {
     }
     
     
-    public JoinListVO JoinPromotion(HttpSession session, PurchaseVO purchase, JoinListVO join) throws Exception{
+    
+    
+    public int checkAbailable(HttpSession session, String productCd, String promotionId)  throws Exception{
+    		
+	  	UserVO loginUser = (UserVO) session.getAttribute("LoginUser");
+	    		
+	  	Map<String, Object> purchasePram = new HashMap<String, Object>();
+	    		    
+	 	purchasePram.put("userId", loginUser.getUser_id());
+ 	 	purchasePram.put("productCd", productCd);
+ 		 	
+ 	 	int purchaseChk = purchaseMapper.getInfoByUseridProductcd(purchasePram);
+    		 
+
+ 	 	int participateChk = purchaseMapper.getInfoByUseridProductcd(purchasePram);
+ 	 	
+   
+    		//유효한 동일상품 구매내역, 해당 프로모션 참가이력이 없으면 
+    		if(purchaseChk + participateChk == 0) {
+    			return 0;
+    		}//유효한 동일상품 구매 내역이 있는 경우 
+    		else if (purchaseChk == 1 ) {
+    			return 1;
+    		}//프로모션 참가내역이 있는 경우 
+    		else{
+    			return 2;
+    		}
+    	
+    }
+    
+    
+    
+    public ParticipateListVO participatePromotion(HttpSession session, PurchaseVO purchase, ParticipateListVO participate) throws Exception{
     		
     		//////////////////////////////////
     		// 		   구매내역 Insert	    	   //
@@ -111,19 +147,20 @@ public class PromoService {
 		// 		   조인내역 Insert	    	   //
 		//////////////////////////////////
 	    
-	    join.setJoinUserID(loginUserId);	    
-	    join.setPurchaseId(purchaseId);
-	    join.setJoinDate(date);
 	    
-	    promoMapper.InsertJoinList(join);
+	    participate.setJoinUserID(loginUserId);	    
+	    participate.setPurchaseId(purchaseId);
+	    participate.setJoinDate(date);
+	    
+	    participateMapper.InsertParticipateList(participate);
 
 		//////////////////////////////////
 		// 		   프로모션 Update	    	   //
 		//////////////////////////////////
 	    
-	    int result = promoMapper.UpdatePromotionJoinCnt(join.getPromoId());
+	    int result = promoMapper.UpdatePromotionJoinCnt(participate.getPromoId());
 		   if (result > 0) {
-		   		return join;
+		   		return participate;
 		   }
 		   return null;
 	    

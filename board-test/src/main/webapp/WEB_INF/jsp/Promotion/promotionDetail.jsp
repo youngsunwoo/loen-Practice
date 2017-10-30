@@ -183,7 +183,7 @@
 			
 		
 			<div class="wrap_btn">
-				<form method="post" name="joinPromoForm" id="joinPromoForm">
+				<form method="post" name="paticipateForm" id="paticipateForm">
 				 	<input type="hidden" name ="promoId" value="${promotion.promo_id}">
 				 	<input type="hidden" name ="productCode" value="${promotion.product_code}">
 				</form>		 
@@ -249,34 +249,40 @@
 	    
 	    
 		<script type="text/javascript">
-			function joinPromotion() {
-				 var formData = $("#joinPromoForm").serialize();
-				 checkValue();
-				 $.ajax({
-					url : '/Promotion/JoinPromotion',
-		           type: "POST",	
-				   data : formData,
-				   beforeSend : function(xmlHttpRequest){
-		                xmlHttpRequest.setRequestHeader("AJAX", "true"); // ajax 호출을  header에 기록
-		            },
-		           dataType : "json", 
-		           success: function(data) {
-		               if(data == null){
-		               	
-		               }else{
-		               	 alert("프로모션 참여 완료!");
-		               	 openShareWindow(data);
-		                 location.reload();
-		               }
-		           },
-				 	   error:function(xhr, textStatus, error){
-				 		  if(xhr.status=="503"){
-				 			 alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
-				 			 location.href = "/login";
-				 			 return
-				 			 }
-				 	 }
-				 });
+		function joinPromotion() {
+				
+				 if ( checkAvailable()){
+					 
+					 var formData = $("#paticipateForm").serialize();
+					 
+					 $.ajax({
+						url : '/Promotion/PaticipatePromotion',
+			           type: "POST",	
+					   data : formData,
+					   beforeSend : function(xmlHttpRequest){
+			                xmlHttpRequest.setRequestHeader("AJAX", "true"); // ajax 호출을  header에 기록
+			            },
+			           dataType : "json", 
+			           success: function(data) {
+			               if(data == 0){
+			               		return true;
+			               }else if (data == 1){
+			               		alert("프로모션 참여 완료!");
+			               	 	return false ;
+			               }else {
+				             	alert("프로모션 참여 완료!");
+			            	   	 	return false; 
+			               }
+			           },
+					 	   error:function(xhr, textStatus, error){
+					 		  if(xhr.status=="503"){
+					 			 alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
+					 			 location.href = "/login";
+					 			 return false;
+					 			 }
+					 	 }
+					 });
+				 }
 		}
 
 		
@@ -296,6 +302,36 @@
 	            alert("프로모션 주최자는 참여하실 수 없습니다." );
 	            return false;
 	        }
+	       
+	       $.ajax({
+				url : '/Promotion/checkAbailable',
+	           type: "POST",	
+			   data : formData,
+			   beforeSend : function(xmlHttpRequest){
+	                xmlHttpRequest.setRequestHeader("AJAX", "true"); // ajax 호출을  header에 기록
+	            },
+	           dataType : "json", 
+	           success: function(data) {
+	               if(data == 0){
+	               		return true
+	               }else{
+	            	   
+	            	   	
+	                 return false;
+	               }
+	           },
+			 	   error:function(xhr, textStatus, error){
+			 		  if(xhr.status=="503"){
+			 			 alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
+			 			 location.href = "/login";
+			 			 return false
+			 			 }
+			 	 }
+			 });
+	       
+	       
+	       
+	       
 	    }
 	  
 	   function fnPopup() {

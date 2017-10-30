@@ -10,10 +10,18 @@
         (#{PurchaseId},#{PurchaseDate},#{UserId},#{ProductCode},'0')
    </insert>
     
-     <select id="getMaxPurchaseId" parameterType="String" resultType="Integer">
+   <select id="getMaxPurchaseId" parameterType="String" resultType="Integer">
     	   SELECT IFNULL(CAST(MAX(SUBSTRING(purchase_id,8,3)) AS signed integer)+1 ,0)
        FROM Purchase
    	   WHERE purchase_id like #{insertDate}
+    </select> 
+    
+    <select id="getInfoByUseridProductcd" parameterType="map" resultType="Integer">
+       SELECT COUNT(user_id) 
+       FROM Purchase
+       WHERE user_id = ${userId}
+       AND product_code = &{productCode}
+       AND state state = 0
     </select> 
     
 </mapper>

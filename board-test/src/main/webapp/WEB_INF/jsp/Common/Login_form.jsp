@@ -165,6 +165,8 @@
 
 <script type="text/javascript">
 
+	$("#btnLogin").keyup(function(e){if(e.keyCode == 13)  btnLogin_click(); })
+
 	function btnLogin_click(){
 		if(checkValue()){
 			//POST방식으로 바꿀것

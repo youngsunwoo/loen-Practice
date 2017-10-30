@@ -2,7 +2,7 @@ package com.sunny.test.vo;
 
 import java.util.Date;
 
-public class JoinListVO {
+public class ParticipateListVO {
 	
 	private String PromoId;
 	private String JoinUserID;
@@ -10,17 +10,17 @@ public class JoinListVO {
 	private Date   JoinDate;
 	private String JoinFrom;
 	
-	public JoinListVO() {
+	public ParticipateListVO() {
 		super();
 	}
 	
-	public JoinListVO(String promoId) {
+	public ParticipateListVO(String promoId) {
 		super();
 		PromoId = promoId;
 	}
 
 	
-	public JoinListVO(String promoId, String joinUserID, String purchaseId, Date joinDate, String joinFrom) {
+	public ParticipateListVO(String promoId, String joinUserID, String purchaseId, Date joinDate, String joinFrom) {
 		super();
 		PromoId = promoId;
 		JoinUserID = joinUserID;

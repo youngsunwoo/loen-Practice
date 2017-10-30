@@ -24,13 +24,15 @@
     </select>
     
     
-     	
    <insert id="insertUser" parameterType="com.sunny.test.vo.PromotionVO">
         INSERT USER
         VALUES
         (#{user_id},#{user_pw},#{user_name},#{age},#{gender},0)
    </insert>
 
+    
+    
+    
     
 </mapper>
 

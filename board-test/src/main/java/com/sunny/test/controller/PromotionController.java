@@ -18,7 +18,7 @@ import com.sunny.test.service.ProductService;
 import com.sunny.test.service.PromoService;
 import com.sunny.test.service.UserService;
 import com.sunny.test.vo.BenefitVO;
-import com.sunny.test.vo.JoinListVO;
+import com.sunny.test.vo.ParticipateListVO;
 import com.sunny.test.vo.ProductVO;
 import com.sunny.test.vo.PromotionVO;
 import com.sunny.test.vo.PurchaseVO;
@@ -56,7 +56,7 @@ public class PromotionController {
     //프로모션 저장하기 (DB insert)
     @Authentication
     @RequestMapping(value="Promotion/insertPromotion", method = RequestMethod.POST)      
-    public PromotionVO MakeNewPromotion(HttpServletRequest request) throws Exception{
+    public PromotionVO makeNewPromotion(HttpServletRequest request) throws Exception{
 	
     		String promo_type = request.getParameter("promo_type");
 		String benefit_code = request.getParameter("benefit_code");
@@ -121,19 +121,31 @@ public class PromotionController {
     
     //Join to Promotion
     @Authentication
-    @RequestMapping(value="Promotion/JoinPromotion", method = RequestMethod.POST)   
-    public JoinListVO JoinPromotion(HttpServletRequest request) throws Exception{
+    @RequestMapping(value="Promotion/PaticipatePromotion", method = RequestMethod.POST)   
+    public ParticipateListVO joinPromotion(HttpServletRequest request) throws Exception{
     	
     		String productCode = request.getParameter("productCode");
 		String promoId = request.getParameter("promoId");
 		
     		PurchaseVO purchase = new PurchaseVO(productCode);
     		
-    		JoinListVO join = new JoinListVO(promoId);
+    		ParticipateListVO join = new ParticipateListVO(promoId);
 		
-    		return promoService.JoinPromotion(request.getSession(), purchase, join);
+    		return promoService.participatePromotion(request.getSession(), purchase, join);
 	 
     }
+    
+    // Join 전 가능 여부 확인 
+    @RequestMapping(value="Promotion/checkAbailable", method = RequestMethod.POST)   
+    public int checkAbailable(HttpServletRequest request) throws Exception{
+    	
+    		String productCode = request.getParameter("productCode");
+		String promoId = request.getParameter("promoId");
+		
+    		return promoService.checkAbailable(request.getSession(), productCode, promoId);
+	 
+    }
+    
     
     
     
@@ -142,8 +154,6 @@ public class PromotionController {
     public ModelAndView getJoinUsersByPromoId(@RequestParam String promotion_id, HttpSession session) throws Exception{
     		ModelAndView mav = new ModelAndView();
 
-    		String promo_id = promotion_id;
-    		
     		List<UserVO> joinUsers = userService.getJoinUsersByPromoId(promotion_id);
     		
     		mav.addObject("joinUsers",joinUsers);
