@@ -47,15 +47,13 @@ public class UserController {
 	        return "redirect:login";
 	    }
 	    
-	    
-	         
+	      
 	    // 로그인 처리
 	    @RequestMapping(value="loginProcess", method = RequestMethod.GET)
 	    public Map<String, Object> loginProcess(HttpSession session, HttpServletRequest request) throws Exception{    
 	    	
 	        String id = request.getParameter("id");
     			String pw = request.getParameter("pw");
-    			String pre_url = request.getHeader("referer");
  
     			final Map<String, Object> map = new HashMap<String, Object>();
     	        map.put("flagdata", userService.getUserByIdPwd ( id, pw, session));

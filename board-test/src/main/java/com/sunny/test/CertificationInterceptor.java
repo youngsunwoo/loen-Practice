@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sunny.test.vo.UserVO;
 
 public class CertificationInterceptor implements HandlerInterceptor {
+	
+	   
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -42,6 +44,11 @@ public class CertificationInterceptor implements HandlerInterceptor {
 				
 				System.out.println("redirect Login Page");
 				
+				if(isAjaxRequest(request)) {
+					response.sendError(503); 
+					return false;
+				}
+				
 				request.setAttribute("destination", request.getRequestURI());
         			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
         			dispatcher.forward(request, response);
@@ -50,7 +57,6 @@ public class CertificationInterceptor implements HandlerInterceptor {
 
 	        }
 		}
-	        //어노테이션 선언하지않은경우 
 			return true;
 		
 		
@@ -89,5 +95,14 @@ public class CertificationInterceptor implements HandlerInterceptor {
 		// TODO Auto-generated method stub
 
 	}
+	
+	
+	  private boolean isAjaxRequest(HttpServletRequest request) {
+	        String ajaxHeader = "AJAX";
+	        System.out.println("======= call /sessionIntercepter request.getHeader(ajaxHeader) : " + request.getHeader(ajaxHeader) + "=======");
+	        return request.getHeader(ajaxHeader) != null && request.getHeader(ajaxHeader).equals(Boolean.TRUE.toString());
+	    }
+
+
 
 }

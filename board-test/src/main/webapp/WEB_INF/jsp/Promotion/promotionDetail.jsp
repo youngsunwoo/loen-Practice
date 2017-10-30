@@ -183,22 +183,15 @@
 			
 		
 			<div class="wrap_btn">
-				 
-				 <form method="post" name="joinPromoForm" id="joinPromoForm">
+				<form method="post" name="joinPromoForm" id="joinPromoForm">
 				 	<input type="hidden" name ="promoId" value="${promotion.promo_id}">
 				 	<input type="hidden" name ="productCode" value="${promotion.product_code}">
-     	
-				</form>
-				 
-						  		 
-				  <center>
-				  <input type="button" href="#" class="evenvtBt"  onclick="joinPromotion();" value="이벤트참여하기" />
-				  <input type="button" href="#" class="evenvtBt" value="참여자확인하기" onclick="fnPopup()" class="btn btn-default" />
-				  </center>
-					 
-					  
+				</form>		 
 				
-							   
+				<center>
+					<input type="button" href="#" class="evenvtBt"  onclick="joinPromotion();" value="이벤트참여하기" />
+					<input type="button" href="#" class="evenvtBt" value="참여자확인하기" onclick="fnPopup()" class="btn btn-default" />
+				</center>
 			</div>
 					 
 
@@ -207,40 +200,7 @@
 	 
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
-	
-	<script type="text/javascript">
-	
-			function joinPromotion() {
-				
-				
-				 var formData = $("#joinPromoForm").serialize();
-				 checkValue();
-				 $.ajax({
-					url : '/Promotion/JoinPromotion',
-		           type: "POST",	
-				   data : formData,
-		           dataType : "json",
-		           success: function(data) {
-		               if(data == null){
-		               	
-		               }else{
-		               	 alert("프로모션 참여 완료!");
-		               	 openShareWindow(data);
-		                 location.reload();
-		               }
-		           },
-				 	   error:function() { alert("Error"); }
-				 });
-		}
 
-		
-		function openShareWindow(data){
-			var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=600, height=550';
-			window.open("/Promotion/SharePopup?promotion_id=${promotion.promo_id}&flag=1", 'test', popupOption);
-		}
-	
-	
-	</script>
 
 	<script type="text/javascript">
 			
@@ -285,13 +245,52 @@
 			}
 		)
 	    
-	    </script>
+	   </script>
+	    
+	    
+		<script type="text/javascript">
+			function joinPromotion() {
+				 var formData = $("#joinPromoForm").serialize();
+				 checkValue();
+				 $.ajax({
+					url : '/Promotion/JoinPromotion',
+		           type: "POST",	
+				   data : formData,
+				   beforeSend : function(xmlHttpRequest){
+		                xmlHttpRequest.setRequestHeader("AJAX", "true"); // ajax 호출을  header에 기록
+		            },
+		           dataType : "json", 
+		           success: function(data) {
+		               if(data == null){
+		               	
+		               }else{
+		               	 alert("프로모션 참여 완료!");
+		               	 openShareWindow(data);
+		                 location.reload();
+		               }
+		           },
+				 	   error:function(xhr, textStatus, error){
+				 		  if(xhr.status=="503"){
+				 			 alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
+				 			 location.href = "/login";
+				 			 return
+				 			 }
+				 	 }
+				 });
+		}
+
+		
+		function openShareWindow(data){
+			var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=600, height=550';
+			window.open("/Promotion/SharePopup?promotion_id=${promotion.promo_id}&flag=1", 'test', popupOption);
+		}
+	</script>    
 	    
 	    
 	   <script type="text/javascript">
 	
 	
-	   //이벤트주최가는 참여 불가 처리 
+	   //이벤트주최자는 참여 불가 처리 
 	   function checkValue(){
 	       if( '${sessionScope.LoginUser.user_id}' == '${promotion.user_id}'){
 	            alert("프로모션 주최자는 참여하실 수 없습니다." );
@@ -306,8 +305,5 @@
 	   
 	</script>
 	 
-	 
-	
-	
 </body>
 </html>

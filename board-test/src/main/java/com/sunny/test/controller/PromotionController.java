@@ -43,31 +43,18 @@ public class PromotionController {
          return new ModelAndView("index");        
     }
     
-    
-    
-    //The Form to make Promotion
-    @RequestMapping(value="test")      
-    public ModelAndView test() {
-        return new ModelAndView("Promotion/promotion_form");        
-    }
-    
-    
-    @RequestMapping(value="/test1")      
-    public ModelAndView test1() throws Exception{
-    		ModelAndView mav = new ModelAndView();
 
-		mav.setViewName("test");     
-         return mav ;      
-    }
-    
-    
     //The Form to make Promotion
+    //프로모션 생성하기 
+    @Authentication
     @RequestMapping(value="Promotion/FormNewPromotion")      
     public ModelAndView promo() {
-        return new ModelAndView("Promotion/promotion_form");        
+        return new ModelAndView("Promotion/promotionForm");        
     }
     
     //Insert Promotion Information to Database
+    //프로모션 저장하기 (DB insert)
+    @Authentication
     @RequestMapping(value="Promotion/insertPromotion", method = RequestMethod.POST)      
     public PromotionVO MakeNewPromotion(HttpServletRequest request) throws Exception{
 	
@@ -81,6 +68,7 @@ public class PromotionController {
     
         
     //get(show) Promotion Detail Information
+    //프로모션 상세페이지 출력 (parameter : 프로모션 ID)
     @RequestMapping(value="Promotion/Detail", method = RequestMethod.GET)      
     public ModelAndView promoDetail(@RequestParam String promotion_id, HttpSession session) throws Exception{
     		ModelAndView mav = new ModelAndView();
@@ -99,14 +87,15 @@ public class PromotionController {
     		System.out.println(benefits_json);
     		mav.addObject("benefits",benefits_json);
     		
-    		mav.setViewName("Promotion/promotion_Detail");
+    		mav.setViewName("Promotion/promotionDetail");
     		
     		return mav;
         
     }
     
     
-    //get(show) Promotion Detail Information
+    //Promotion Share PopupPage
+    //프로모션 공유 페이지 출력
     @RequestMapping(value="Promotion/SharePopup", method = RequestMethod.GET)      
     public ModelAndView sharePopup(HttpServletRequest request , HttpSession session) throws Exception{
     		ModelAndView mav = new ModelAndView();
@@ -164,7 +153,6 @@ public class PromotionController {
     }
     
     
-    //베네핏가져오기
     @RequestMapping(value="/getBenefitList", method = RequestMethod.GET)     
     public 	List<BenefitVO> getbenefit(HttpServletRequest request) throws Exception{
     		

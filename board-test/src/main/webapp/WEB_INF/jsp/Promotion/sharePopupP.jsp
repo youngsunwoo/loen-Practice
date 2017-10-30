@@ -47,18 +47,14 @@
 						<div class="login_input_area02 style02" style="width:450px;">
 						<div class="wrap_login_input" style="width:450px;">
 								
-							
 							<div class="wrap_insert" style="width:450px;" d>
-								
 									<input type="text" name="promotionUrl" id="promotionUrl" value="http://localhost:8080/Promotion/Detail?promotion_id=${promotion_id}" title="URL창" class="text51" style="width:450px; width:450px;text-align: center;"">
-								
-								
 							</div>	
 						</div>
 							
-								<br>	
+						<br>	
 								
-					<div class="SNS_Share_Top hidden-xs" style="margin:width:450px; text-align: center;">																			
+						<div class="SNS_Share_Top hidden-xs" style="margin:width:450px; text-align: center;">																			
 								<!-- Share on Twitter -->
 								<a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20'
 								+encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog',
@@ -84,7 +80,7 @@
 								+encodeURIComponent(document.URL)+'&amp;title='+encodeURIComponent(document.title),
 								 'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank" alt="Share on Naver">
 								<img src="/img/shareIcon/Naver.png"></a>
-					  </div>		
+						</div>		
 						
 						
 						
@@ -104,7 +100,7 @@
 		<script>
 
 		function gotoMakePromo() {
-			location.replace("/Promotion/FormNewPromotion")
+			window.open('/Promotion/FormNewPromotion', '_blank'); 
 		}
 		function gotoMain() {
 			location.replace("") 	

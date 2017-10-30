@@ -68,7 +68,7 @@
  <div id="wrap" >
  
 	<div class="mask">
-		<div class="window"> 
+		<div class="window" > 
 			<input type="button" href="#" class="close" value="(닫기)" style="float = right" />
 			<div id="Product_list_div">  </div>
 		</div>
@@ -84,23 +84,19 @@
 	
 	<div id="member_header" 
 		style="  background: url(http://cdnimg.melon.co.kr/svc/images/promotion/web/201709/28590/928172752_detail_5.png) no-repeat 0 0; width: 1008px; height: auto;"">
-	
 		
-		<div id="gnb" style="height : 350px;">
-				
-		</div>
+			<div id="gnb" style="height : 350px;">
+					
+			</div>
 			
 			<div class="box_select_gender">
-			
-			
-	                <div class="wrap" style="    margin: auto;    width: fit-content;">
+		        <div class="wrap" style="    margin: auto;    width: fit-content;">
 					<img style="width: 200px;margin-left: 50px;margin-right: 50px;" id ="together_img" src="/img/promotion/together.png">
-		                 
+			                 
 					<img style="width: 200px;margin-left: 50px;margin-right: 50px;" id ="alone_img"  src="/img/promotion/alone.png">
-					</div>
-		
-			<!--  혜택 선택용 div -->
+				</div>
 			
+			<!--  혜택 선택용 div -->
 				<div id="benefitSelectDiv" style=" display: none;  border: 1px;margin-top: 30px; margin-bottom: 30px; width: 1008px;padding: 10px;text-align: center;">
  							<ul class="wrap_list_radio">
  								<li class="d_input_check" id="benefit01" style="    margin-right: 75px;    margin-left: 75px;">
@@ -123,30 +119,22 @@
  								</li>
  							</ul>
  				 </div>
- 				 <!-- 혜택 출력하기 위해서 추가한 내역 -->
-			 	
+			<!--  혜택 선택용 div  -->
+			
+			
+ 			<!-- 혜택 출력하기 위해서 추가한 내역 -->
 				<div id="benefitDiv" style="border:1px;  display: none; margin-top: 30px;margin-bottom: 20px;width: 1008px;padding: 10px;">
 					<div id="benefitContents"  style=" width: fit-content; margin: auto;" style="width: fit-content;   margin: auto;">
 					</div>
 				</div>
-	
-	
 			<!-- 혜택 출력용 끝 -->
  				 
  			</div>
 			
-			<!--  혜택 선택용 div  -->
-			
-		
-			
 			</div>
-	</div>
+</div>
 			
-		
-	
-	
-	
-	
+	<!-- 상품선택용 -->
 	
 	<div id="member_header" 
 		style="  background: #f3f3f2; width: 1008px;">
@@ -213,15 +201,12 @@
 </div>
       
       
-	 
-	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>	
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>	
 	
 	
 	<!----------------------------- 혜택관련 Script ------------------------------------>	
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	
 		    //동적으로 혜택 가져오기 (Ajax)
 		    function get_Benefit(){
@@ -259,9 +244,9 @@
 		    
 	</script>
 	
-	<!----------------------------- UI 및 값 선택관련 ------------------------------------>	
 	
-    <script type="text/javascript">
+	<!----------------------------- UI 및 값 선택관련 ------------------------------------>	
+<script type="text/javascript">
     
 			$('input:radio[name=gender]').click(function() {
 					var i = $('input:radio[name=gender]').index(this);
@@ -294,9 +279,7 @@
 				   	$("#together_img").attr("src",'/img/promotion/together_chk.png');
 				   	$("#alone_img").attr("src",'/img/promotion/alone.png');
 				    $("#benefitSelectDiv").slideDown("slow");
-				    
 				    var benefit_cd = $("#benefit_code").val()
-					 
 					 if(benefit_cd != '00'){
 						 get_Benefit()
 					 }
@@ -307,9 +290,7 @@
 				   	$("#together_img").attr("src",'/img/promotion/together.png');
 				   	$("#alone_img").attr("src",'/img/promotion/alone_chk.png');
 				    $("#benefitSelectDiv").slideDown("slow");
-				    
 				    var benefit_cd = $("#benefit_code").val()
-					 
 					 if(benefit_cd != '00'){
 						 get_Benefit()
 					 }
@@ -319,18 +300,21 @@
 			
 
 		
-	</script>
+</script>
 	
+	
+	<!----------------------------- 프로모션저장 ------------------------------------>	
 <script>
 	 		function submitPromotion() {
-			    			
-	
 			    	 		 var formData = $("#Promo_info").serialize();
 	
 			    	 		 $.ajax({
 			    	 			url : '/Promotion/insertPromotion',
 				                type: "POST",	
 			    	 			    data : formData,
+			    					beforeSend : function(xmlHttpRequest){
+			    			                xmlHttpRequest.setRequestHeader("AJAX", "true"); 
+			    					},// ajax 호출을  header에 기록
 				                dataType : "json",
 				                success: function(data) {
 				                    if(data == null){
@@ -340,7 +324,13 @@
 				                    	 openShareWindow(data);
 				                    }
 				                },
-			    	 		 	   error:function() { alert("Error"); }
+			    	 		 	   error::function(xhr, textStatus, error){
+			 				 		  if(xhr.status=="503"){
+			 				 			 alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
+			 				 			 location.href = "/login";
+			 				 			 return
+			 				 			 }
+			 				 	 }
 			    	 		 });
 			   }
 	 		
@@ -353,9 +343,6 @@
 		   	}
 </script>
 	
-
-
-
 	<!----------------------------- 상품관련 Script ------------------------------------>	
 <script type="text/javascript">
 
@@ -451,8 +438,5 @@
 				    
    </script>		    
 
-
-
-	
 </body>
 </html>
