@@ -16,7 +16,7 @@
    		WHERE user_id = #{user_id}
     </select>
     
-     <select id="getJoinUsersByPromoId" parameterType="String" resultType="com.sunny.test.vo.UserVO">
+     <select id="getParticipateUsersByPromoId" parameterType="String" resultType="com.sunny.test.vo.UserVO">
         SELECT user_id, user_name, user_pw, age, gender, point
         FROM User JOIN JoinList
         ON user_id = join_user_id

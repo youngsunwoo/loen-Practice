@@ -25,10 +25,9 @@ import com.sunny.test.vo.UserVO;
 public class UserController {
 	
 	 @Autowired
-	 UserService userService;
+	 UserService userService; 
 	 
-	 
-		// 로그인 화면
+		// 회원가입 화면 
 	    @RequestMapping("join")
 	    public ModelAndView join() {
 	            return new ModelAndView("Common/join_form");    
@@ -48,7 +47,7 @@ public class UserController {
 	    }
 	    
 	      
-	    // 로그인 처리
+	    //로그인 처리
 	    @RequestMapping(value="loginProcess", method = RequestMethod.GET)
 	    public Map<String, Object> loginProcess(HttpSession session, HttpServletRequest request) throws Exception{    
 	    	
@@ -63,7 +62,7 @@ public class UserController {
 	    }
 
 	   
-	 // 회원가입
+	    //회원가입
 	    @RequestMapping(value="joinProcess")//, method = RequestMethod.POST)
 	    public Map<String, Object> joinProcess(HttpSession session, HttpServletRequest request) throws Exception{    
 	    	
@@ -87,5 +86,17 @@ public class UserController {
     	         		
 	    }
 	   
+	    
+	    //get Users who participated the Promotion By PromoId
+	    @RequestMapping(value="Promotion/Detail/PaticipateList", method = RequestMethod.GET)      
+	    public ModelAndView getJoinUsersByPromoId(@RequestParam String promotion_id, HttpSession session) throws Exception{
+	    		ModelAndView mav = new ModelAndView();
+
+	    		List<UserVO> participateUsers = userService.getParticipateUsersByPromoId(promotion_id);
+	    		
+	    		mav.addObject("joinUsers",participateUsers);
+	    		mav.setViewName("Promotion/JoinList");
+	    		return mav;
+	    }
 
 }

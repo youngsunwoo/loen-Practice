@@ -45,10 +45,10 @@ public class PromotionController {
     
 
     //The Form to make Promotion
-    //프로모션 생성하기 
+    //프로모션 생성하기 입력창 
     @Authentication
     @RequestMapping(value="Promotion/FormNewPromotion")      
-    public ModelAndView promo() {
+    public ModelAndView promotionForm() {
         return new ModelAndView("Promotion/promotionForm");        
     }
     
@@ -73,19 +73,19 @@ public class PromotionController {
     public ModelAndView promoDetail(@RequestParam String promotion_id, HttpSession session) throws Exception{
     		ModelAndView mav = new ModelAndView();
 
-    		PromotionVO  promotion = promoService.getPromotionById(promotion_id);
-    		UserVO ownUser = userService.getUserById(promotion.getUser_id());
-    		ProductVO product = productService.getProductInfo(promotion.getProduct_code());
-    		List<BenefitVO> benefits = promoService.getBenefit(promotion.getPromo_type(), promotion.getBenefit_code());
-    		
+    		PromotionVO  promotion = promoService.getPromotionById(promotion_id); 			//프로모션정보
     		mav.addObject("promotion",promotion);
-    		mav.addObject("ownUser",ownUser);
-    		mav.addObject("product",product);
-
-    		String benefits_json = new Gson().toJson(benefits);
     		
-    		System.out.println(benefits_json);
+    		UserVO ownUser = userService.getUserById(promotion.getUser_id());					//프로모션생user정보 
+    		mav.addObject("ownUser",ownUser);
+    		
+    		ProductVO product = productService.getProductInfo(promotion.getProduct_code());	//상품정보 
+    		mav.addObject("product",product);
+    		
+    		List<BenefitVO> benefits = promoService.getBenefit(promotion.getPromo_type(), promotion.getBenefit_code()); //혜택상세정보
+    		String benefits_json = new Gson().toJson(benefits);
     		mav.addObject("benefits",benefits_json);
+    		
     		
     		mav.setViewName("Promotion/promotionDetail");
     		
@@ -119,50 +119,7 @@ public class PromotionController {
     }
     
     
-    //Join to Promotion
-    @Authentication
-    @RequestMapping(value="Promotion/PaticipatePromotion", method = RequestMethod.POST)   
-    public ParticipateListVO joinPromotion(HttpServletRequest request) throws Exception{
-    	
-    		String productCode = request.getParameter("productCode");
-		String promoId = request.getParameter("promoId");
-		
-    		PurchaseVO purchase = new PurchaseVO(productCode);
-    		
-    		ParticipateListVO join = new ParticipateListVO(promoId);
-		
-    		return promoService.participatePromotion(request.getSession(), purchase, join);
-	 
-    }
-    
-    // Join 전 가능 여부 확인 
-    @RequestMapping(value="Promotion/checkAbailable", method = RequestMethod.POST)   
-    public int checkAbailable(HttpServletRequest request) throws Exception{
-    	
-    		String productCode = request.getParameter("productCode");
-		String promoId = request.getParameter("promoId");
-		
-    		return promoService.checkAbailable(request.getSession(), productCode, promoId);
-	 
-    }
-    
-    
-    
-    
-    //get Users who joined the Promotion By PromoId
-    @RequestMapping(value="Promotion/Detail/JoinList", method = RequestMethod.GET)      
-    public ModelAndView getJoinUsersByPromoId(@RequestParam String promotion_id, HttpSession session) throws Exception{
-    		ModelAndView mav = new ModelAndView();
-
-    		List<UserVO> joinUsers = userService.getJoinUsersByPromoId(promotion_id);
-    		
-    		mav.addObject("joinUsers",joinUsers);
-    		mav.setViewName("Promotion/JoinList");
-    		return mav;
-        
-    }
-    
-    
+    //혜택 상세 내역 출력용 
     @RequestMapping(value="/getBenefitList", method = RequestMethod.GET)     
     public 	List<BenefitVO> getbenefit(HttpServletRequest request) throws Exception{
     		

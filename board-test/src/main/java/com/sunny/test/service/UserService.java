@@ -44,13 +44,9 @@ public class UserService {
 		return userMapper.insertUser(user);
     }
     
-    
-    public List<UserVO> getJoinUsersByPromoId(String Promoid) throws Exception{
-		return userMapper.getJoinUsersByPromoId(Promoid);
-		
-		
-		
-		
-}
+    //get Users who joined the Promotion By PromoId
+    public List<UserVO> getParticipateUsersByPromoId(String Promoid) throws Exception{
+		return userMapper.getParticipateUsersByPromoId(Promoid);
+    }
     
 }

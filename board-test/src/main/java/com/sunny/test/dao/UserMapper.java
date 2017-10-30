@@ -11,7 +11,7 @@ public interface UserMapper {
 
 	  public UserVO getUserById(String id)throws Exception; 
 	  
-	  public List<UserVO> getJoinUsersByPromoId(String promoId) throws Exception; 
+	  public List<UserVO> getParticipateUsersByPromoId(String promoId) throws Exception; 
 	  
 	  public int insertUser(UserVO user) throws Exception; 
 
