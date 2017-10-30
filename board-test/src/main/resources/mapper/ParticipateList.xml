@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>   
-
-
-<insert id="InsertParticipateList" parameterType="com.sunny.test.vo.PromotionVO">
-        INSERT into JoinList
-        VALUES
-        (#{PromoId},#{JoinUserID},#{PurchaseId},#{JoinDate},NULL)
-   </insert>

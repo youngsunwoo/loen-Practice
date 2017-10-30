@@ -324,7 +324,7 @@
 				                    	 openShareWindow(data);
 				                    }
 				                },
-			    	 		 	   error::function(xhr, textStatus, error){
+			    	 		 	   error:function(xhr, textStatus, error){
 			 				 		  if(xhr.status=="503"){
 			 				 			 alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
 			 				 			 location.href = "/login";

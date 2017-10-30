@@ -19,9 +19,9 @@
     <select id="getInfoByUseridProductcd" parameterType="map" resultType="Integer">
        SELECT COUNT(user_id) 
        FROM Purchase
-       WHERE user_id = ${userId}
-       AND product_code = &{productCode}
-       AND state state = 0
+       WHERE user_id = #{userId}
+       AND product_code = #{productCd}
+       AND state  = '0'
     </select> 
     
 </mapper>

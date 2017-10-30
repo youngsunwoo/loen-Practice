@@ -18,7 +18,7 @@
     
      <select id="getParticipateUsersByPromoId" parameterType="String" resultType="com.sunny.test.vo.UserVO">
         SELECT user_id, user_name, user_pw, age, gender, point
-        FROM User JOIN JoinList
+        FROM User JOIN Participate
         ON user_id = join_user_id
         where Promo_id = #{PromoId}
     </select>

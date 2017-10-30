@@ -189,7 +189,7 @@
 				</form>		 
 				
 				<center>
-					<input type="button" href="#" class="evenvtBt"  onclick="joinPromotion();" value="이벤트참여하기" />
+					<input type="button" href="#" class="evenvtBt"  onclick="checkAvailable();" value="이벤트참여하기" />
 					<input type="button" href="#" class="evenvtBt" value="참여자확인하기" onclick="fnPopup()" class="btn btn-default" />
 				</center>
 			</div>
@@ -245,16 +245,15 @@
 			}
 		)
 	    
-	   </script>
+		</script>
 	    
 	    
 		<script type="text/javascript">
-		function joinPromotion() {
-				
-				 if ( checkAvailable()){
-					 
-					 var formData = $("#paticipateForm").serialize();
-					 
+
+		var formData = $("#paticipateForm").serialize();
+		
+		 
+		function insertParticipate() {
 					 $.ajax({
 						url : '/Promotion/PaticipatePromotion',
 			           type: "POST",	
@@ -264,17 +263,14 @@
 			            },
 			           dataType : "json", 
 			           success: function(data) {
-			               if(data == 0){
-			               		return true;
-			               }else if (data == 1){
-			               		alert("프로모션 참여 완료!");
-			               	 	return false ;
-			               }else {
-				             	alert("프로모션 참여 완료!");
-			            	   	 	return false; 
-			               }
+			        	 	 if(data == null){
+			        		 }else{
+			        		  	 alert("프로모션 참여 완료!");
+			        		  	 openShareWindow(data);
+			        		  	 location.reload();
+			        		 }
 			           },
-					 	   error:function(xhr, textStatus, error){
+					   error:function(xhr, textStatus, error){
 					 		  if(xhr.status=="503"){
 					 			 alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
 					 			 location.href = "/login";
@@ -282,61 +278,61 @@
 					 			 }
 					 	 }
 					 });
-				 }
 		}
-
+		
+		</script>
+		
+		<script type="text/javascript">
+		function checkAvailable(){
+		       if( '${sessionScope.LoginUser.user_id}' == '${promotion.user_id}'){
+		            alert("프로모션 주최자는 참여하실 수 없습니다." );
+		            return false;
+		        }
+		       
+		       $.ajax({
+					url :  '/Promotion/checkAbailable',
+		           type : "POST",	
+				   data : formData,	
+				   beforeSend : function(xmlHttpRequest){
+		                xmlHttpRequest.setRequestHeader("AJAX", "true"); // ajax 호출을  header에 기록
+		            },
+		           dataType : "text", 
+		           success: function(data) {
+		               if(data == '0'){
+		               		alert("test0");
+		               		insertParticipate();
+		               }else if (data == 1){
+		               		alert("test1");
+		               	 	return false ;
+		               }else {
+			             	alert("Test2");
+		            	   	 	return false; 
+		               }
+		           },
+				 	   error:function(xhr, textStatus, error){
+				 		  if(xhr.status=="503"){
+				 			 alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
+				 			 location.href = "/login";
+				 			 return false
+				 			 }
+				 	 }
+				 });
+		}
+		
 		
 		function openShareWindow(data){
 			var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=600, height=550';
 			window.open("/Promotion/SharePopup?promotion_id=${promotion.promo_id}&flag=1", 'test', popupOption);
 		}
+		
 	</script>    
 	    
 	    
 	   <script type="text/javascript">
 	
-	
-	   //이벤트주최자는 참여 불가 처리 
-	   function checkValue(){
-	       if( '${sessionScope.LoginUser.user_id}' == '${promotion.user_id}'){
-	            alert("프로모션 주최자는 참여하실 수 없습니다." );
-	            return false;
-	        }
-	       
-	       $.ajax({
-				url : '/Promotion/checkAbailable',
-	           type: "POST",	
-			   data : formData,
-			   beforeSend : function(xmlHttpRequest){
-	                xmlHttpRequest.setRequestHeader("AJAX", "true"); // ajax 호출을  header에 기록
-	            },
-	           dataType : "json", 
-	           success: function(data) {
-	               if(data == 0){
-	               		return true
-	               }else{
-	            	   
-	            	   	
-	                 return false;
-	               }
-	           },
-			 	   error:function(xhr, textStatus, error){
-			 		  if(xhr.status=="503"){
-			 			 alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
-			 			 location.href = "/login";
-			 			 return false
-			 			 }
-			 	 }
-			 });
-	       
-	       
-	       
-	       
-	    }
-	  
 	   function fnPopup() {
 		    var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=440, height=550';
-		    window.open("Detail/JoinList?promotion_id=${promotion.promo_id}", 'test', popupOption);
+		    window.open("Detail/ParticipateList?promotion_id=${promotion.promo_id}", 'test', popupOption);
 		}
 	   
 	</script>

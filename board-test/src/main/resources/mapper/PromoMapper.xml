@@ -28,6 +28,7 @@
         (#{promo_id},#{create_date},#{user_id},#{due_date},'0',#{promo_type},#{benefit_code},#{product_code},#{event_url},#{banner_path},0)
    </insert>
    
+   
         
    <select id="getPromotionById" parameterType="String" resultType="com.sunny.test.vo.PromotionVO">     
         SELECT promo_id,
@@ -46,4 +47,3 @@
     </select>
     
 </mapper>
-

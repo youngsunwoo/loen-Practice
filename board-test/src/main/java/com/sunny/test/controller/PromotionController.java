@@ -18,7 +18,7 @@ import com.sunny.test.service.ProductService;
 import com.sunny.test.service.PromoService;
 import com.sunny.test.service.UserService;
 import com.sunny.test.vo.BenefitVO;
-import com.sunny.test.vo.ParticipateListVO;
+import com.sunny.test.vo.ParticipateVO;
 import com.sunny.test.vo.ProductVO;
 import com.sunny.test.vo.PromotionVO;
 import com.sunny.test.vo.PurchaseVO;

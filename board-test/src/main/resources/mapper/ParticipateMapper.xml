@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunny.test.dao.ParticipateMapper">
+
+   <insert id="InsertParticipateList" parameterType="com.sunny.test.vo.PromotionVO">
+        INSERT into Participate
+        VALUES
+        (#{promoId},#{joinUserId},#{purchaseId},#{joinDate},NULL)
+   </insert>
+        
+        
+    <select id="getInfoUseridPromoId" parameterType="map" resultType="Integer">
+       SELECT COUNT(*) 
+       FROM Participate
+       WHERE join_user_id = #{userId}
+       AND promo_id = #{promotionId}
+    </select> 
+        
+</mapper>
+
+ 
