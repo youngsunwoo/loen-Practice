@@ -108,7 +108,9 @@
 				<div style=" margin:auto; width: fit-content;padding: 20px;">
 						<img src="/img/product/${promotion.product_code}.png" width="250" height="120" style="position: relative;margin: auto;">
 
-						<h2><p style="color: #00b423; font-size: 23px; margin-top: 20px;">무제한듣기 + MP3 다운로드</p></h2>
+						<div id = "Product_name_div">
+							<p id ='product_name' style="color: #00b423; font-size: 23px; margin-top: 20px;">${promotion.product_name}</p>
+						</div>
 				</div>
 					
 					<br>	
@@ -299,13 +301,12 @@
 		           dataType : "text", 
 		           success: function(data) {
 		               if(data == '0'){
-		               		alert("test0");
 		               		insertParticipate();
 		               }else if (data == 1){
-		               		alert("test1");
+		               		alert("동일한 상품 구매이력이 있어 참여하실수 없습니다.");
 		               	 	return false ;
 		               }else {
-			             	alert("Test2");
+		               		alert("이미 참여한 프로모션은 참여하실수 없습니다.");
 		            	   	 	return false; 
 		               }
 		           },
@@ -332,7 +333,7 @@
 	
 	   function fnPopup() {
 		    var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=440, height=550';
-		    window.open("Detail/ParticipateList?promotion_id=${promotion.promo_id}", 'test', popupOption);
+		    window.open("/Promotion/Detail/ParticipateList?promotion_id=${promotion.promo_id}", 'test', popupOption);
 		}
 	   
 	</script>

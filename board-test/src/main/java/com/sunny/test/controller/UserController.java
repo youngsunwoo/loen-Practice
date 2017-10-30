@@ -95,7 +95,7 @@ public class UserController {
 	    		List<UserVO> participateUsers = userService.getParticipateUsersByPromoId(promotion_id);
 	    		
 	    		mav.addObject("joinUsers",participateUsers);
-	    		mav.setViewName("Promotion/JoinList");
+	    		mav.setViewName("Promotion/participateList");
 	    		return mav;
 	    }
 
