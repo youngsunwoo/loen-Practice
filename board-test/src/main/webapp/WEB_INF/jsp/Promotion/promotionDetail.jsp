@@ -109,7 +109,7 @@
 						<img src="/img/product/${promotion.product_code}.png" width="250" height="120" style="position: relative;margin: auto;">
 
 						<div id = "Product_name_div">
-							<p id ='product_name' style="color: #00b423; font-size: 23px; margin-top: 20px;">${promotion.product_name}</p>
+							<p id ='product_name' style="color: #00b423; font-size: 23px; margin-top: 20px;">${product.product_name}</p>
 						</div>
 				</div>
 					

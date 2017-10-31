@@ -1,4 +1,4 @@
-package com.sunny.test.controller;
+package com.sunny.promotion.controller;
 
 import java.util.List;
 
@@ -13,16 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.sunny.test.Authentication;
-import com.sunny.test.service.ProductService;
-import com.sunny.test.service.PromoService;
-import com.sunny.test.service.UserService;
-import com.sunny.test.vo.BenefitVO;
-import com.sunny.test.vo.ParticipateVO;
-import com.sunny.test.vo.ProductVO;
-import com.sunny.test.vo.PromotionVO;
-import com.sunny.test.vo.PurchaseVO;
-import com.sunny.test.vo.UserVO;
+import com.sunny.promotion.Authentication;
+import com.sunny.promotion.service.ProductService;
+import com.sunny.promotion.service.PromoService;
+import com.sunny.promotion.service.UserService;
+import com.sunny.promotion.vo.BenefitVO;
+import com.sunny.promotion.vo.ProductVO;
+import com.sunny.promotion.vo.PromotionVO;
+import com.sunny.promotion.vo.UserVO;
  
 @RestController
 public class PromotionController {

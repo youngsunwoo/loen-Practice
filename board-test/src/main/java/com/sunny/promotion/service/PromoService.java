@@ -1,4 +1,4 @@
-package com.sunny.test.service;
+package com.sunny.promotion.service;
 
 
 import java.util.HashMap;
@@ -10,14 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sunny.test.dao.ParticipateMapper;
-import com.sunny.test.dao.PromoMapper;
-import com.sunny.test.dao.PurchaseMapper;
-import com.sunny.test.vo.BenefitVO;
-import com.sunny.test.vo.ParticipateVO;
-import com.sunny.test.vo.PromotionVO;
-import com.sunny.test.vo.PurchaseVO;
-import com.sunny.test.vo.UserVO;
+import com.sunny.promotion.dao.PromoMapper;
+import com.sunny.promotion.dao.PurchaseMapper;
+import com.sunny.promotion.vo.BenefitVO;
+import com.sunny.promotion.vo.PromotionVO;
+import com.sunny.promotion.vo.UserVO;
  
 @Service
 public class PromoService {

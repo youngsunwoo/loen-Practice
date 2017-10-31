@@ -1,8 +1,9 @@
-package com.sunny.test.dao;
+package com.sunny.promotion.dao;
 
 import java.util.Map;
 
-import com.sunny.test.vo.ParticipateVO;
+import com.sunny.promotion.vo.ParticipateVO;
+
 
 public interface ParticipateMapper {
 

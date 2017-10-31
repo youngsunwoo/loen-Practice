@@ -1,4 +1,4 @@
-package com.sunny.test;
+package com.sunny.promotion;
 import javax.sql.DataSource;
  
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -11,7 +11,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
  
 @Configuration
-@MapperScan(basePackages="com.sunny.test.dao")
+@MapperScan(basePackages="com.sunny.promotion.dao")
 @EnableTransactionManagement
 public class DatabaseConfig {
  

@@ -1,4 +1,4 @@
-package com.sunny.test.controller;
+package com.sunny.promotion.controller;
 
 import java.util.List;
 
@@ -9,13 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sunny.test.Authentication;
-import com.sunny.test.service.ParticipateService;
-import com.sunny.test.service.ProductService;
-import com.sunny.test.service.PromoService;
-import com.sunny.test.service.UserService;
-import com.sunny.test.vo.ParticipateVO;
-import com.sunny.test.vo.PurchaseVO;
+import com.sunny.promotion.Authentication;
+import com.sunny.promotion.service.ParticipateService;
+import com.sunny.promotion.vo.ParticipateVO;
+import com.sunny.promotion.vo.PurchaseVO;
  
 @RestController
 public class ParticipateController {

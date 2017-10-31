@@ -1,4 +1,4 @@
-package com.sunny.test;
+package com.sunny.promotion;
 
 
 import java.io.PrintWriter;
@@ -13,7 +13,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sunny.test.vo.UserVO;
+import com.sunny.promotion.vo.UserVO;
 
 public class CertificationInterceptor implements HandlerInterceptor {
 	

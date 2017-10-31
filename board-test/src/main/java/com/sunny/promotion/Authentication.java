@@ -1,4 +1,4 @@
-package com.sunny.test;
+package com.sunny.promotion;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

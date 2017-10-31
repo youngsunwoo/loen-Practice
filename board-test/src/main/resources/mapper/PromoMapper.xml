@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sunny.test.dao.PromoMapper">
-    <select id="getBenefit" parameterType="map" resultType="com.sunny.test.vo.BenefitVO">
+<mapper namespace="com.sunny.promotion.dao.PromoMapper">
+    <select id="getBenefit" parameterType="map" resultType="com.sunny.promotion.vo.BenefitVO">
         SELECT goal_cnt, offer, unit 
         FROM BENEFIT
    		WHERE promo_type = #{promo_type}
@@ -22,7 +22,7 @@
         WHERE Promo_id = #{PromoId}
     </update>
  	
-   <insert id="InsertPromotion" parameterType="com.sunny.test.vo.PromotionVO">
+   <insert id="InsertPromotion" parameterType="com.sunny.promotion.vo.PromotionVO">
         INSERT into Promotion
         VALUES
         (#{promo_id},#{create_date},#{user_id},#{due_date},'0',#{promo_type},#{benefit_code},#{product_code},#{event_url},#{banner_path},0)
@@ -30,7 +30,7 @@
    
    
         
-   <select id="getPromotionById" parameterType="String" resultType="com.sunny.test.vo.PromotionVO">     
+   <select id="getPromotionById" parameterType="String" resultType="com.sunny.promotion.vo.PromotionVO">     
         SELECT promo_id,
 			   create_date,
 			   user_id,

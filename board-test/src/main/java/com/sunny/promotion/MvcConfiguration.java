@@ -1,4 +1,4 @@
-package com.sunny.test;
+package com.sunny.promotion;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import com.sunny.test.CertificationInterceptor;
+import com.sunny.promotion.CertificationInterceptor;
 
 @Configuration
 public class MvcConfiguration extends WebMvcConfigurerAdapter

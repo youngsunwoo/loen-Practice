@@ -1,4 +1,4 @@
-package com.sunny.test.service;
+package com.sunny.promotion.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sunny.test.dao.UserMapper;
-import com.sunny.test.vo.UserVO;
+import com.sunny.promotion.dao.UserMapper;
+import com.sunny.promotion.vo.UserVO;
 
 @Service
 public class UserService {
@@ -36,7 +36,7 @@ public class UserService {
         		session.setAttribute("LoginUser", loginUser);
             return true;
         }
-        
+        System.out.println("test");
         return false;
     }
     

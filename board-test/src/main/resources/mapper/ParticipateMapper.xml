@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sunny.test.dao.ParticipateMapper">
+<mapper namespace="com.sunny.promotion.dao.ParticipateMapper">
 
-   <insert id="InsertParticipateList" parameterType="com.sunny.test.vo.PromotionVO">
+   <insert id="InsertParticipateList" parameterType="com.sunny.promotion.vo.PromotionVO">
         INSERT into Participate
         VALUES
         (#{promoId},#{joinUserId},#{purchaseId},#{joinDate},NULL)
    </insert>
-        
         
     <select id="getInfoUseridPromoId" parameterType="map" resultType="Integer">
        SELECT COUNT(*) 

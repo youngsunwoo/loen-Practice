@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sunny.test.dao.UserMapper">
-    <select id="getUserByIdPwd" parameterType="map" resultType="com.sunny.test.vo.UserVO">
+<mapper namespace="com.sunny.promotion.dao.UserMapper">
+
+    <select id="getUserByIdPwd" parameterType="map" resultType="com.sunny.promotion.vo.UserVO">
         SELECT user_id, user_name, user_pw, age, gender, point
         FROM USER
    		WHERE user_id = #{user_id}
         AND   user_pw = #{user_pw}
     </select>
     
-    
-     <select id="getUserById" parameterType="map" resultType="com.sunny.test.vo.UserVO">
+     <select id="getUserById" parameterType="map" resultType="com.sunny.promotion.vo.UserVO">
         SELECT user_id, user_name, user_pw, age, gender, point
         FROM USER
    		WHERE user_id = #{user_id}
     </select>
     
-     <select id="getParticipateUsersByPromoId" parameterType="String" resultType="com.sunny.test.vo.UserVO">
+     <select id="getParticipateUsersByPromoId" parameterType="String" resultType="com.sunny.promotion.vo.UserVO">
         SELECT user_id, user_name, user_pw, age, gender, point
         FROM User JOIN Participate
         ON user_id = join_user_id
@@ -24,7 +24,7 @@
     </select>
     
     
-   <insert id="insertUser" parameterType="com.sunny.test.vo.PromotionVO">
+   <insert id="insertUser" parameterType="com.sunny.promotion.vo.PromotionVO">
         INSERT USER
         VALUES
         (#{user_id},#{user_pw},#{user_name},#{age},#{gender},0)

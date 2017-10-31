@@ -1,8 +1,8 @@
-package com.sunny.test.dao;
+package com.sunny.promotion.dao;
 
 import java.util.List;
 
-import com.sunny.test.vo.ProductVO;
+import com.sunny.promotion.vo.ProductVO;
 
 public interface ProductMapper {
     /* DB Select  */

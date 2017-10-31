@@ -1,4 +1,4 @@
-package com.sunny.test.vo;
+package com.sunny.promotion.vo;
 
 public class BenefitVO {
 	private int goal_cnt;

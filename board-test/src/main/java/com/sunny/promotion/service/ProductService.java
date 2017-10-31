@@ -1,4 +1,4 @@
-package com.sunny.test.service;
+package com.sunny.promotion.service;
 
 
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sunny.test.dao.ProductMapper;
-import com.sunny.test.vo.ProductVO;
+import com.sunny.promotion.dao.ProductMapper;
+import com.sunny.promotion.vo.ProductVO;
  
 @Service
 public class ProductService {

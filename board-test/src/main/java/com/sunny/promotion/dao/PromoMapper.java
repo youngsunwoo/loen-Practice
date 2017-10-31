@@ -1,10 +1,10 @@
-package com.sunny.test.dao;
+package com.sunny.promotion.dao;
 
 import java.util.List;
 import java.util.Map;
 
-import com.sunny.test.vo.BenefitVO;
-import com.sunny.test.vo.PromotionVO;
+import com.sunny.promotion.vo.BenefitVO;
+import com.sunny.promotion.vo.PromotionVO;
 
 public interface PromoMapper {
 

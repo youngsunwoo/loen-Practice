@@ -1,4 +1,4 @@
-package com.sunny.test;
+package com.sunny.promotion;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;

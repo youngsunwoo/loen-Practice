@@ -1,9 +1,9 @@
-package com.sunny.test.dao;
+package com.sunny.promotion.dao;
 
 import java.util.List;
 import java.util.Map;
 
-import com.sunny.test.vo.UserVO;
+import com.sunny.promotion.vo.UserVO;
 
 public interface UserMapper {
 	

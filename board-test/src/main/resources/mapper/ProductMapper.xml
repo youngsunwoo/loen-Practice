@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sunny.test.dao.ProductMapper">
-    <select id="getAllProductList"  resultType="com.sunny.test.vo.ProductVO">
+<mapper namespace="com.sunny.promotion.dao.ProductMapper">
+    <select id="getAllProductList"  resultType="com.sunny.promotion.vo.ProductVO">
         SELECT product_code, product_name, price
         FROM Product
     </select>
     
     
-   <select id="getProductInfo" parameterType="String" resultType="com.sunny.test.vo.ProductVO">
+   <select id="getProductInfo" parameterType="String" resultType="com.sunny.promotion.vo.ProductVO">
         SELECT product_code, product_name, price
         FROM Product
         WHERE product_code = #{product_code}

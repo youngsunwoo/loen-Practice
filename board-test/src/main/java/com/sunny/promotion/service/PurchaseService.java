@@ -1,14 +1,11 @@
-package com.sunny.test.service;
+package com.sunny.promotion.service;
 
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sunny.test.dao.PurchaseMapper;
-import com.sunny.test.vo.PurchaseVO;
-import com.sunny.test.vo.UserVO;
+import com.sunny.promotion.dao.PurchaseMapper;
  
 @Service
 public class PurchaseService {

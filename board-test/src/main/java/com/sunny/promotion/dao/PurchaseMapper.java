@@ -1,8 +1,8 @@
-package com.sunny.test.dao;
+package com.sunny.promotion.dao;
 
 import java.util.Map;
 
-import com.sunny.test.vo.PurchaseVO;
+import com.sunny.promotion.vo.PurchaseVO;
 
 public interface PurchaseMapper {
 	

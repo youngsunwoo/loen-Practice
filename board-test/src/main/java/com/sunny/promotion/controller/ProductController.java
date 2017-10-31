@@ -1,4 +1,4 @@
-package com.sunny.test.controller;
+package com.sunny.promotion.controller;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sunny.test.service.ProductService;
-import com.sunny.test.vo.ProductVO;
+import com.sunny.promotion.service.ProductService;
+import com.sunny.promotion.vo.ProductVO;
 
 @RestController
 public class ProductController {
