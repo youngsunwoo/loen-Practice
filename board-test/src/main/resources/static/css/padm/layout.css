@@ -1,0 +1,85 @@
+#Footer {
+	clear: both;
+	margin-top: 100px;
+	text-align: center;
+	font-family: Dotum;
+	font-size: 11px;
+	color: #8e8e8e;
+	padding-bottom: 30px;
+}
+
+#Container {
+	position: relative;
+	width: auto !important;
+}
+
+#Contents {
+	margin-top: 0px;
+	padding-left: 0px;
+	width: auto !important;
+}
+
+#Contents h2 {
+	color: #5a8904;
+	font-size: 14px;
+}
+
+.logoDevice {
+	float: left;
+	width: 175px;
+}
+
+.userform {
+	float: left;
+	width: 320px;
+	position: relative;
+	margin-top: 20px;
+	padding-left: 42px;
+	text-align: left;
+}
+
+.userform dl {
+	width: 220px;
+	overflow: hidden;
+	color: #5b5b5b;
+	line-height: 20px;
+}
+
+.userform dt {
+	float: left;
+	width: 55px;
+	text-align: left;
+	vertical-align: top;
+	font-weight: bold;
+}
+
+.userform dd {
+	float: right;
+	width: 165px;
+	vertical-align: top;
+}
+
+.userform dd input {
+	float: left;
+}
+
+.userform input.text {
+	vertical-align: top;
+	width: 135px;
+	margin: 0;
+}
+
+.userform label {
+	position: relative;
+	top: 2px;
+}
+
+.userform .pw {
+	margin-top: 8px;
+}
+
+.userform .submit {
+	position: absolute;
+	right: 0;
+	top: 0px;
+}

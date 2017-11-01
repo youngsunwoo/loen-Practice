@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+/*
+어드민 공통 base
+*/
+body,input,button,textarea,select,.dropdown-menu {
+	font-size: 12px;
+	font-family: "맑은 고딕", Malgun Gothic, "돋움", Dotum, Helvetica, AppleGothic, Sans-serif;
+	color: #111;
+	line-height: 1.4em;
+}
+
+footer {
+	text-align: center;
+}
+
+#logoutBtn {
+	margin-left: 10px;
+}
+
+#navigationPath {
+	font-size: 11px;
+}
+
+#Contents h1,h2,h3 {
+	margin: 5px auto 10px;
+}
+
+.form-control {
+	height: 34px;
+}
+
+textarea, select[multiple] {
+	height: auto;
+}
+
+.form-group .form-control,
+.form-group label,
+.form-group p,
+#Contents label,
+.btn {
+	font-size: 12px;
+	font-family: "맑은 고딕", Malgun Gothic, "돋움", Dotum, Helvetica, AppleGothic, Sans-serif;
+}
+
+.btn {
+	font-weight: bold;
+}
+
+.form-group label {
+	font-weight: bold;
+}
+
+.form-group label.checkbox,
+.form-group label.radio {
+	font-weight: normal;
+}
+
+.form-horizontal .control-label,
+.form-horizontal .radio,
+.form-horizontal .checkbox,
+.form-horizontal .radio-inline,
+.form-horizontal .checkbox-inline {
+	padding-top: 2px;
+}
+
+/*
+legacy css overwrite
+*/
+.table thead>tr>th, .tblDefault thead th {
+	text-align: center;
+}
+/* pagination */
+.pagination-centered {
+	text-align: center;
+}
+
+header #gnb img.logo {
+	height: 50px;
+}
+
+small.user-gnb {
+	font-size: 12px;
+}
+
+form.search-form {
+	margin : 10px 0 10px;
+	width: inherit;
+	text-align: center;
+}
+
+form.search-form input[type="text"] {
+	margin : 0 10px;
+	width: 600px;
+}
+
+.container h3.container-title {
+	color: #5a8904;
+	font-size: 14px;
+}
+
+#Container table {
+	width: 100%;
+}

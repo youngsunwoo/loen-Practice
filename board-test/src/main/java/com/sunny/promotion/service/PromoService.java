@@ -24,6 +24,12 @@ public class PromoService {
     
     @Autowired
     PurchaseMapper purchaseMapper;   
+    
+    //조건으로 프로모션 리스트 받아오기 
+    public List<PromotionVO> getPromotionList(Map param) throws Exception{
+    		return promoMapper.getPromotionList(param);
+    }
+    
  
     //혜택 상세가져오기
     public  List<BenefitVO>getBenefit(String promo_type, String benefit_code) throws Exception{
@@ -41,30 +47,30 @@ public class PromoService {
     }
     
     //새로운 프로모션 저장하기
-    public PromotionVO insertPromotion(HttpSession session, String promo_type, String benefit_code, String product_code) throws Exception{
+    public PromotionVO insertPromotion(HttpSession session, String promoType, String benefitCode, String productCode) throws Exception{
     	
     		PromotionVO promotion  = new PromotionVO();  
     		
-    		promotion.setPromo_type(promo_type);
-    		promotion.setBenefit_code(benefit_code);
-    		promotion.setProduct_code(product_code);
+    		promotion.setPromoType(promoType);
+    		promotion.setBenefitCode(benefitCode);
+    		promotion.setProductCode(productCode);
     		
     		//현재 일자 구하기 (create_date)
 	    	java.util.Date date = new java.util.Date(); 
 	    	java.text.SimpleDateFormat ymd = new java.text.SimpleDateFormat("yyMMdd"); 
-	    	promotion.setCreate_date(date);
+	    	promotion.setCreateDate(date);
 	    	
     		//해당일자의 max promorionId 구하기, +1 해서 신규 promorion_id 생성  (promorion Id)
 	    	String insertDate = ymd.format(date) + '%';
 	    String promoSeq = String.format("%03d", promoMapper.getMaxPromoId(insertDate));
 	    String promotionId =  ymd.format(date) +"_"+promoSeq;	    
-	    promotion.setPromo_id(promotionId);
+	    promotion.setPromId(promotionId);
 	    	
     		//세션에서 user_id 가져오기 (user_id) 
 	    UserVO loginUser = (UserVO) session.getAttribute("LoginUser");
-	    promotion.setUser_id(loginUser.getUser_id());
+	    promotion.setUserId(loginUser.getUser_id());
 	    
-	    promotion.setDue_date(date);
+	    promotion.setDueDate(date);
 	    
 	    
 	    promotion.toString();

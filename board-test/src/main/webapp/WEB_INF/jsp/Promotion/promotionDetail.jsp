@@ -106,7 +106,7 @@
 		<div class="box_mem_info" style=" background: rgba(0, 0, 0, 0);">
 					
 				<div style=" margin:auto; width: fit-content;padding: 20px;">
-						<img src="/img/product/${promotion.product_code}.png" width="250" height="120" style="position: relative;margin: auto;">
+						<img src="/img/product/${promotion.productCode}.png" width="250" height="120" style="position: relative;margin: auto;">
 
 						<div id = "Product_name_div">
 							<p id ='product_name' style="color: #00b423; font-size: 23px; margin-top: 20px;">${product.product_name}</p>
@@ -186,8 +186,8 @@
 		
 			<div class="wrap_btn">
 				<form method="post" name="paticipateForm" id="paticipateForm">
-				 	<input type="hidden" name ="promoId" value="${promotion.promo_id}">
-				 	<input type="hidden" name ="productCode" value="${promotion.product_code}">
+				 	<input type="hidden" name ="promoId" value="${promotion.promoId}">
+				 	<input type="hidden" name ="productCode" value="${promotion.productCode}">
 				</form>		 
 				
 				<center>
@@ -210,7 +210,7 @@
 				
 				//가져오기     
 			    var benefits = ${benefits} 
-			    var joinCnt =  ${promotion.join_cnt}
+			    var joinCnt =  ${promotion.joinCnt}
 			    var stepwidth = $(benefitDiv).width()/(benefits.length+1);
 			    
 			    	    
@@ -286,7 +286,7 @@
 		
 		<script type="text/javascript">
 		function checkAvailable(){
-		       if( '${sessionScope.LoginUser.user_id}' == '${promotion.user_id}'){
+		       if( '${sessionScope.LoginUser.user_id}' == '${promotion.userId}'){
 		            alert("프로모션 주최자는 참여하실 수 없습니다." );
 		            return false;
 		        }
@@ -323,7 +323,7 @@
 		
 		function openShareWindow(data){
 			var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=600, height=550';
-			window.open("/Promotion/SharePopup?promotion_id=${promotion.promo_id}&flag=1", 'test', popupOption);
+			window.open("/Promotion/SharePopup?promotionId=${promotion.promoId}&flag=1", 'test', popupOption);
 		}
 		
 	</script>    
@@ -333,7 +333,7 @@
 	
 	   function fnPopup() {
 		    var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=440, height=550';
-		    window.open("/Promotion/Detail/ParticipateList?promotion_id=${promotion.promo_id}", 'test', popupOption);
+		    window.open("/Promotion/Detail/ParticipateList?promotionId=${promotion.promoId}", 'test', popupOption);
 		}
 	   
 	</script>

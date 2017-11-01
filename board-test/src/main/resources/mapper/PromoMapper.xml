@@ -2,6 +2,20 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sunny.promotion.dao.PromoMapper">
+
+    <select id="getPromotionList" parameterType="map" resultType="com.sunny.promotion.vo.PromotionVO">
+         SELECT promo_id promoId,
+			   promo_type promoType,  
+			   benefit_code benefitCode, 
+			   user_id userId,
+			   product_code productCode, 
+			   create_date createDate
+       FROM Promotion
+       WHERE promo_type = ${promoType}
+    </select>
+
+
+
     <select id="getBenefit" parameterType="map" resultType="com.sunny.promotion.vo.BenefitVO">
         SELECT goal_cnt, offer, unit 
         FROM BENEFIT
@@ -31,17 +45,17 @@
    
         
    <select id="getPromotionById" parameterType="String" resultType="com.sunny.promotion.vo.PromotionVO">     
-        SELECT promo_id,
-			   create_date,
-			   user_id,
-			   due_date, 
-			   state, 
-			   promo_type, 
-			   benefit_code, 
-			   product_code, 
-			   event_url,
-			   banner_path,
-			   join_cnt
+        SELECT promo_id promoId,
+			   create_date createDate,
+			   user_id userId,
+			   due_date dueDate, 
+			   state state, 
+			   promo_type promoType, 
+			   benefit_code benefitCode, 
+			   product_code productCode, 
+			   event_url eventUrl,
+			   banner_path bannerPath,
+			   join_cnt joinCnt
        FROM Promotion
        WHERE Promo_id = #{promo_id}
     </select>
