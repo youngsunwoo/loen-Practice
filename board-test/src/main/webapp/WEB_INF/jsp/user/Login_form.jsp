@@ -75,15 +75,10 @@
 					
 							<div class="wrap_save">
 								<div class="box_check02">
-				                    <input type="checkbox" id="inpSaveId" class="input_check">
-				                    <label for="inpSaveId" class="label_check"><span class="icon"></span>아이디 저장</label>
 				                </div>
 								<div class="wrap_login_info">
-									<a href="javascript:" onclick="MemberEtc.goPage('IDSEARCH');return false;" title="아이디 찾기" class="first_child">아이디 찾기</a>
-									<span class="bar">|</span>
-									<a href="javascript:" onclick="MemberEtc.goPage('PWDSEARCH');return false;" title="비밀번호 찾기">비밀번호 찾기</a>
-									<span class="bar">|</span>
-									<a href="javascript:" onclick="MemberEtc.goPage('MEMJOIN');return false;" title="회원가입">회원가입</a>
+									
+									<a href="/join" onclick="" title="회원가입">회원가입</a>
 								</div>
 							</div>
 						</div>

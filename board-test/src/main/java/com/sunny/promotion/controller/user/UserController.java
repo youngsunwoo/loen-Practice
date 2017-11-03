@@ -27,13 +27,13 @@ public class UserController {
 		// 회원가입 화면 
 	    @RequestMapping("join")
 	    public ModelAndView join() {
-	            return new ModelAndView("Common/join_form");    
+	            return new ModelAndView("user/join_form");    
 	    }
 	    
 	 	// 로그인 화면
 	    @RequestMapping("login")
 	    public ModelAndView login() {
-	            return new ModelAndView("Common/Login_form");    
+	            return new ModelAndView("user/Login_form");    
 	    }
 	    
 	    // 로그아웃
