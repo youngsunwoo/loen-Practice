@@ -68,7 +68,7 @@
  <div id="wrap" >
  
 	<div class="mask">
-		<div class="window" > 
+		<div class="window"  style="width: 500px; height : 450px"> 
 			<input type="button" href="#" class="close" value="(닫기)" style="float = right" />
 			<div id="Product_list_div">  </div>
 		</div>

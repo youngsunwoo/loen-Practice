@@ -47,7 +47,7 @@ public class PromotionController {
     @Authentication
     @RequestMapping(value="Promotion/FormNewPromotion")      
     public ModelAndView promotionForm() {
-        return new ModelAndView("user/Promotion/promotionForm");        
+        return new ModelAndView("/Promotion/promotionForm");        
     }
     
     //Insert Promotion Information to Database
