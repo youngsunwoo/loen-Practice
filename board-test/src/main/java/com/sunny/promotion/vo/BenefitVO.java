@@ -1,5 +1,7 @@
 package com.sunny.promotion.vo;
 
+
+
 public class BenefitVO {
 	private int goal_cnt;
 	private int offer;

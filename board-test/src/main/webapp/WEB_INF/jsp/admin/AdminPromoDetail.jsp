@@ -47,7 +47,7 @@
 					<td colspan="3" id="productInfo"> ${ownUser.user_id} (${ownUser.user_name}) </td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="">프로모션기간</label></th>
+					<th scope="row"><label for="">프로모션 기간</label></th>
 					<td colspan="3">
 					
 						<input type="text" name="OPRTSTARTDT" id="date_start" size="20" readonly="" value="${promotion.createDate}" chk_rule="isEmpty" class="hasDatepicker">&nbsp;~&nbsp;
@@ -87,21 +87,13 @@
 					 <div id  = "benefitDiv" style="padding: 5px;"></div>						
 					</td>
 				</tr>
-				<tr>
-					<th scope="row"><label for="">상품정보</label></th>
-					<td colspan="3" id="productInfo"> ${product.product_name} </td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="">상품정보</label></th>
-					<td colspan="3" id="productInfo"> ${product.product_name} </td>
-				</tr>
 				
 				<tr>
 					<th scope="row"><label for="">상품정보</label></th>
 					<td colspan="3" id="productInfo"> ${product.product_name} </td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="">참여인원</label></th>
+					<th scope="row"><label for="">현재참여인원</label></th>
 					<td colspan="3" id="productInfo"> ${promotion.joinCnt} </td>
 				</tr>
 				<tr>
@@ -135,6 +127,7 @@
 			    $("#BenefitInfo").remove();
 		
 		        var benefit_list_html = '<table id="BenefitInfo">'
+		        
 			    for (var i = 0; i < benefits.length; i++) {
 		    	    		var obj = benefits[i];
 			    	    		benefit_list_html += '<tr><td> <div class = "benefit_goal"> <span>' + obj.goal_cnt + '명 달성 시<span></div></td>'

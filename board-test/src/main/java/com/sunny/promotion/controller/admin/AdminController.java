@@ -1,6 +1,7 @@
 package com.sunny.promotion.controller.admin;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -68,11 +69,20 @@ public class AdminController {
     
 	@RequestMapping(value = "/admin/promotion/list.json", method = RequestMethod.POST)
 	public List<PromotionVO> search(HttpServletRequest request , @RequestParam Map<String, String> param) throws Exception{  
-		//Map<String, Object> param = new HashMap<String, Object>();
+		System.out.println("=== AdminController > seaerch (/admin/promotion/list.json) > params ================");
+		
+		Iterator<String> iterator = param.keySet().iterator();
+		    while (iterator.hasNext()) {
+		        String key = (String) iterator.next();
+		        System.out.print("key="+key);
+		        System.out.println(" value="+param.get(key));
+		    }
+		
 		
 	  	List<PromotionVO> promotions = promoService.getPromotionList(param);
+	  	//System.out.println(param.get("benefitCode"));
 	  	//System.out.println(promotions.get(1).toString());
-	  	System.out.println(promotions);
+	  	//System.out.println(promotions);
 	    return promotions;
 	}
 
