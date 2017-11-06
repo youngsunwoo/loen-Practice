@@ -15,6 +15,21 @@
        AND promo_id = #{promotionId}
     </select> 
         
+        
+    <select id="getParticipateUserInfo"  parameterType="String" resultType="map">
+		
+		SELECT user_id userId, 
+			   user_name userName, 
+			   gender gerder,
+			   age age,
+			   join_date joinDate,
+			   join_from joinFrom
+		fROM Participate, User
+		WHERE promo_id = #{promotionId}
+		AND join_user_id = user_id;
+		        
+    </select> 
+        
 </mapper>
 
  

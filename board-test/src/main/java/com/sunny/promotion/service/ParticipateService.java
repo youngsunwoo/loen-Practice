@@ -2,6 +2,7 @@ package com.sunny.promotion.service;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.sunny.promotion.dao.ParticipateMapper;
 import com.sunny.promotion.dao.PromoMapper;
 import com.sunny.promotion.dao.PurchaseMapper;
+import com.sunny.promotion.vo.BenefitVO;
 import com.sunny.promotion.vo.ParticipateVO;
 import com.sunny.promotion.vo.PurchaseVO;
 import com.sunny.promotion.vo.UserVO;
@@ -69,9 +71,7 @@ public class ParticipateService {
     		}
     	
     }
-    
-    
-    
+   
     public ParticipateVO participatePromotion(HttpSession session, PurchaseVO purchase, ParticipateVO participate) throws Exception{
     		
     		//////////////////////////////////
@@ -123,4 +123,8 @@ public class ParticipateService {
 	    
 }
  
+    public List<Map<String, String>> getParticipateUserInfo(String promotionId) throws Exception{
+    		return participateMapper.getParticipateUserInfo(promotionId);
+    }
+    
 }

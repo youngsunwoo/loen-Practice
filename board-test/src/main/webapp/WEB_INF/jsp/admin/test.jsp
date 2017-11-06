@@ -65,131 +65,171 @@ if(window.console==undefined){
 <body>
 
 
-<div id="wrap" style =" padding: 10px; ">
+<!--  Top Menu  -->
 
-<form name="form0" id="form0" method="post">
+<div>
+	 <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Admin Page</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Promotion 검색</a></li>
+              <li><a href="#">Promotion 상세</a></li>
+              <li><a href="#">참여현황 상세</a></li>
+              <li class="dropdown open">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="../navbar-static-top/">로그아웃</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
 
-	<div align="center" style="font-size: 15px; line-height: 1.0em; font-family: 돋움체; padding: 5px; margin: 5px;">
-			<!-- 검색 -->
-			<table> 
-			<tr>	
-				<td>
-		
-					<table class="tblDefault">
-						<tbody class="al">
-						<tr>
-							<th style="padding: 5px;">
-					   			 <label   style=" margin: 5px; font-weight: bold;" >프로모션 Filter</label>
-							</th>
-							<td>
-								<table>
-									<tbody>
-										<tr>
-											<td style="text-align: left;">&nbsp;
-												프로모션ID : <input type="text" id="promoId" name="promoId" value="" size="10" title="">&nbsp;&nbsp;
-												
-												기간 : <input type="text" name="createDate" id="createDate" value="" size="10" readonly="" class="hasDatepicker">
-													   &nbsp;~&nbsp;
-													  <input type="text" name="dueDate" id="dueDate" value="" size="10" readonly="" class="hasDatepicker">&nbsp;&nbsp;
-						
-												유형 : <select id="promoType" name="promoType" >
-														<option value="">전체</option>
-															<option value="1">다함께받기</option>
-															<option value="2">나혼자받기</option>
-													  </select>&nbsp;&nbsp;
-						
-												혜택 : <select id="benefitCode" name="benefitCode">
-														<option value="">전체</option>								
-															<option value="01">할인쿠폰</option>								
-															<option value="02">포인트적립</option>								
-															<option value="03">캐시백</option>								
-													  </select>&nbsp;&nbsp;
-											    상태 : <select id="state" name="state">
-														<option value="">전체</option>								
-															<option value="1">진행중</option>								
-															<option value="1">종료</option>
-													  </select>&nbsp;&nbsp;&nbsp;&nbsp;
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</td>
-						</tr>
-						<tr >
-							<th style="padding: 5px;">
-								 <label   style=" margin: 5px; font-weight: bold;" >생성 User Filter</label>
-							</th>
-							<td>
-								<table >
-									<tbody>
-										<tr>
-											<td style="text-align: left;">&nbsp;
-												사용자 ID : <input type="text" id="userId" name="userId" value="" size="10" title="">&nbsp;&nbsp;
-												
-												이름 : <input type="text" id="userName" name="userName" value="" size="10" title="">&nbsp;&nbsp;
-												
-												성별 : <select id="gender" name="gender" >
-														<option value="">전체</option>
-															<option value="1">남</option>
-															<option value="2">여</option>
-													  </select>&nbsp;&nbsp;
-						
-												나이 : <input type="text" name="ageFrom" id="ageFrom" value="" size="2" readonly="" class="hasDatepicker">
-													   &nbsp;~&nbsp;
-													  <input type="text" name="ageTo" id="ageTo" value="" size="2" readonly="" class="hasDatepicker">&nbsp;&nbsp;
-						
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<th style="padding: 5px;">
-								 <label   style=" margin: 5px; font-weight: bold;"  >상품 Filter</label>
-							</th>
-							<td>
-								<table>
-									<tbody>
-										<tr>
-											<td style="text-align: left;">&nbsp;
-												상품코드 : <input type="text" id="productCode" name="productCode" value="" size="10" title="">&nbsp;&nbsp;
-												
-												상품이름 : <input type="text" id="productName" name="productName" value="" size="10" title="">&nbsp;&nbsp;
-												
-												상품가격 : <input type="text" name="priceFrom" id="priceFrom" value="" size="10" readonly="" class="hasDatepicker">
-													     &nbsp;~&nbsp;
-													    <input type="text" name="priceTo" id="priceTo" value="" size="10" readonly="" class="hasDatepicker">&nbsp;&nbsp;
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</td>
-						</tr>
-					 </tbody>
-					</table>
-					
-			</td>
-				<td>
-					<button type="button" id="searchBtn" data-loading-text="조회 중" class="btn btn-primary" autocomplete="off" style="margin-right: 20px;">
-						<span class="glyphicon glyphicon-search"></span>조회
-					</button>
-				</td>
-			</tr>
-			</table>		
-	</div>
+</div>
+<!--  End of Top Menu  -->
 
-</form>
-		
-	<div id="Container">
-		<h4>프로모션 리스트</h4>
-	</div>
+<div id="wrap" style =" padding: 20px; ">
+
+	<form name="form0" id="form0" method="post">
 	
-	<div style="margin-top:5px;">
-		<div id="table1">
-			<table id="dataTable"></table>
+		<div align="center" style="font-size: 12px; line-height: 1.0em; font-family: 돋움체; padding: 5px; margin: 5px;">
+				<!-- 검색 -->
+				<table > 
+				<tr>	
+					<td>
+			
+						<table class="tblDefault">
+							<tbody class="al">
+							<tr>
+								<th style="padding: 5px;">
+						   			 <label   style=" margin: 5px; font-weight: bold;" >프로모션 Filter</label>
+								</th>
+								<td>
+									<table>
+										<tbody>
+											<tr>
+												<td style="text-align: left;">&nbsp;
+													프로모션ID : <input type="text" id="promoId" name="promoId" value="" size="10" title="">&nbsp;&nbsp;
+													
+													기간 : <input type="text" name="createDate" id="createDate" value="" size="10" readonly="" class="hasDatepicker">
+														   &nbsp;~&nbsp;
+														  <input type="text" name="dueDate" id="dueDate" value="" size="10" readonly="" class="hasDatepicker">&nbsp;&nbsp;
+							
+													유형 : <select id="promoType" name="promoType" >
+															<option value="">전체</option>
+																<option value="1">다함께받기</option>
+																<option value="2">나혼자받기</option>
+														  </select>&nbsp;&nbsp;
+							
+													혜택 : <select id="benefitCode" name="benefitCode">
+															<option value="">전체</option>								
+																<option value="01">할인쿠폰</option>								
+																<option value="02">포인트적립</option>								
+																<option value="03">캐시백</option>								
+														  </select>&nbsp;&nbsp;
+												    상태 : <select id="state" name="state">
+															<option value="">전체</option>								
+																<option value="1">진행중</option>								
+																<option value="1">종료</option>
+														  </select>&nbsp;&nbsp;&nbsp;&nbsp;
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr >
+								<th style="padding: 5px;">
+									 <label   style=" margin: 5px; font-weight: bold;" >생성 User Filter</label>
+								</th>
+								<td>
+									<table >
+										<tbody>
+											<tr>
+												<td style="text-align: left;">&nbsp;
+													사용자 ID : <input type="text" id="userId" name="userId" value="" size="10" title="">&nbsp;&nbsp;
+													
+													이름 : <input type="text" id="userName" name="userName" value="" size="10" title="">&nbsp;&nbsp;
+													
+													성별 : <select id="gender" name="gender" >
+															<option value="">전체</option>
+																<option value="1">남</option>
+																<option value="2">여</option>
+														  </select>&nbsp;&nbsp;
+							
+													나이 : <input type="text" name="ageFrom" id="ageFrom" value="" size="2" readonly="" class="hasDatepicker">
+														   &nbsp;~&nbsp;
+														  <input type="text" name="ageTo" id="ageTo" value="" size="2" readonly="" class="hasDatepicker">&nbsp;&nbsp;
+							
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<th style="padding: 5px;">
+									 <label   style=" margin: 5px; font-weight: bold;"  >상품 Filter</label>
+								</th>
+								<td>
+									<table>
+										<tbody>
+											<tr>
+												<td style="text-align: left;">&nbsp;
+													상품코드 : <input type="text" id="productCode" name="productCode" value="" size="10" title="">&nbsp;&nbsp;
+													
+													상품이름 : <input type="text" id="productName" name="productName" value="" size="10" title="">&nbsp;&nbsp;
+													
+													상품가격 : <input type="text" name="priceFrom" id="priceFrom" value="" size="10" readonly="" class="hasDatepicker">
+														     &nbsp;~&nbsp;
+														    <input type="text" name="priceTo" id="priceTo" value="" size="10" readonly="" class="hasDatepicker">&nbsp;&nbsp;
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						 </tbody>
+						</table>
+						
+				</td>
+					<td>
+						<button type="button" id="searchBtn" data-loading-text="조회 중" class="btn btn-primary" autocomplete="off" style="margin-right: 20px;">
+							<span class="glyphicon glyphicon-search"></span>조회
+						</button>
+					</td>
+				</tr>
+				</table>		
 		</div>
-	</div>
+	
+	</form>
+			
+	<br>
+		<h4>프로모션 리스트</h4>
+		<div style="margin-top:5px;">
+			<div id="table1">
+				<table id="dataTable"></table>
+			</div>
+		</div>
 	
 </div>
 
@@ -270,7 +310,6 @@ $(function() {
 		
 		var formdata = $("#form0").serialize();
 		
-		
 	    $.ajax({
 			url : '/admin/promotion/list.json',
 			type : "POST",
@@ -297,9 +336,6 @@ $(function() {
 
 </script>
 
-
-
-<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" style="position: absolute; top: 229px; left: 41.6562px; z-index: 1; display: block;"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><a class="ui-datepicker-prev ui-corner-all" data-handler="prev" data-event="click" title="이전달"><span class="ui-icon ui-icon-circle-triangle-w">이전달</span></a><a class="ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="다음달"><span class="ui-icon ui-icon-circle-triangle-e">다음달</span></a><div class="ui-datepicker-title"><span class="ui-datepicker-year">2017</span>&nbsp;<span class="ui-datepicker-month">년 11월</span></div></div><table class="ui-datepicker-calendar"><thead><tr><th class="ui-datepicker-week-end"><span title="Sunday">일</span></th><th><span title="Monday">월</span></th><th><span title="Tuesday">화</span></th><th><span title="Wednesday">수</span></th><th><span title="Thursday">목</span></th><th><span title="Friday">금</span></th><th class="ui-datepicker-week-end"><span title="Saturday">토</span></th></tr></thead><tbody><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">29</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">30</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">31</span></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">1</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">2</a></td><td class=" ui-datepicker-days-cell-over  ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default ui-state-highlight" href="#">3</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">4</a></td></tr><tr><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">5</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">6</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">7</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">8</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">9</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">10</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">11</a></td></tr><tr><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">12</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">13</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">14</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">15</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">16</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">17</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">18</a></td></tr><tr><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">19</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">20</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">21</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">22</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">23</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">24</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">25</a></td></tr><tr><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">26</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">27</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">28</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">29</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="10" data-year="2017"><a class="ui-state-default" href="#">30</a></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">1</span></td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">2</span></td></tr></tbody></table></div>
-		
+	
 </body>
 </html>

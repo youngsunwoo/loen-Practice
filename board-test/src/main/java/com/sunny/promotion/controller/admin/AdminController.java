@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.sunny.promotion.dao.ParticipateMapper;
+import com.sunny.promotion.service.ParticipateService;
 import com.sunny.promotion.service.ProductService;
 import com.sunny.promotion.service.PromoService;
 import com.sunny.promotion.service.UserService;
@@ -34,6 +36,9 @@ public class AdminController {
     
     @Autowired
     ProductService productService;
+    
+    @Autowired
+    ParticipateService participateService;
 	
 	//get(show) Promotion Detail Information
     //프로모션 상세페이지 출력 (parameter : 프로모션 ID)
@@ -54,6 +59,12 @@ public class AdminController {
     		String benefits_json = new Gson().toJson(benefits);
     		mav.addObject("benefits",benefits_json);
     		
+    		List<Map<String, String>> participate =  participateService.getParticipateUserInfo(promotion_id);
+    		String participate_json = new Gson().toJson(participate);
+    		mav.addObject("participateList",participate_json);
+    		
+    		
+    		
     		
     		mav.setViewName("admin/AdminPromoDetail");
     		
@@ -64,6 +75,11 @@ public class AdminController {
     @RequestMapping(value="testAdmin")      
     public ModelAndView promotionForm() {
         return new ModelAndView("/admin/test");        
+    }
+    
+    @RequestMapping(value="test2")      
+    public ModelAndView test2() {
+        return new ModelAndView("/admin/AdminPromoEdit2");        
     }
     
 	@RequestMapping(value = "/admin/promotion/list.json", method = RequestMethod.POST)

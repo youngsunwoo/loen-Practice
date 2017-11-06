@@ -33,10 +33,14 @@ public class CertificationInterceptor implements HandlerInterceptor {
 	        
 	        if(ObjectUtils.isEmpty(loginVO)){
 	        
-				if(auth.type().equals("JSON")) {  // --->  순서 
+				if(auth.type().equals("ADMIN")) {  // --->  순서 
 					//어노테이션 걸려있는애들중에 type가 위 조건으로 걸린애들 분기 
 					//Ex. @authentication(type="JSON") 
-					System.out.println("return JSON TEST");
+					System.out.println("return ADMIN TEST");
+					
+					request.setAttribute("destination", request.getRequestURI());
+        			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+        			dispatcher.forward(request, response);
 					return false;
 				}
 				

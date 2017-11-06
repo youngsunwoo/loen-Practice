@@ -10,10 +10,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-
-
-
-
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.js"></script>
 
@@ -26,7 +22,6 @@
 
 
 <style type="text/css">
-
 /*Form Wizard*/
 .bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0; !important;} 
 .bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
@@ -47,7 +42,6 @@
 .bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
 .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
 /*END Form Wizard*/
-
 .setDiv {  padding-top: 100px; text-align: center; }
 </style>
 
