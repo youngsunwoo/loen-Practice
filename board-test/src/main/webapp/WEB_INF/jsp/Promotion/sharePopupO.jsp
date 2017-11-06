@@ -50,7 +50,7 @@
 							
 							<div class="wrap_insert" style="width:450px;" d>
 								
-									<input type="text" name="promotionUrl" id="promotionUrl" value="http://localhost:8080/Promotion/Detail?promotion_id=${promotion_id}" title="URL창" class="text51" style="width:450px; width:450px;text-align: center;"">
+									<input type="text" name="promotionUrl" id="promotionUrl" value="http://localhost:8080/Promotion/Detail?promotion_id=${promotionId}" title="URL창" class="text51" style="width:450px; width:450px;text-align: center;"">
 								
 								
 							</div>	

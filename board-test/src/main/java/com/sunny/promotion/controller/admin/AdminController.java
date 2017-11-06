@@ -1,6 +1,5 @@
 package com.sunny.promotion.controller.admin;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -73,7 +72,7 @@ public class AdminController {
 		
 		Iterator<String> iterator = param.keySet().iterator();
 		    while (iterator.hasNext()) {
-		        String key = (String) iterator.next();
+		        String key = iterator.next();
 		        System.out.print("key="+key);
 		        System.out.println(" value="+param.get(key));
 		    }

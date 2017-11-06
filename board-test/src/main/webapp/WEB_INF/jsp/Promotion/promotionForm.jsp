@@ -58,6 +58,10 @@ productModalClose
 .evenvtBt { background-color: #4CAF50;  border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 25px;}
 .benefit_goal { border: 1px solid #c59975; margin: 10px; border-radius: 12px; height: 30px; width: 150px; ext-align: center;}
 .benefit_info { height: fit-content; margin: auto; width: 300px;  ext-align: center;}
+
+table {margin: auto; text-align: center;}
+table td {margin: auto; text-align: center;}
+table th {margin: auto; text-align: center;}
  
 </style>
 
@@ -70,13 +74,18 @@ productModalClose
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">추천 상품 선택하기</h4>
         </div>
         <div class="modal-body">
         		<div id="Product_list_div">  </div>
+        		<hr>
+        		<div>	- 이용권 구매일로부터 3개월간 할인 가격이 적용되며, 이후부터는 정상가로 결제됩니다. <br>
+					- 할인특가 이용권 구매 시, 이용권 종료일로부터 2개월 내에는 프로모션 재가입이 제한되어 정상가로 구매되며 일부 회원들은 참여가 제한 될 수 있습니다. <br>
+					- 모든 이용권은 부가가치세(10%)가 별도로 부과됩니다.  
+			</div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="productModalClose">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="productModalClose">선택완료</button>
         </div>
       </div>
       
@@ -166,12 +175,12 @@ productModalClose
 				<div class="box_mem_info" style=" background: rgba(0, 0, 0, 0);">
 							
 						<div style=" margin:auto; width: fit-content;padding: 20px;">
-								<img id="product_img"  src="/img/product/00000.png" width="250" height="120" style="position: relative;margin: auto;">
+								<img id="productImg"  src="/img/product/00000.png" width="250" height="120" style="position: relative;margin: auto;">
 								
 										
 							    			
 								<div id = "Product_name_div">
-									<p id ='product_name' style="color: #00b423; font-size: 23px; margin-top: 20px;">상품을 선택하세요</p>
+									<p id ='productName' style="color: #00b423; font-size: 23px; margin-top: 20px;">상품을 선택하세요</p>
 								</div>
 						</div>
 							
@@ -192,10 +201,9 @@ productModalClose
 						 <img src="/img/caution.png" width="20" height="20" style="position: relative;margin: 8px;">
 						    	    
 					 </td>
-					 <td>
-						 <p>다운로드 파일은 MP3 파일을 지원하는 모든 기기에서 재생되며, 기간 연장이 필요 없습니다.</p>
-						  <p>음악 외 어학을 무제한으로 들으실 수 있으며, 음악 곡 수만큼 어학을 다운로드 하실 수 있습니다	</p>
-					  </td>
+					 <td >
+					 		<div id = "caution"></div>
+					 </td>
 			  	 </tr>
 				 </table>
 			</div>
@@ -207,7 +215,6 @@ productModalClose
 	<div style=" margin:20px; ">
 	<center ><input type="submit" href="#" class="evenvtBt" onclick="submitPromotion();" value="프로모션 생성하기 "></center>
 	</div>
-	<button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>
 
 
 </div>
@@ -376,18 +383,13 @@ productModalClose
 		    $('.window').show();
 		}
 		
-		
-		$(document).ready(function(){
-		    $("#myBtn").click(function(){
-		        $("#productModal").modal();
-		    });
-		});
+	
 
    		$(document).ready(function(){
 		        // showMask를 클릭시 작동하며 검은 마스크 배경과 레이어 팝업을 띄웁니다.
 		        
 		        
-		        $('#product_img').click(function(e){
+		        $('#productImg').click(function(e){
 		        	
 			        	$.ajax({
 			                url : '/getAllProductList',
@@ -429,14 +431,17 @@ productModalClose
 			        $("#ProductInfo").remove();
 			        
 			        var product_list_html  = '<table id="ProductInfo">'
+			        	 product_list_html += '<tr valign="middle"> <th colspan = "2"> 상품정보 </th> <th>정상가</th> <th>혜택가</th> <th>선택</th> <tr>'
 					for (var i = 0; i < obj.length; i++) {
 					   	  product_list_html += '<tr valign="middle"><td>'
-					   	  product_list_html += '<img id="product_img"  src="/img/product/list/' + obj[i].product_code + '.png" width="150" height="70" style="position: relative;margin: auto;">' 
+					   	  product_list_html += '<img  src="/img/product/list/' + obj[i].product_code + '.png" width="150" height="70" style="position: relative;margin: auto;">' 
 						  product_list_html += '</td><td>' 
-						  product_list_html += '<p id ="product_name" style="color: #00b423; font-size: 20px; margin-top: 10px; margin-left: 10px;">'
+						  product_list_html += '<p id ="product_name" style="color: #00b423; font-size: 15px; margin-top: 10px; margin-left: 10px;">'
 						  product_list_html +=  obj[i].product_name +' </p> </td> <td>'
-						  product_list_html +=  '<p id ="product_name" style="font-size: 20px; margin-top: 10px; margin-left: 10px;">'
-						  product_list_html +=  obj[i].price +' </p> </td> <td>'
+						  product_list_html +=  '<p id ="product_name" style="font-size: 12px; margin-top: 10px; margin-left: 10px; text-decoration:line-through">'
+						  product_list_html +=  obj[i].price +'원 </p> </td> <td>'
+						  product_list_html +=  '<p id ="product_name" style="font-size: 15px; margin-top: 10px; margin-left: 10px;">'
+						  product_list_html +=  obj[i].price*0.8 +'원 </p> </td> <td>'
 					   	  product_list_html  += '<input type="radio" name="product_radio" value="' + obj[i].product_code + '" ><td> </tr>' ;  
 					}
 			      	product_list_html += '</table>'
@@ -446,18 +451,41 @@ productModalClose
 						
 		    //제품 정보 뿌려주기 
 		    function showProductInfo(obj) {
-			    	$("#product_img").attr("src",'/img/product/'+obj.product_code+'.png');
+			    	$("#productImg").attr("src",'/img/product/'+obj.product_code+'.png');
 			    	
-		        $("#product_name").remove("");
+		        $("#productName").remove("");
 		        
-		        var product_info_html  = '<p id ="product_name" style="color: #00b423; font-size: 23px; margin-top: 20px;">'
+		        var product_info_html  = '<p id ="productName" style="color: #00b423; font-size: 23px; margin-top: 20px;">'
 		      	    product_info_html +=  obj.product_name
 		      	    product_info_html += '</p>'
 		      	  
 		        $("#Product_name_div").append(product_info_html);
+				
+		      	    
+		      	$("#cautionInfo").remove("");
 
+				var cautionGubun = obj.product_code.substr(0, 1)
+				var product_caution_html ='<div id = "cautionInfo">'
+				
+				if (cautionGubun == '0') {
+					product_caution_html += '<p>다운로드 파일은 DRM(무단 복제 방지 기술)이 적용되어 있어, 매월 기간연장이 필요합니다.</p>'
+					product_caution_html += '<p>프리클럽은 스마트 프리클럽과 달리 PC에서도 100곡까지 다운로드 가능합니다.</p>'
+					product_caution_html += '<p>음악 외 EBS, 이보영 등 어학 서비스도 무제한으로 다운로드/듣기 가능합니다.</p>'
+				} else if (cautionGubun == '1'){
+					product_caution_html += '<p>모바일 스트리밍클럽은 휴대폰과 태블릿만 지원합니다.</p>'
+					product_caution_html += '<p>PC에서도 이용을 원하시는 고객님은 스트리밍클럽을 구매해 주세요.</p>'
+					product_caution_html += '<p>음악 외 EBS, 이보영 등 어학 서비스를 무제한으로 들으실수 있습니다.</p>'
+					
+				}else {
+					product_caution_html += '<p>다운로드 파일은 MP3 파일을 지원하는 모든 기기에서 재생되며, 기간 연장이 필요 없습니다.</p>'
+					product_caution_html += '<p>음악 외 어학을 무제한으로 들으실 수 있으며, 음악 곡 수만큼 어학을 다운로드 하실 수 있습니다</p>'
+				}
+				
+				product_caution_html += "</div>"
+
+				$("#caution").append(product_caution_html);
+				
 				$("#product_code").val(obj.product_code);
-		        
 		    }
 				    
    </script>		    

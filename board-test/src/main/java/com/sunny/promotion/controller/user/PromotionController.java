@@ -102,11 +102,11 @@ public class PromotionController {
     public ModelAndView sharePopup(HttpServletRequest request , HttpSession session) throws Exception{
     		ModelAndView mav = new ModelAndView();
     		
-    		String promotion_id = request.getParameter("promotion_id");
+    		String promotionId = request.getParameter("promotionId");
 		String flag = request.getParameter("flag");
 		System.out.println(flag);
 
-		mav.addObject("promotion_id",promotion_id);
+		mav.addObject("promotionId",promotionId);
 		
 		if(flag.equals("0")) {
 			mav.setViewName("Promotion/sharePopup");

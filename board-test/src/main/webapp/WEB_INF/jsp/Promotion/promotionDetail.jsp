@@ -12,12 +12,16 @@
 
 
 
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script src="/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
 
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" type="text/css">
 <link rel="stylesheet" href="https://cdnimg.melon.co.kr/static/member/resource/style/me1/qy/y/1edydz6hfyj.css" type="text/css">
 <link rel="stylesheet" href="/css/steps.css" type="text/css">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
 
@@ -134,10 +138,9 @@
 					    	    		<img src="/img/caution.png" width="20" height="20" style="position: relative;margin: 8px;">
 					    	    
 					    	    </td>
-					     	<td>
-					    	       <p>다운로드 파일은 MP3 파일을 지원하는 모든 기기에서 재생되며, 기간 연장이 필요 없습니다.</p>
-					    	       <p>음악 외 어학을 무제한으로 들으실 수 있으며, 음악 곡 수만큼 어학을 다운로드 하실 수 있습니다	</p>
-					    	    </td>
+					     	<td >
+					 			<div id = "caution"></div>
+							</td>
 					    	</tr>
 					    </table>
 				    </div>
@@ -199,16 +202,13 @@
 
 </div>
         
-	 
-	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-	
 
 
 	<script type="text/javascript">
 			
 		$(document).ready(function () {
 				
-				//가져오기     
+				// 가져오기   
 			    var benefits = ${benefits} 
 			    var joinCnt =  ${promotion.joinCnt}
 			    var stepwidth = $(benefitDiv).width()/(benefits.length+1);
@@ -217,7 +217,7 @@
 			    var benefit_list_html  = ''
 			    var tab_content_html  = ''
 			
-			    
+			    	//혜택 출력하기
 	    			benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">'
 				benefit_list_html += '<div class="text-center bs-wizard-stepnum"> START! </div>'
 				benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>'
@@ -243,6 +243,36 @@
 			    joined_info_html =  benefits[benefits.length-1].goal_cnt+ "명중 "+ joinCnt + "명 참여완료!"
 			        
 			    $("#joinedInfo").append(joined_info_html);
+			    
+			    
+			    
+			    
+			    //상품 주의사항 출력
+			    var productCode = ${promotion.productCode}
+			    cautionGubun = productCode.substr(0, 1);
+			   
+			    alert(cautionGubun)
+			    
+				var product_caution_html ='<div id = "cautionInfo">'
+				
+				if (cautionGubun == '0') {
+					product_caution_html += '<p>다운로드 파일은 DRM(무단 복제 방지 기술)이 적용되어 있어, 매월 기간연장이 필요합니다.</p>'
+					product_caution_html += '<p>프리클럽은 스마트 프리클럽과 달리 PC에서도 100곡까지 다운로드 가능합니다.</p>'
+					product_caution_html += '<p>음악 외 EBS, 이보영 등 어학 서비스도 무제한으로 다운로드/듣기 가능합니다.</p>'
+				} else if (cautionGubun == '1'){
+					product_caution_html += '<p>모바일 스트리밍클럽은 휴대폰과 태블릿만 지원합니다.</p>'
+					product_caution_html += '<p>PC에서도 이용을 원하시는 고객님은 스트리밍클럽을 구매해 주세요.</p>'
+					product_caution_html += '<p>음악 외 EBS, 이보영 등 어학 서비스를 무제한으로 들으실수 있습니다.</p>'
+					
+				}else {
+					product_caution_html += '<p>다운로드 파일은 MP3 파일을 지원하는 모든 기기에서 재생되며, 기간 연장이 필요 없습니다.</p>'
+					product_caution_html += '<p>음악 외 어학을 무제한으로 들으실 수 있으며, 음악 곡 수만큼 어학을 다운로드 하실 수 있습니다</p>'
+				}
+				
+				product_caution_html += "</div>"
+
+				$("#caution").append(product_caution_html);
+			    
 			    
 			}
 		)
