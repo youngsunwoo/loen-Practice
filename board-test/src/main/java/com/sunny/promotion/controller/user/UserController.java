@@ -86,10 +86,10 @@ public class UserController {
 	    //프로모션 참여자 정보 받기
 	    //get Users who participated the Promotion By PromoId
 	    @RequestMapping(value="Promotion/Detail/ParticipateList", method = RequestMethod.GET)      
-	    public ModelAndView getJoinUsersByPromoId(@RequestParam String promotion_id, HttpSession session) throws Exception{
+	    public ModelAndView getJoinUsersByPromoId(@RequestParam String promotionId, HttpSession session) throws Exception{
 	    		ModelAndView mav = new ModelAndView();
 
-	    		List<UserVO> participateUsers = userService.getParticipateUsersByPromoId(promotion_id);
+	    		List<UserVO> participateUsers = userService.getParticipateUsersByPromoId(promotionId);
 	    		
 	    		mav.addObject("joinUsers",participateUsers);
 	    		mav.setViewName("Promotion/participateList");

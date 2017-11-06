@@ -105,7 +105,7 @@ public class PromotionController {
     		String promotionId = request.getParameter("promotionId");
 		String flag = request.getParameter("flag");
 		System.out.println(flag);
-
+		System.out.println("PromotionController > shearePopUp > promotionId > "+promotionId);
 		mav.addObject("promotionId",promotionId);
 		
 		if(flag.equals("0")) {

@@ -215,7 +215,6 @@
 			    
 			    	    
 			    var benefit_list_html  = ''
-			    var tab_content_html  = ''
 			
 			    	//혜택 출력하기
 	    			benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">'

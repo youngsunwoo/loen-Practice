@@ -28,7 +28,7 @@
 <style type="text/css">
 
 /*Form Wizard*/
-.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
+.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0; !important;} 
 .bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
 .bs-wizard > .bs-wizard-step + .bs-wizard-step {}
 .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
@@ -49,7 +49,6 @@
 /*END Form Wizard*/
 
 .setDiv {  padding-top: 100px; text-align: center; }
-productModalClose
 </style>
 
  <style>
@@ -145,7 +144,7 @@ table th {margin: auto; text-align: center;}
 			
 			
  			<!-- 혜택 출력하기 위해서 추가한 내역 -->
-				<div id="benefitDiv" style="border:1px;  display: none; margin-top: 30px;margin-bottom: 20px;width: 1008px;padding: 10px;">
+				<div id="benefitDiv" style="border:1px;  display: none; margin-top: 100px;margin-bottom: 150px;width: 1008px;padding: 10px;">
 					<div id="benefitContents"  style=" width: fit-content; margin: auto;" style="width: fit-content;   margin: auto;">
 					</div>
 				</div>
@@ -245,14 +244,38 @@ table th {margin: auto; text-align: center;}
 		    function showBenefitInfo(obj) {
 		        $("#BenefitInfo").remove();
 		        console.log(obj);
-		        var benefit_list_html = '<table id="BenefitInfo">'
-		        for (var i = 0; i < obj.length; i++) {
-		        	
-		      	  	benefit_list_html += '<tr><td> <div class = "benefit_goal"> <span>' + obj[i].goal_cnt + '명 달성 <span></div></td>'
-		      		benefit_list_html += '<td><div class = "benefit_info">' +obj[i].offer + obj[i].unit + '</div></td></tr>';
-		        }
-		      	  benefit_list_html += '</table>';
-		        $("#benefitContents").append(benefit_list_html);
+		        
+
+			    var stepwidth = $(benefitDiv).width()/(obj.length+1);
+		        
+		        var benefit_list_html = '<div id="BenefitInfo">'
+				benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">'
+				benefit_list_html += '<div class="text-center bs-wizard-stepnum"> START! </div>'
+				benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>'
+				benefit_list_html += '<a href="#" class="bs-wizard-dot"></a>'
+				benefit_list_html += '</div>'
+				
+				for (var i = 0; i < obj.length; i++) {
+					benefit_list_html += '<div class="col-xs-3 bs-wizard-step disabled" style="width:'+stepwidth+'px;">'
+					benefit_list_html += '<div class="text-center bs-wizard-stepnum">'+ obj[i].goal_cnt +'명 </div>'
+				   	benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>'
+					benefit_list_html += '<a href="#" class="bs-wizard-dot"></a>'
+					benefit_list_html += ' <div class="bs-wizard-info text-center">제공예정 혜택</div>'
+					benefit_list_html += ' <div>'+obj[i].offer +obj[i].unit+'</div>'
+					benefit_list_html += '</div>'
+				}
+				benefit_list_html += '</div>'
+
+			    $("#benefitContents").append(benefit_list_html);
+				
+		      // var benefit_list_html = '<table id="BenefitInfo">'
+		      // for (var i = 0; i < obj.length; i++) {
+		      // 	
+		      //	  	benefit_list_html += '<tr><td> <div class = "benefit_goal"> <span>' + obj[i].goal_cnt + '명 달성 <span></div></td>'
+		      //		benefit_list_html += '<td><div class = "benefit_info">' +obj[i].offer + obj[i].unit + '</div></td></tr>';
+		      //  }
+		      //	  benefit_list_html += '</table>';
+		      //  $("#benefitContents").append(benefit_list_html);
 		        
 		        
 		    } 
