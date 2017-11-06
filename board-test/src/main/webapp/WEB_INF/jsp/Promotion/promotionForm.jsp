@@ -12,13 +12,17 @@
 
 
 
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
 <script src="/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
 
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" type="text/css">
 <link rel="stylesheet" href="https://cdnimg.melon.co.kr/static/member/resource/style/me1/qy/y/1edydz6hfyj.css" type="text/css">
 <link rel="stylesheet" href="/css/steps.css" type="text/css">
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
 <style type="text/css">
@@ -44,36 +48,45 @@
 .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
 /*END Form Wizard*/
 
-
-        .setDiv {  padding-top: 100px; text-align: center; }
-        .mask {  position:absolute; left:0; top:0; z-index:9999; background-color:#000; display:none;  }
-        .window {  display: none;  background-color: #ffffff;  height: 200px;  z-index:99999; }
-
+.setDiv {  padding-top: 100px; text-align: center; }
+productModalClose
 </style>
 
  <style>
-
 
 /* Youngsun Custom */ 
 .evenvtBt { background-color: #4CAF50;  border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 25px;}
 .benefit_goal { border: 1px solid #c59975; margin: 10px; border-radius: 12px; height: 30px; width: 150px; ext-align: center;}
 .benefit_info { height: fit-content; margin: auto; width: 300px;  ext-align: center;}
  
-    
 </style>
 
 </head>
 <body>
 
+
+<div class="modal fade" id="productModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+        		<div id="Product_list_div">  </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="productModalClose">Close</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+
  <div id="wrap" >
- 
-	<div class="mask">
-		<div class="window"  style="width: 500px; height : 450px"> 
-			<input type="button" href="#" class="close" value="(닫기)" style="float = right" />
-			<div id="Product_list_div">  </div>
-		</div>
-	</div>
-					
+
+			
 	<form method="post" name="Promo_info" id="Promo_info">
      	<input type="hidden" id="promo_type" name="promo_type" >	
      	<input type="hidden" id="product_code" name = "product_code" >
@@ -131,65 +144,62 @@
  				 
  			</div>
 			
-			</div>
-</div>
+	</div>
 			
 	<!-- 상품선택용 -->
-	
-	<div id="member_header" 
-		style="  background: #f3f3f2; width: 1008px;">
-			<!-- GNB -->
-			<div id="gnb" >
-				<h2>
-				<p style="font-size: 15px; margin-top: 20px; padding: 30px;">
-					아래 이용권 이미지를 눌러 원하는 상품을 선택해주세요!
-				</p>
-			</div>
-			<!-- //GNB -->
-						  
-    
-    <div id="member_cont_wrap" class="clfix">
-    
-		<h2 style=" font-size: 20px;  margin: 15px;"> <p>추천상품</p></h2>
-		<div class="box_mem_info" style=" background: rgba(0, 0, 0, 0);">
-					
-				<div style=" margin:auto; width: fit-content;padding: 20px;">
-						<img id="product_img"  src="/img/product/00000.png" width="250" height="120" style="position: relative;margin: auto;">
-						
-								
-					    			
-						<div id = "Product_name_div">
-							<p id ='product_name' style="color: #00b423; font-size: 23px; margin-top: 20px;">상품을 선택하세요</p>
-						</div>
-				</div>
-					
-				<br>	
-					
-					
-				<div>
-				프로모션 아이디 : ${promotion.promo_id} <br>
-				주최자 아이디 : ${promotion.user_id}  <br>
-				주최자 이름 : ${ownUser.user_name}  <br>
-				</div>
-				    
-     	 </div>
-     	 
-     	 
-     	 <div style="    width: fit-content;    margin: auto;    margin-top: 10px;">
-			<table>
-			  <tr>
-				 <td>
-					 <img src="/img/caution.png" width="20" height="20" style="position: relative;margin: 8px;">
-					    	    
-				 </td>
-				 <td>
-					 <p>다운로드 파일은 MP3 파일을 지원하는 모든 기기에서 재생되며, 기간 연장이 필요 없습니다.</p>
-					  <p>음악 외 어학을 무제한으로 들으실 수 있으며, 음악 곡 수만큼 어학을 다운로드 하실 수 있습니다	</p>
-				  </td>
-		  	 </tr>
-			 </table>
-		</div>
 		
+		<div id="member_header" 
+			style="  background: #f3f3f2; width: 1008px;">
+				<!-- GNB -->
+				<div id="gnb" >
+					<h2>
+					<p style="font-size: 15px; margin-top: 20px; padding: 30px;">
+						아래 이용권 이미지를 눌러 원하는 상품을 선택해주세요!
+					</p>
+				</div>
+				<!-- //GNB -->
+							  
+	    
+	    		<div id="member_cont_wrap" class="clfix">
+	    
+				<h2 style=" font-size: 20px;  margin: 15px;"> <p>추천상품</p></h2>
+				<div class="box_mem_info" style=" background: rgba(0, 0, 0, 0);">
+							
+						<div style=" margin:auto; width: fit-content;padding: 20px;">
+								<img id="product_img"  src="/img/product/00000.png" width="250" height="120" style="position: relative;margin: auto;">
+								
+										
+							    			
+								<div id = "Product_name_div">
+									<p id ='product_name' style="color: #00b423; font-size: 23px; margin-top: 20px;">상품을 선택하세요</p>
+								</div>
+						</div>
+							
+							
+						<div>
+						프로모션 아이디 : ${promotion.promo_id} <br>
+						주최자 아이디 : ${promotion.user_id}  <br>
+						주최자 이름 : ${ownUser.user_name}  <br>
+						</div>
+						    
+		     	 </div>
+		     	 
+	     	 
+	     	 <div style="    width: fit-content;    margin: auto;    margin-top: 10px;">
+				<table>
+				  <tr>
+					 <td>
+						 <img src="/img/caution.png" width="20" height="20" style="position: relative;margin: 8px;">
+						    	    
+					 </td>
+					 <td>
+						 <p>다운로드 파일은 MP3 파일을 지원하는 모든 기기에서 재생되며, 기간 연장이 필요 없습니다.</p>
+						  <p>음악 외 어학을 무제한으로 들으실 수 있으며, 음악 곡 수만큼 어학을 다운로드 하실 수 있습니다	</p>
+					  </td>
+			  	 </tr>
+				 </table>
+			</div>
+			
       </div>
       
 	</div>
@@ -197,12 +207,11 @@
 	<div style=" margin:20px; ">
 	<center ><input type="submit" href="#" class="evenvtBt" onclick="submitPromotion();" value="프로모션 생성하기 "></center>
 	</div>
-	
+	<button type="button" class="btn btn-info btn-lg" id="myBtn">Open Modal</button>
+
+
 </div>
       
-      
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>	
 	
 	
 	<!----------------------------- 혜택관련 Script ------------------------------------>	
@@ -367,9 +376,17 @@
 		    $('.window').show();
 		}
 		
+		
+		$(document).ready(function(){
+		    $("#myBtn").click(function(){
+		        $("#productModal").modal();
+		    });
+		});
 
    		$(document).ready(function(){
 		        // showMask를 클릭시 작동하며 검은 마스크 배경과 레이어 팝업을 띄웁니다.
+		        
+		        
 		        $('#product_img').click(function(e){
 		        	
 			        	$.ajax({
@@ -383,12 +400,14 @@
 			            });
 			        		
 		            // preventDefault는 href의 링크 기본 행동을 막는 기능입니다.	            
-		            e.preventDefault();
-		            wrapWindowByMask();
+		            //e.preventDefault();
+		            //wrapWindowByMask();
+				    $('#productModal').modal();
+		            
 		        });
 		 
 		        // 닫기(close)를 눌렀을 때 선택한 상품정보 가져오기 
-		        $('.window .close').click(function (e) {
+		        $('#productModalClose').click(function (e) {
 		            e.preventDefault();
 		            $('.mask, .window').hide();
 		            
@@ -405,27 +424,32 @@
 		        });
 		    });
     
-
-   			//제품 리스트 뿌려주기 
+			//제품 리스트 뿌려주기 
 			function showProductList(obj) {
 			        $("#ProductInfo").remove();
-			        console.log(obj);
+			        
 			        var product_list_html  = '<table id="ProductInfo">'
-			      	  product_list_html += '<tr><th>상 품 명</th><th>금 액</th><th>선 택</th></tr>'
-			        for (var i = 0; i < obj.length; i++) {
-				        	  product_list_html += '<tr><td>' + obj[i].product_name + '</td><td>' + obj[i].price + '</td><td> ' 
-				        	  product_list_html  += '<input type="radio" name="product_radio" value="' + obj[i].product_code + '" > </tr>' ;
-				          }
-			      	  product_list_html += '</table>'
-			      	  
-			        $("#Product_list_div").append(product_list_html);
+					for (var i = 0; i < obj.length; i++) {
+					   	  product_list_html += '<tr valign="middle"><td>'
+					   	  product_list_html += '<img id="product_img"  src="/img/product/list/' + obj[i].product_code + '.png" width="150" height="70" style="position: relative;margin: auto;">' 
+						  product_list_html += '</td><td>' 
+						  product_list_html += '<p id ="product_name" style="color: #00b423; font-size: 20px; margin-top: 10px; margin-left: 10px;">'
+						  product_list_html +=  obj[i].product_name +' </p> </td> <td>'
+						  product_list_html +=  '<p id ="product_name" style="font-size: 20px; margin-top: 10px; margin-left: 10px;">'
+						  product_list_html +=  obj[i].price +' </p> </td> <td>'
+					   	  product_list_html  += '<input type="radio" name="product_radio" value="' + obj[i].product_code + '" ><td> </tr>' ;  
+					}
+			      	product_list_html += '</table>'
+	
+					$("#Product_list_div").append(product_list_html);
 			}
-					
+						
 		    //제품 정보 뿌려주기 
 		    function showProductInfo(obj) {
 			    	$("#product_img").attr("src",'/img/product/'+obj.product_code+'.png');
 			    	
-		        $("#product_name").remove();
+		        $("#product_name").remove("");
+		        
 		        var product_info_html  = '<p id ="product_name" style="color: #00b423; font-size: 23px; margin-top: 20px;">'
 		      	    product_info_html +=  obj.product_name
 		      	    product_info_html += '</p>'

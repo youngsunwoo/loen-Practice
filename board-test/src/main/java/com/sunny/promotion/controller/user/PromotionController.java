@@ -40,7 +40,11 @@ public class PromotionController {
     public ModelAndView root() {
          return new ModelAndView("index");        
     }
-    
+
+    @RequestMapping(value="/test")      
+    public ModelAndView test() {
+         return new ModelAndView("test");        
+    }
 
     //The Form to make Promotion
     //프로모션 생성하기 입력창 

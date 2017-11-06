@@ -33,6 +33,8 @@ public class ProductController {
     	
     		String product_code = request.getParameter("product_code");
     		
+    		System.out.println("ProductController > getProductInfo > request.procudt_code > " + product_code);
+    		
 		System.out.println(productService.getProductInfo(product_code).toString());
 		
       	ProductVO product = productService.getProductInfo(product_code);
