@@ -9,7 +9,7 @@
 			   benefit_code benefitCode,
 			   Promotion.user_id userId,
 			   Promotion.product_code productCode, 
-			   create_date createDate,
+			   DATE(create_date) createDate,
 			   join_cnt joinCnt
        FROM Promotion, User, Product
        WHERE User.user_id = Promotion.user_id
@@ -18,7 +18,7 @@
         		 AND promo_id = #{promoId}
         </if>
          <if test = "createDate !=null and createDate != '' and dueDate !=null and dueDate != ''">
-        		 AND create_date >= #{createDate} and #{dueDate} >= due_date 
+        		 AND create_date between #{createDate} and #{dueDate}  
         </if>
         <if test = "promoType !=null and promoType != ''">
         		 AND promo_type = #{promoType}
@@ -39,7 +39,7 @@
         		 AND User.gender = #{gender}
         </if>
         <if test = "ageFrom !=null and ageFrom != '' and ageTo !=null and ageTo != ''">
-        		 AND create_date between #{ageFrom} and {ageTo}
+        		 AND User.age between #{ageFrom} and #{ageTo}
         </if>
          <if test = "productCode !=null and productCode != ''">
         		 AND Promotion.product_code = #{productCode}
@@ -78,7 +78,7 @@
    <insert id="InsertPromotion" parameterType="com.sunny.promotion.vo.PromotionVO">
         INSERT into Promotion
         VALUES
-        (#{promo_id},#{create_date},#{user_id},#{due_date},'0',#{promo_type},#{benefit_code},#{product_code},#{event_url},#{banner_path},0)
+        (#{promoId},#{createDate},#{userId},#{dueDate},'0',#{promoType},#{benefitCode},#{productCode},#{eventUrl},#{bannerPath},0)
    </insert>
    
    

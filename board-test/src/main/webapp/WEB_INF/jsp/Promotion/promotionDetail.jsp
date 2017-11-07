@@ -83,6 +83,25 @@
 </head>
 <body>
 
+
+<div class="modal fade" id="productModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title">참여자 List보기</h4>
+        </div>
+        <div class="modal-body">
+        		<div id="participateDiv"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="productModalClose">선택완료</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
  <div id="wrap" class="join">
 	<div id="member_header" 
 		style="  background: url(http://cdnimg.melon.co.kr/resource/image/web/event/bg_vip_benefit01.jpg) no-repeat 0 0; width: 1008px;">
@@ -191,7 +210,7 @@
 				
 				<center>
 					<input type="button" href="#" class="evenvtBt"  onclick="checkAvailable();" value="이벤트참여하기" />
-					<input type="button" href="#" class="evenvtBt" value="참여자확인하기" onclick="fnPopup()" class="btn btn-default" />
+					<input type="button" id = "participateListBt" href="#" class="evenvtBt" value="참여자확인하기" class="btn btn-default" />
 				</center>
 			</div>
 					 
@@ -345,6 +364,34 @@
 				 });
 		}
 		
+	
+		
+		 $('#participateListBt').click(function(e){
+			 $("#participatesInfo").remove();
+		        var participate_list_html = '<table id="participatesInfo" class="table">'
+		        	participate_list_html += '  <thead class="thead-dark"> <tr>'
+	   	    		participate_list_html += '<th>참여일시</th><th>사용자ID</th><th>사용자이름</th> </td> </thead>'
+	   	    		var participates = ${participateList} 
+			    for (var i = 0; i < participates.length; i++) {
+		    	    		var obj = participates[i];
+		    	    		participate_list_html += '<tr>'
+			    	    //	participate_list_html += '<td><div class = "benefit_info">' +obj.joinDate +'</div></td>'
+			    	    	participate_list_html += '<td><div class = "benefit_info">' +obj.joinDate +'</div></td>'
+		    	    		participate_list_html += '<td> <div class = "benefit_goal"> <span>' + obj.userId + '<span></div></td>'
+		    	    		participate_list_html += '<td><div class = "benefit_info">' +obj.userName +'</div></td>'
+		    	    		//if (obj.gerder == '1'){
+		    	    		//	participate_list_html += '<td><div class = "benefit_info">남</div></td>'
+		    	    		//} else{
+		    	    		//	participate_list_html += '<td><div class = "benefit_info">여</div></td>'
+		    	    		//}
+		    	    		//participate_list_html += '<td><div class = "benefit_info">' +obj.age +'</div></td>'	    	    		
+		    	    		//participate_list_html += '</tr>';
+			    }
+	   	    		participate_list_html += '</table>';
+			    $("#participateDiv").append(participate_list_html);
+			 
+		 		$('#productModal').modal();
+		 });
 		
 		function openShareWindow(data){
 			var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=600, height=550';
@@ -353,15 +400,7 @@
 		
 	</script>    
 	    
-	    
-	   <script type="text/javascript">
-	
-	   function fnPopup() {
-		    var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=440, height=550';
-		    window.open("/Promotion/Detail/ParticipateList?promotionId=${promotion.promoId}", 'test', popupOption);
-		}
-	   
-	</script>
+
 	 
 </body>
 </html>

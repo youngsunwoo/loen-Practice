@@ -63,9 +63,6 @@ public class AdminController {
     		String participate_json = new Gson().toJson(participate);
     		mav.addObject("participateList",participate_json);
     		
-    		
-    		
-    		
     		mav.setViewName("admin/AdminPromoDetail");
     		
     		return mav;
@@ -75,6 +72,11 @@ public class AdminController {
     @RequestMapping(value="testAdmin")      
     public ModelAndView promotionForm() {
         return new ModelAndView("/admin/test");        
+    }
+    
+    @RequestMapping(value="testAdmin2")      
+    public ModelAndView test22() {
+        return new ModelAndView("/admin/test2");        
     }
     
     @RequestMapping(value="test2")      
@@ -95,6 +97,8 @@ public class AdminController {
 		
 		
 	  	List<PromotionVO> promotions = promoService.getPromotionList(param);
+	  	System.out.println(promotions.get(1).getCreateDate());
+	  	
 	  	//System.out.println(param.get("benefitCode"));
 	  	//System.out.println(promotions.get(1).toString());
 	  	//System.out.println(promotions);

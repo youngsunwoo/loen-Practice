@@ -8,8 +8,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 
+<title>상세보기</title>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.js"></script>
 
@@ -22,10 +22,11 @@
 
 
 <style type="text/css">
+
 /*Form Wizard*/
-.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0; !important;} 
+.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
 .bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
-.bs-wizard > .bs-wizard-step + .bs-wizard-step {}
+.bs-wizard > .bs-wizard-step .bs-wizard-step {}
 .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
 .bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
 .bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
@@ -42,7 +43,41 @@
 .bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
 .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
 /*END Form Wizard*/
-.setDiv {  padding-top: 100px; text-align: center; }
+
+.evenvtBt {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+    
+</style>
+
+<style type="text/css">
+.product_detail_icon {
+    display: inline-block;
+    width: 62px;
+    height: 16px;
+    background: url(//image.melon.co.kr/resource/image/web/cm/bg_icon_product.png) no-repeat 0 0;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: top;
+}
+
+.product_detail_icon.mobile {
+    background-position: 0 -20px;
+}
+.product_detail_icon.pc {
+    background-position: 0 -41px;
+}
+
 </style>
 
  <style>
@@ -278,7 +313,7 @@ table th {margin: auto; text-align: center;}
 	</script>
 	
 	
-	<!----------------------------- UI 및 값 선택관련 ------------------------------------>	
+<!----------------------------- UI 및 값 선택관련 ------------------------------------>	
 <script type="text/javascript">
     
 			$('input:radio[name=gender]').click(function() {
@@ -370,38 +405,16 @@ table th {margin: auto; text-align: center;}
 	 		
 	 		function openShareWindow(data){
 				var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=600, height=550';
-			 	window.open("/Promotion/SharePopup?promotion_id="+data.promo_id+"&flag=0", 'test', popupOption);
+			 	window.open("/Promotion/SharePopup?promoId="+data.promoId+"&flag=0", 'test', popupOption);
 			 
-			 	location.replace("/Promotion/Detail?promotion_id="+data.promo_id) 	
+			 	location.replace("/Promotion/Detail?promoId="+data.promoId) 	
 		   	}
 </script>
 	
 	<!----------------------------- 상품관련 Script ------------------------------------>	
 <script type="text/javascript">
 
-		function wrapWindowByMask(){
-		    // 현재 화면 높이와 너비를 받아오기 
-		    var maskHeight = $(document).height();
-		    var maskWidth = $(window).width();
-		
-		    // 마스크의 적용할 높이,너비 지정 (화면크기과 같도록 지정)
-		    $('.mask').css({'width':maskWidth,'height':maskHeight});
-		    //fade Animation : 80%의 불투명으로 변경 
-		    $('.mask').fadeTo("slow",0.8);
-		
-		    // 레이어 팝업을 가운데로 띄우기 위해 화면의 높이와 너비의 가운데 값과 스크롤 값을 더하여 변수로 만듭니다.
-		    var left = ( $(window).scrollLeft() + ( $(window).width() - $('.window').width()) / 2 );
-		    var top = ( $(window).scrollTop() + ( $(window).height() - $('.window').height()) / 2 );
-		
-		    // css 스타일을 변경
-		    $('.window').css({'left':left,'top':top, 'position':'absolute'});
-		
-		    // 레이어 팝업을 보이도록 설정 
-		    $('.window').show();
-		}
-		
-	
-
+			
    		$(document).ready(function(){
 		        // showMask를 클릭시 작동하며 검은 마스크 배경과 레이어 팝업을 띄웁니다.
 		        

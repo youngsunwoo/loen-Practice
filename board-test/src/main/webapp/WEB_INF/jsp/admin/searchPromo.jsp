@@ -84,7 +84,7 @@ if(window.console==undefined){
               <li class="active"><a href="#">Promotion 검색</a></li>
               <li><a href="#">Promotion 상세</a></li>
               <li><a href="#">참여현황 상세</a></li>
-              <li class="dropdown">
+              <li class="dropdown open">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Action</a></li>
@@ -122,6 +122,10 @@ if(window.console==undefined){
 						   			 <label   style=" margin: 5px; font-weight: bold;" >프로모션 Filter</label>
 								</th>
 								<td>
+									<table>
+										<tbody>
+											<tr>
+												<td style="text-align: left;">&nbsp;
 													프로모션ID : <input type="text" id="promoId" name="promoId" value="" size="12" title="">&nbsp;&nbsp;
 													
 													기간 : <input type="text" name="createDate" id="testDatepicker" value="" size="10" readonly="" class="hasDatepick">
@@ -145,6 +149,10 @@ if(window.console==undefined){
 																<option value="1">진행중</option>								
 																<option value="1">종료</option>
 														  </select>&nbsp;&nbsp;&nbsp;&nbsp;
+												</td>
+											</tr>
+										</tbody>
+									</table>
 								</td>
 							</tr>
 							<tr >
@@ -152,6 +160,10 @@ if(window.console==undefined){
 									 <label   style=" margin: 5px; font-weight: bold;" >생성 User Filter</label>
 								</th>
 								<td>
+									<table >
+										<tbody>
+											<tr>
+												<td style="text-align: left;">&nbsp;
 													사용자 ID : <input type="text" id="userId" name="userId" value="" size="15" title="">&nbsp;&nbsp;
 													
 													이름 : <input type="text" id="userName" name="userName" value="" size="15" title="">&nbsp;&nbsp;
@@ -166,7 +178,10 @@ if(window.console==undefined){
 														   &nbsp;~&nbsp;
 														  <input type="text" name="ageTo" id="ageTo" value="" size="3" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' >&nbsp;&nbsp;
 							
-											
+												</td>
+											</tr>
+										</tbody>
+									</table>
 								</td>
 							</tr>
 							<tr>
@@ -174,6 +189,10 @@ if(window.console==undefined){
 									 <label   style=" margin: 5px; font-weight: bold;"  >상품 Filter</label>
 								</th>
 								<td>
+									<table>
+										<tbody>
+											<tr>
+												<td style="text-align: left;">&nbsp;
 													상품코드 : <input type="text" id="productCode" name="productCode" value="" size="10" title="">&nbsp;&nbsp;
 													
 													상품이름 : <input type="text" id="productName" name="productName" value="" size="10" title="">&nbsp;&nbsp;
@@ -181,39 +200,12 @@ if(window.console==undefined){
 													상품가격 : <input type="text" name="priceFrom" id="priceFrom" value="" size="10" readonly="" class="hasDatepicker">
 														     &nbsp;~&nbsp;
 														    <input type="text" name="priceTo" id="priceTo" value="" size="10" readonly="" class="hasDatepicker">&nbsp;&nbsp;
-												
+												</td>
+											</tr>
+										</tbody>
+									</table>
 								</td>
 							</tr>
-							
-							<tr >
-								<th style="padding: 5px;">
-									 <label   style=" margin: 5px; font-weight: bold;" >참여자그룹 Filter</label>
-								</th>
-								<td>
-											<div style="margin-bottom: 5px;">
-											 성별 : <select id="gender" name="gender" >
-													<option value="">전체</option>
-													<option value="1">남</option>
-													<option value="2">여</option>
-												  	</select>&nbsp;&nbsp; 
-											</div>
-											<div style="margin-bottom: 5px;">
-											 연령대 : 
-												<input type="checkBox" name="ageGruop" value="1" /> 10대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="2" /> 20대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="3" /> 30대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="4" /> 40대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="5" /> 50대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="6" /> 60대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="7" /> 70대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="8" /> 80대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="9" /> 90대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="0" /> 그외 &nbsp;&nbsp;
-											</div>
-								</td>
-							</tr>
-							
-							
 						 </tbody>
 						</table>
 						
@@ -274,7 +266,6 @@ $(function() {
 	        		}else{
 	        			return "나혼자" 
 	        		}
-	        		
 			}
 	    }, {
 	        field: "benefitCode",
@@ -293,6 +284,9 @@ $(function() {
 	        title: "시작일자",
 	        align: 'center',
 	        sortable:true,
+	        formatter : function(value) {
+	        		<fmt:formatDate value=value pattern="yyyy-MM-dd"/>
+			}
 	    }, {
 	    	field: "joinCnt",
 	        title: "참여인원",

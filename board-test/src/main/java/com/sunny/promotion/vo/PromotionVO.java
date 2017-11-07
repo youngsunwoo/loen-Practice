@@ -1,5 +1,6 @@
 package com.sunny.promotion.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -66,7 +67,12 @@ public class PromotionVO {
 
 
 	public void setCreateDate(Date createDate) {
+		
+		//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		//testObject.setCreationDate(df.parse("2010-06-06 13:20:15"));
 		this.createDate = createDate;
+		
+		
 	}
 
 

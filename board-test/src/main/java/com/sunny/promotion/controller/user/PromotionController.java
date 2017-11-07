@@ -1,6 +1,7 @@
 package com.sunny.promotion.controller.user;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.sunny.promotion.Authentication;
+import com.sunny.promotion.service.ParticipateService;
 import com.sunny.promotion.service.ProductService;
 import com.sunny.promotion.service.PromoService;
 import com.sunny.promotion.service.UserService;
@@ -31,9 +33,11 @@ public class PromotionController {
     @Autowired
     UserService userService;
     
-
     @Autowired
     ProductService productService;
+    
+    @Autowired
+    ParticipateService participateService;
     
     
     @RequestMapping(value="/")      
@@ -72,10 +76,10 @@ public class PromotionController {
     //get(show) Promotion Detail Information
     //프로모션 상세페이지 출력 (parameter : 프로모션 ID)
     @RequestMapping(value="Promotion/Detail", method = RequestMethod.GET)      
-    public ModelAndView promoDetail(@RequestParam String promotion_id, HttpSession session) throws Exception{
+    public ModelAndView promoDetail(@RequestParam String promoId, HttpSession session) throws Exception{
     		ModelAndView mav = new ModelAndView();
 
-    		PromotionVO  promotion = promoService.getPromotionById(promotion_id); 			//프로모션정보
+    		PromotionVO  promotion = promoService.getPromotionById(promoId); 			//프로모션정보
     		mav.addObject("promotion",promotion);
     		
     		UserVO ownUser = userService.getUserById(promotion.getUserId());					//프로모션생user정보 
@@ -88,6 +92,9 @@ public class PromotionController {
     		String benefits_json = new Gson().toJson(benefits);
     		mav.addObject("benefits",benefits_json);
     		
+    		List<Map<String, String>> participate =  participateService.getParticipateUserInfo(promoId);
+    		String participate_json = new Gson().toJson(participate);
+    		mav.addObject("participateList",participate_json);
     		
     		mav.setViewName("Promotion/promotionDetail");
     		
@@ -102,11 +109,11 @@ public class PromotionController {
     public ModelAndView sharePopup(HttpServletRequest request , HttpSession session) throws Exception{
     		ModelAndView mav = new ModelAndView();
     		
-    		String promotionId = request.getParameter("promotionId");
+    		String promoId = request.getParameter("promoId");
 		String flag = request.getParameter("flag");
 		System.out.println(flag);
-		System.out.println("PromotionController > shearePopUp > promotionId > "+promotionId);
-		mav.addObject("promotionId",promotionId);
+		System.out.println("PromotionController > shearePopUp > promoId > "+promoId);
+		mav.addObject("promoId",promoId);
 		
 		if(flag.equals("0")) {
 			mav.setViewName("Promotion/sharePopup");
