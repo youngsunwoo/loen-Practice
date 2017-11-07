@@ -264,38 +264,30 @@ $(function() {
 	        }
 			}
 	    }, {
-	        field:"promoType",
-	        title: "유형",
+	        field:"userId",
+	        title: "참여자 ID",
 	        align: "center",
 	        sortable:true,
-	        formatter : function(value) {
-	        		if (value == "1"){
-	        			return "다함께"
-	        		}else{
-	        			return "나혼자" 
-	        		}
-	        		
-			}
 	    }, {
-	        field: "benefitCode",
-	        title: "혜택",
+	        field: "userName",
+	        title: "참여자 이름",
 	        align: "center",
 	    }, {
-	        field: "userId",
-	        title: "등록자 아이디",
+	        field: "gerder",
+	        title: "성별",
 	        align: "center",
 	    }, {
-	        field: "productCode",
-	        title: "상품아이디",
+	        field: "age",
+	        title: "나이",
 	        align: "center",
 	    }, {
-	    	field: "createDate",
-	        title: "시작일자",
+	    	field: "joinDate",
+	        title: "참여일시",
 	        align: 'center',
 	        sortable:true,
 	    }, {
-	    	field: "joinCnt",
-	        title: "참여인원",
+	    	field: "joinFrom",
+	        title: "유입경로",
 	        align: 'center',
 	        sortable:true,
 	    },],
@@ -330,7 +322,7 @@ $(function() {
 		var formdata = $("#form0").serialize();
 		
 	    $.ajax({
-			url : '/admin/promotion/list.json',
+			url : '/admin/promotion/participateList.json',
 			type : "POST",
 			async : false,
 			data : formdata,

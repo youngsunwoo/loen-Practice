@@ -92,7 +92,7 @@ public class PromotionController {
     		String benefits_json = new Gson().toJson(benefits);
     		mav.addObject("benefits",benefits_json);
     		
-    		List<Map<String, String>> participate =  participateService.getParticipateUserInfo(promoId);
+    		List<Map<String, Object>> participate =  participateService.getParticipateUserInfo(promoId);
     		String participate_json = new Gson().toJson(participate);
     		mav.addObject("participateList",participate_json);
     		

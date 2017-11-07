@@ -9,7 +9,7 @@
 			   benefit_code benefitCode,
 			   Promotion.user_id userId,
 			   Promotion.product_code productCode, 
-			   DATE(create_date) createDate,
+			   DATE_FORMAT(create_date, '%Y-%m-%d %H:%i:%s') createDate,
 			   join_cnt joinCnt
        FROM Promotion, User, Product
        WHERE User.user_id = Promotion.user_id

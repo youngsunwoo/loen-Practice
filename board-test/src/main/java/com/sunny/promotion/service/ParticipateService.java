@@ -49,7 +49,7 @@ public class ParticipateService {
  	 	int purchaseChk = purchaseMapper.getInfoByUseridProductcd(purchasePram);
  	 	
 
-	  	Map<String, Object> participatePram = new HashMap<String, Object>();
+	  	Map<String, String> participatePram = new HashMap<String, String>();
 	    		    
 	  	participatePram.put("userId", loginUser.getUser_id());
 	  	participatePram.put("promotionId", promotionId);
@@ -123,8 +123,11 @@ public class ParticipateService {
 	    
 }
  
-    public List<Map<String, String>> getParticipateUserInfo(String promotionId) throws Exception{
+    public List<Map<String, Object>> getParticipateUserInfo(String promotionId) throws Exception{
     		return participateMapper.getParticipateUserInfo(promotionId);
     }
     
+    public List<Map<String, Object>> getParticipateListSearch(Map<String, String> info) throws Exception{
+		return participateMapper.getParticipateListSearch(info);
+    }
 }

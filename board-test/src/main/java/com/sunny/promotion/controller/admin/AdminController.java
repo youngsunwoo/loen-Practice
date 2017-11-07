@@ -59,7 +59,7 @@ public class AdminController {
     		String benefits_json = new Gson().toJson(benefits);
     		mav.addObject("benefits",benefits_json);
     		
-    		List<Map<String, String>> participate =  participateService.getParticipateUserInfo(promotion_id);
+    		List<Map<String, Object>> participate =  participateService.getParticipateUserInfo(promotion_id);
     		String participate_json = new Gson().toJson(participate);
     		mav.addObject("participateList",participate_json);
     		
@@ -94,15 +94,21 @@ public class AdminController {
 		        System.out.print("key="+key);
 		        System.out.println(" value="+param.get(key));
 		    }
-		
-		
 	  	List<PromotionVO> promotions = promoService.getPromotionList(param);
 	  	System.out.println(promotions.get(1).getCreateDate());
-	  	
-	  	//System.out.println(param.get("benefitCode"));
-	  	//System.out.println(promotions.get(1).toString());
-	  	//System.out.println(promotions);
 	    return promotions;
 	}
+	
+	
+	@RequestMapping(value = "/admin/promotion/participateList.json", method = RequestMethod.POST)
+	public List<Map<String, Object>>  participateList(HttpServletRequest request , @RequestParam Map<String, String> param) throws Exception{  
+		System.out.println("=== AdminController > seaerch (/admin/promotion/participateList.json) > params ================");
+		
+		
+	  	List<Map<String, Object>> parcitipations = participateService.getParticipateListSearch(param);
+	 
+	    return parcitipations;
+	}
+
 
 }

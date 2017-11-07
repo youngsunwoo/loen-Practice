@@ -30,6 +30,68 @@
 		order by join_date;
 		        
     </select> 
+    
+    
+     <select id="getParticipateListSearch" parameterType="map" resultType="map">
+		 
+		 
+		SELECT Promotion.promo_id promoId,
+		       User.user_id userId, 
+		       User.user_name userName, 
+		       User.gender gerder,
+		       User.age age,
+		       DATE_FORMAT(join_date, '%Y-%m-%d %H:%i:%s') joinDate,
+		       join_from joinFrom
+		FROM (select Promotion.promo_id
+				FROM Promotion, User, Product
+				       WHERE User.user_id = Promotion.user_id
+				       AND	 Product.product_code = Promotion.product_code
+				        <if test = "promoId !=null and promoId != ''">
+				        		 AND promo_id = #{promoId}
+				        </if>
+				         <if test = "createDate !=null and createDate != '' and dueDate !=null and dueDate != ''">
+				        		 AND create_date between #{createDate} and #{dueDate}  
+				        </if>
+				        <if test = "promoType !=null and promoType != ''">
+				        		 AND promo_type = #{promoType}
+				        </if>
+				        <if test = "benefitCode !=null and benefitCode != ''">
+				        		 AND benefit_code = #{benefitCode}
+				        </if>
+				        <if test = "state !=null and state != ''">
+				        		 AND state = #{state}
+				        </if>
+				        <if test = "userId !=null and userId != ''">
+				        		 AND Promotion.user_id = #{userId}
+				        </if>
+				         <if test = "userName !=null and userName != ''">
+				        		 AND User.user_name = #{userName}
+				        </if>
+				         <if test = "gender !=null and gender != ''">
+				        		 AND User.gender = #{gender}
+				        </if>
+				        <if test = "ageFrom !=null and ageFrom != '' and ageTo !=null and ageTo != ''">
+				        		 AND User.age between #{ageFrom} and #{ageTo}
+				        </if>
+				         <if test = "productCode !=null and productCode != ''">
+				        		 AND Promotion.product_code = #{productCode}
+				        </if>
+				        <if test = "productName !=null and productName != ''">
+				        		 AND Product.procudt_name = #{productName}
+				        </if> 
+				        <if test = "priceFrom !=null and priceFrom != '' and priceTo !=null and priceTo != ''">
+				        		 AND Product.price between #{priceFrom} and {priceTo}
+				        </if>
+				) Promotion , 
+				Participate ,  
+				User
+		WHERE Promotion.promo_id = Participate.promo_id
+		AND   Participate.join_user_id = User.user_id
+		ORDER BY Participate.promo_id, Participate.join_date;
+		</select>
+    
+    
+     
         
 </mapper>
 

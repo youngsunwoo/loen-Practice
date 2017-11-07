@@ -224,32 +224,34 @@
 		$(document).ready(function () {
 				
 				// 가져오기   
-			    var benefits = ${benefits} 
-			    var joinCnt =  ${promotion.joinCnt}
+			    var benefits = ${benefits} ;
+			    var joinCnt =  ${promotion.joinCnt};
 			    var stepwidth = $(benefitDiv).width()/(benefits.length+1);
 			    
-			    	    
-			    var benefit_list_html  = ''
+				//alert (<%= request.getHeader("Referer")%>)    	 
+				
+				
+			    var benefit_list_html  = '';
 			
 			    	//혜택 출력하기
-	    			benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">'
-				benefit_list_html += '<div class="text-center bs-wizard-stepnum"> START! </div>'
-				benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>'
-				benefit_list_html += '<a href="#" class="bs-wizard-dot"></a>'
-				benefit_list_html += '</div>'
+	    			benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">';
+				benefit_list_html += '<div class="text-center bs-wizard-stepnum"> START! </div>';
+				benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>';
+				benefit_list_html += '<a href="#" class="bs-wizard-dot"></a>';
+				benefit_list_html += '</div>';
 				
 			    for (var i = 0; i < benefits.length; i++) {
 		    	    		var obj = benefits[i];
 		    	    			if (joinCnt > obj.goal_cnt) {
-		    	    			 	benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">'
+		    	    			 	benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">';
 		    	    			}else{
-			   	   			benefit_list_html += '<div class="col-xs-3 bs-wizard-step disabled" style="width:'+stepwidth+'px;">'
+			   	   			benefit_list_html += '<div class="col-xs-3 bs-wizard-step disabled" style="width:'+stepwidth+'px;">';
 		    	    			}
-					   	benefit_list_html += '<div class="text-center bs-wizard-stepnum">'+ obj.goal_cnt +'명 </div>'
-					   	benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>'
-						benefit_list_html += '<a href="#" class="bs-wizard-dot"></a>'
-						benefit_list_html += ' <div class="bs-wizard-info text-center">제공예정 혜택</div>'
-						benefit_list_html += ' <div>'+obj.offer +obj.unit+'</div>'
+					   	benefit_list_html += '<div class="text-center bs-wizard-stepnum">'+ obj.goal_cnt +'명 </div>';
+					   	benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>';
+						benefit_list_html += '<a href="#" class="bs-wizard-dot"></a>';
+						benefit_list_html += ' <div class="bs-wizard-info text-center">제공예정 혜택</div>';
+						benefit_list_html += ' <div>'+obj.offer +obj.unit+'</div>';
 						benefit_list_html += '</div>'
 			    }
 			    $("#benefitDiv").append(benefit_list_html)
