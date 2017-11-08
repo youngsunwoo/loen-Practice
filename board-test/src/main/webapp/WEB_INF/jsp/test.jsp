@@ -59,12 +59,12 @@
 	
 	var speedCanvas = document.getElementById("speedChart");
 	Chart.defaults.global.defaultFontFamily = "Lato";
-	Chart.defaults.global.defaultFontSize = 18;
+	Chart.defaults.global.defaultFontSize = 12;
 	
 	var speedData = {
 	  labels: USER_DAYS,
 	  datasets: [{
-	    label: "Car Speed",
+	    label: "가입 인원수",
 	    data: [0, 59, 75, 20, 20, 55, 40],
 	    lineTension: 0,
 	    fill: false,
@@ -76,7 +76,6 @@
 	    pointHoverRadius: 10,
 	    pointHitRadius: 30,
 	    pointBorderWidth: 2,
-	    pointStyle: 'rectRounded'
 	  }]
 	};
 	

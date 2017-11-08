@@ -201,16 +201,13 @@ if(window.console==undefined){
 											</div>
 											<div style="margin-bottom: 5px;">
 											 연령대 : 
-												<input type="checkBox" name="ageGruop" value="1" /> 10대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="2" /> 20대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="3" /> 30대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="4" /> 40대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="5" /> 50대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="6" /> 60대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="7" /> 70대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="8" /> 80대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="9" /> 90대 &nbsp;&nbsp;
-												<input type="checkBox" name="ageGruop" value="0" /> 그외 &nbsp;&nbsp;
+												<input type="checkBox" name="ageGruop" value="1" /> 10대 미만 &nbsp;&nbsp;&nbsp;
+												<input type="checkBox" name="ageGruop" value="1" /> 10대 &nbsp;&nbsp;&nbsp;
+												<input type="checkBox" name="ageGruop" value="2" /> 20대 &nbsp;&nbsp;&nbsp;
+												<input type="checkBox" name="ageGruop" value="3" /> 30대 &nbsp;&nbsp;&nbsp;
+												<input type="checkBox" name="ageGruop" value="4" /> 40대 &nbsp;&nbsp;&nbsp;
+												<input type="checkBox" name="ageGruop" value="5" /> 50대 &nbsp;&nbsp;&nbsp;
+												<input type="checkBox" name="ageGruop" value="6" /> 60대 이상 &nbsp;&nbsp;&nbsp;
 											</div>
 								</td>
 							</tr>

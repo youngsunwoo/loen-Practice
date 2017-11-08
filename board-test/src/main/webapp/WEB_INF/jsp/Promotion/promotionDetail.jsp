@@ -186,18 +186,13 @@
 			
 			</div>
 			
-			<!-- 혜택 출력하기 위해서 추가한 내역 -->
-			
-			
+			<!-- 혜택 출력하기 위한 Div영역 -->
 			
 			<div class="row bs-wizard" id="benefitDiv" style="border-bottom:0;margin-top: 20px;margin-bottom: 80px;width: 1008px;padding: 10px;">
                 
                
             </div>
 			
-				
-	
-	
 			<!-- 혜택 출력용 끝 -->
 			
 			
@@ -228,37 +223,79 @@
 			    var joinCnt =  ${promotion.joinCnt};
 			    var stepwidth = $(benefitDiv).width()/(benefits.length+1);
 			    
-				//alert (<%= request.getHeader("Referer")%>)    	 
-				
-				
+			
 			    var benefit_list_html  = '';
 			
 			    	//혜택 출력하기
 	    			benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">';
 				benefit_list_html += '<div class="text-center bs-wizard-stepnum"> START! </div>';
-				benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>';
+				benefit_list_html += '<div class="progress"><div class="progress-bar" id="prograssBar0"></div></div>';
 				benefit_list_html += '<a href="#" class="bs-wizard-dot"></a>';
 				benefit_list_html += '</div>';
 				
 			    for (var i = 0; i < benefits.length; i++) {
 		    	    		var obj = benefits[i];
-		    	    			if (joinCnt > obj.goal_cnt) {
+		    	    			if (joinCnt >= obj.goal_cnt) {
 		    	    			 	benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">';
 		    	    			}else{
 			   	   			benefit_list_html += '<div class="col-xs-3 bs-wizard-step disabled" style="width:'+stepwidth+'px;">';
 		    	    			}
 					   	benefit_list_html += '<div class="text-center bs-wizard-stepnum">'+ obj.goal_cnt +'명 </div>';
-					   	benefit_list_html += '<div class="progress"><div class="progress-bar"></div></div>';
+					   	benefit_list_html += '<div class="progress"><div class="progress-bar" id="prograssBar'+(i+1)+'"></div></div>';
 						benefit_list_html += '<a href="#" class="bs-wizard-dot"></a>';
 						benefit_list_html += ' <div class="bs-wizard-info text-center">제공예정 혜택</div>';
 						benefit_list_html += ' <div>'+obj.offer +obj.unit+'</div>';
-						benefit_list_html += '</div>'
+						benefit_list_html += '</div>';
 			    }
-			    $("#benefitDiv").append(benefit_list_html)
+			    $("#benefitDiv").append(benefit_list_html);
 			
-			    joined_info_html =  benefits[benefits.length-1].goal_cnt+ "명중 "+ joinCnt + "명 참여완료!"
+			    joined_info_html =  benefits[benefits.length-1].goal_cnt+ "명중 "+ joinCnt + "명 참여완료!";
 			        
 			    $("#joinedInfo").append(joined_info_html);
+			    
+			     
+			    for (var i = 0; i < benefits.length; i++) {
+    	    				var obj = benefits[i];
+    	    				var obj_next = benefits[i+1];
+
+    	    				if (joinCnt < benefits[0].goal_cnt){
+    	    					var midCnt = benefits[0].goal_cnt / 2
+    	    					if (midCnt > joinCnt){
+        	    					var prograssRate =  ( joinCnt ) * (100 / midCnt )
+    	    						 $("#prograssBar0").css('width', prograssRate+'%');
+    	    					}
+    	    					else{
+    	    						var prograssRate = (joinCnt - midCnt) * (100 / benefits[0].goal_cnt )
+   	    						 $("#prograssBar1").css('width', prograssRate+'%');
+    	    					}    	    					    	    				
+    	    				}
+    	    			
+    	    				if (obj.goal_cnt <= joinCnt &&  joinCnt <  obj_next.goal_cnt){
+    	    					alert ('obj.goal_cnt : '+ obj.goal_cnt )
+    	    					var midCnt = (obj.goal_cnt + obj_next.goal_cnt)/ 2 ;
+    	    					if (midCnt > joinCnt){
+    							var prograssRate =   55 + ( joinCnt - obj.goal_cnt ) * (100 / (obj_next.goal_cnt - obj.goal_cnt) )		
+    						    
+    						    $("#prograssBar"+(i+1)).css('width', prograssRate+'%');
+    							
+    							alert ('prograssBar i : prograssBar'+i )
+    							alert ('prograssRate : ' + prograssRate)
+    						    
+    				    		}else{
+    				    			var prograssRate =  ( joinCnt - midCnt ) * (100 / (obj_next.goal_cnt - obj.goal_cnt) )
+    				    			if ((i+2) == benefits.length){
+    				    				prograssRate = prograssRate*2
+    				    			}
+							$("#prograssBar"+(i+2)).css('width', prograssRate+'%');
+
+        							alert ('prograssBar i+2 : prograssBar'+(i+1) )
+        							alert ('prograssRate : ' + prograssRate)
+    	    						   
+    				    		}
+    	    				}
+    	    				
+    	    				
+			    	}
 			    
 			    
 			    
