@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -131,15 +133,19 @@ if(window.console==undefined){
 					<th scope="row"><label for="">프로모션 기간</label></th>
 					<td colspan="3">
 					
-						<input type="text" name="OPRTSTARTDT" id="date_start" size="20" readonly="" value="${promotion.createDate}" chk_rule="isEmpty" class="hasDatepicker">&nbsp;~&nbsp;
-						<input type="text" name="OPRTENDDT" id="date_end" size="20" readonly="" value=" ${promotion.dueDate}" chk_rule="isEmpty" class="hasDatepicker">
+					
+				        	
+
+						
+						<input type="text" name="OPRTSTARTDT" id="date_start" size="20" readonly=""  chk_rule="isEmpty" class="hasDatepicker" value=<fmt:formatDate value="${promotion.createDate}" pattern="yyyy-MM-dd HH:mm:ss" />	>&nbsp;~&nbsp;
+						<input type="text" name="OPRTENDDT" id="date_end" size="20" readonly="" chk_rule="isEmpty" class="hasDatepicker" value=<fmt:formatDate value="${promotion.dueDate}" pattern="yyyy-MM-dd HH:mm:ss" /> chk_rule="isEmpty" class="hasDatepicker">
 					</td>
 				</tr>
 				<tr>
 					<th scope="row"><label for="">프로모션 유형</label></th>
 					<td colspan="3">
 						<c:choose>
-							<c:when test="${promotion.promoType == '1'}" var="result">
+							<c:when test="${promotion.promoType} " var="result">
 		  							 다함께받기 <br>
 		  					</c:when>
 		  					<c:when test="${promotion.promoType == '2'}" var="result">
@@ -176,7 +182,7 @@ if(window.console==undefined){
 				<tr>
 					<th scope="row"><label for="">현재참여인원</label></th>
 					<td colspan="3" id="productInfo"> 총 ${promotion.joinCnt} 명 참여중 <br>
-					<div id ="participateDiv">
+					<div id ="participateDiv" style=" margin: 10px;">
 					
 					</div>
 					</td>
@@ -186,8 +192,7 @@ if(window.console==undefined){
 		</table>
 
 		<div class="btnC">
-			<span class="btnType03" id="addButton" addtype="submit" formname="form1"><a>등록</a></span>
-			<span class="btnType03" id="addButton" addtype="cancle" formname="form0"><a>취소</a></span>
+			<span class="btnType03" id="addButton" addtype="submit" formname="form1"><a>확인</a></span>
 		</div>
 
 	</div>
@@ -195,47 +200,84 @@ if(window.console==undefined){
 
 	</div>
 	
+	<script type="text/javascript">
+	
+	Date.prototype.format = function(f) {
+
+	    if (!this.valueOf()) return " ";
+	    var weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+
+	    var d = this;
+	    return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function($1) {
+	        switch ($1) {
+	            case "yyyy": return d.getFullYear();
+	            case "yy": return (d.getFullYear() % 1000).zf(2);
+	            case "MM": return (d.getMonth() + 1).zf(2);
+	            case "dd": return d.getDate().zf(2);
+	            case "E": return weekName[d.getDay()];
+	            case "HH": return d.getHours().zf(2);
+	            case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+	            case "mm": return d.getMinutes().zf(2);
+	            case "ss": return d.getSeconds().zf(2);
+	            case "a/p": return d.getHours() < 12 ? "오전" : "오후";
+	            default: return $1;
+   		}
+
+	    });
+
+	};
+	
+	
+	</script>
+	
 	<script>
 	
 	$(document).ready(function () {
 				//가져오기     
-			    var benefits = ${benefits} 
+			    var benefits = ${benefits} ;
 			    
-			    var benefit_list_html  = ''
+			    var benefit_list_html  = '';
+			    
+			    
 			
 			    $("#BenefitInfo").remove();
-		        var benefit_list_html = '<table id="BenefitInfo">'
+		        var benefit_list_html = '<table id="BenefitInfo">';
 			    for (var i = 0; i < benefits.length; i++) {
 		    	    		var obj = benefits[i];
-			    	    		benefit_list_html += '<tr><td> <div class = "benefit_goal"> <span>' + obj.goal_cnt + '명 달성 시<span></div></td>'
+			    	    		benefit_list_html += '<tr><td> <div class = "benefit_goal"> <span>' + obj.goal_cnt + '명 달성 시<span></div></td>';
 						benefit_list_html += '<td><div class = "benefit_info">' +obj.offer + obj.unit +'</div></td></tr>';
 			    }
 		      	benefit_list_html += '</table>';
 			    $("#benefitDiv").append(benefit_list_html);
 			
-			    var participates = ${participateList} 
+			    var participates = ${participateList} ;
 			    
-			    var participate_list_html  = ''
+			    var participate_list_html  = '';
 			    
 			
 			    $("#participatesInfo").remove();
-		        var participate_list_html = '<table id="participatesInfo">'
-		        	participate_list_html += '<tr>'
-	    	    		participate_list_html += '<th>사용자ID</th><th>사용자이름</th><th>성별</th><th>나이</th><th>참여일시</th><th>유입경로</th> </td>'
+		        var participate_list_html = '<table id="participatesInfo">';
+		        	participate_list_html += '<tr>';
+	    	    		participate_list_html += '<th>사용자ID</th><th>사용자이름</th><th>성별</th><th>나이</th><th>참여일시</th><th>유입경로</th> </td>';
 		        
+	    	    		
+	    	    		
+	    	    		
 			    for (var i = 0; i < participates.length; i++) {
 		    	    		var obj = participates[i];
+		    	    		
+		    	    		
 		    	    		participate_list_html += '<tr>'
-		    	    		participate_list_html += '<td> <div class = "benefit_goal"> <span>' + obj.userId + '<span></div></td>'
-		    	    		participate_list_html += '<td><div class = "benefit_info">' +obj.userName +'</div></td>'
+		    	    		participate_list_html += '<td> <div class = "benefit_goal"> <span>' + obj.userId + '<span></div></td>';
+		    	    		participate_list_html += '<td><div class = "benefit_info">' +obj.userName +'</div></td>';
 		    	    		if (obj.gerder == '1'){
-		    	    			participate_list_html += '<td><div class = "benefit_info">남</div></td>'
+		    	    			participate_list_html += '<td><div class = "benefit_info">남</div></td>';
 		    	    		} else{
-		    	    			participate_list_html += '<td><div class = "benefit_info">여</div></td>'
+		    	    			participate_list_html += '<td><div class = "benefit_info">여</div></td>';
 		    	    		}
-		    	    		participate_list_html += '<td><div class = "benefit_info">' +obj.age +'</div></td>'
-		    	    		participate_list_html += '<td><div class = "benefit_info">' +obj.joinDate +'</div></td>'
-		    	    		participate_list_html += '<td><div class = "benefit_info">' +obj.joinFrom +'</div></td>'		    	    		
+		    	    		participate_list_html += '<td><div class = "benefit_info">' +obj.age +'</div></td>';
+		    	    		participate_list_html += '<td><div class = "benefit_info">' +obj.joinDate +'</div></td>';
+		    	    		participate_list_html += '<td><div class = "benefit_info">' +obj.joinFrom +'</div></td>'	;	    	    		
 		    	    		participate_list_html += '</tr>';
 			    }
 	    	    		participate_list_html += '</table>';

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -259,9 +261,9 @@ $(function() {
 	        align: "center",
 	        sortable:true,
 	        formatter : function(value, row, index) {
-	        if (value != null) {
-	        		return "<a href='/Admin/Promotion/Detail?promotion_id="+value+"'>"+value+"</a>";	
-	        }
+		        if (value != null) {
+		        		return "<a href='/Admin/Promotion/Detail?promotion_id="+value+"'>"+value+"</a>";	
+		        }
 			}
 	    }, {
 	        field:"userId",
@@ -285,6 +287,7 @@ $(function() {
 	        title: "참여일시",
 	        align: 'center',
 	        sortable:true,
+	        
 	    }, {
 	    	field: "joinFrom",
 	        title: "유입경로",

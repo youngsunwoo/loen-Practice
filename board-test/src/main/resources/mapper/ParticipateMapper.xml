@@ -22,7 +22,7 @@
 			   user_name userName, 
 			   gender gerder,
 			   age age,
-			   DATE(join_date) joinDate,
+			   DATE_FORMAT(join_date, '%Y-%m-%d %H:%i:%s') joinDate,
 			   join_from joinFrom
 		fROM Participate, User
 		WHERE promo_id = #{promotionId}
@@ -39,7 +39,7 @@
 		       User.user_id userId, 
 		       User.user_name userName, 
 		       User.gender gerder,
-		       User.age age,
+		       User.age 
 		       DATE_FORMAT(join_date, '%Y-%m-%d %H:%i:%s') joinDate,
 		       join_from joinFrom
 		FROM (select Promotion.promo_id

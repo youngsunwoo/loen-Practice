@@ -1,5 +1,6 @@
 package com.sunny.promotion.controller.user;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +47,25 @@ public class PromotionController {
     }
 
     @RequestMapping(value="/test")      
-    public ModelAndView test() {
+    public ModelAndView test(HttpServletRequest request) {
+    		ModelAndView mav = new ModelAndView();
+    		List<String> xlist = new ArrayList<String>();
+   
+
+    		for (int i=1;i<31;i++) {
+    			System.out.println(i);
+    			xlist.add("D+"+i);
+    		}
+    		mav.addObject("xlist",xlist);
+    		for (int i=0;i<xlist.size();i++) {
+    			System.out.println(xlist.get(i));
+    		}
+
+    		String xlist_json = new Gson().toJson(xlist);
+    		request.setAttribute("xList", xlist_json);
+    		
+    		
+    	
          return new ModelAndView("test");        
     }
 

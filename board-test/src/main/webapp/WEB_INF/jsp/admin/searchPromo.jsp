@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -25,6 +24,7 @@
 <script type="text/javascript" src="/js/flatui-checkbox.js"></script>
 <script type="text/javascript" src="/js/flatui-radio.js"></script>
 <script type="text/javascript" src="/js/pager.js"></script>
+<script type="text/javascript" src="/js/sugar.js"></script>
 
 <!-- bootstrap-table -->
 <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -231,6 +231,39 @@ if(window.console==undefined){
 	
 </div>
 
+
+<script type="text/javascript">
+
+Date.prototype.format = function(f) {
+    if (!this.valueOf()) return " ";
+ 
+    var weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+    var d = this;
+     
+    return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function($1) {
+        switch ($1) {
+            case "yyyy": return d.getFullYear();
+            case "yy": return (d.getFullYear() % 1000).zf(2);
+            case "MM": return (d.getMonth() + 1).zf(2);
+            case "dd": return d.getDate().zf(2);
+            case "E": return weekName[d.getDay()];
+            case "HH": return d.getHours().zf(2);
+            case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+            case "mm": return d.getMinutes().zf(2);
+            case "ss": return d.getSeconds().zf(2);
+            case "a/p": return d.getHours() < 12 ? "오전" : "오후";
+            default: return $1;
+        }
+    });
+};
+ 
+String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+Number.prototype.zf = function(len){return this.toString().zf(len);};
+
+
+</script>
+
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -252,7 +285,7 @@ $(function() {
 	        sortable:true,
 	        formatter : function(value, row, index) {
 	        if (value != null) {
-	        		return "<a href='/Admin/Promotion/Detail?promotion_id="+value+"'>"+value+"</a>";	
+	        		return "<a href='/Admin/Promotion/Detail?promId="+value+"'>"+value+"</a>";	
 	        }
 			}
 	    }, {
@@ -285,8 +318,17 @@ $(function() {
 	        align: 'center',
 	        sortable:true,
 	        formatter : function(value) {
-	        		<fmt:formatDate value=value pattern="yyyy-MM-dd"/>
-			}
+	        			var date = new Date(value)
+	        			var year = date.getFullYear();
+	        			var month = date.getMonth()+1;
+	        			var day = date.getDay();
+	        			var hour = date.getHours();
+	        			var min = date.getMinutes();
+	        			var sec = date.getSeconds();
+
+					return date.format("yyyy-MM-dd HH:mm:ss")
+					//return year+'-'+month+'-'+day+' '+hour+':'+min+':'+sec
+	        			}
 	    }, {
 	    	field: "joinCnt",
 	        title: "참여인원",
