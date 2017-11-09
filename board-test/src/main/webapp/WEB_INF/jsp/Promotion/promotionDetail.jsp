@@ -201,6 +201,7 @@
 				<form method="post" name="paticipateForm" id="paticipateForm">
 				 	<input type="hidden" name ="promoId" value="${promotion.promoId}">
 				 	<input type="hidden" name ="productCode" value="${promotion.productCode}">
+				 	<input type="hidden" name ="prehref" id = "prehref">
 				</form>		 
 				
 				<center>
@@ -253,13 +254,13 @@
 			        
 			    $("#joinedInfo").append(joined_info_html);
 			    
-			     
+			    //Prograss  UI처리 
 			    for (var i = 0; i < benefits.length; i++) {
     	    				var obj = benefits[i];
     	    				var obj_next = benefits[i+1];
 
-    	    				if (joinCnt < benefits[0].goal_cnt){
-    	    					var midCnt = benefits[0].goal_cnt / 2
+    	    				if (i==0 && joinCnt < obj.goal_cnt){
+    	    					var midCnt = obj.goal_cnt / 2
     	    					if (midCnt > joinCnt){
         	    					var prograssRate =  ( joinCnt ) * (100 / midCnt )
     	    						 $("#prograssBar0").css('width', prograssRate+'%');
@@ -279,7 +280,6 @@
     						    $("#prograssBar"+(i+1)).css('width', prograssRate+'%');
     							
     							alert ('prograssBar i : prograssBar'+i )
-    							alert ('prograssRate : ' + prograssRate)
     						    
     				    		}else{
     				    			var prograssRate =  ( joinCnt - midCnt ) * (100 / (obj_next.goal_cnt - obj.goal_cnt) )
@@ -287,19 +287,10 @@
     				    				prograssRate = prograssRate*2
     				    			}
 							$("#prograssBar"+(i+2)).css('width', prograssRate+'%');
-
         							alert ('prograssBar i+2 : prograssBar'+(i+1) )
-        							alert ('prograssRate : ' + prograssRate)
-    	    						   
     				    		}
     	    				}
-    	    				
-    	    				
 			    	}
-			    
-			    
-			    
-			    
 			    //상품 주의사항 출력
 			    var productCode = ${promotion.productCode}
 			    cautionGubun = productCode.substr(0, 1);
@@ -335,8 +326,9 @@
 	    
 		<script type="text/javascript">
 
+		//$("#prehref").val() = document.referrer;
+
 		var formData = $("#paticipateForm").serialize();
-		
 		 
 		function insertParticipate() {
 					 $.ajax({
@@ -360,7 +352,9 @@
 					 			 alert("로그인이 필요한 서비스 입니다. 로그인 후 이용해주세요.");
 					 			 location.href = "/login";
 					 			 return false;
-					 			 }
+					 		  }else{
+						 		 alert("[프로모션 참여 오류] 관리자에게 문의하세요.");
+					 		  }
 					 	 }
 					 });
 		}
@@ -434,7 +428,7 @@
 		
 		function openShareWindow(data){
 			var popupOption = 'directories=no, toolbar=no, location=no, menubar=no, status=no, scrollbars=no, resizable=no, left=400, top=200, width=600, height=550';
-			window.open("/Promotion/SharePopup?promotionId=${promotion.promoId}&flag=1", 'test', popupOption);
+			window.open("/Promotion/SharePopup?promonId=${promotion.promoId}&flag=1", 'test', popupOption);
 		}
 		
 	</script>    

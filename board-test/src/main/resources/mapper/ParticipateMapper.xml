@@ -33,13 +33,11 @@
     
     
      <select id="getParticipateListSearch" parameterType="map" resultType="map">
-		 
-		 
 		SELECT Promotion.promo_id promoId,
 		       User.user_id userId, 
 		       User.user_name userName, 
 		       User.gender gerder,
-		       User.age 
+		       User.age ,
 		       DATE_FORMAT(join_date, '%Y-%m-%d %H:%i:%s') joinDate,
 		       join_from joinFrom
 		FROM (select Promotion.promo_id

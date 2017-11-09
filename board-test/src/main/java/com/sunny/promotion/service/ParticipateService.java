@@ -42,9 +42,6 @@ public class ParticipateService {
 	 	purchasePram.put("userId", loginUser.getUser_id());
  	 	purchasePram.put("productCd", productCd);
  	 	
- 	 	System.out.println("ParticipateService > checkAbailabl > loginUser > "+loginUser.getUser_id());
- 	 	System.out.println("ParticipateService > checkAbailabl > productCd > "+productCd);
- 	 	System.out.println("ParticipateService > checkAbailabl > promotionId > "+promotionId);
  		 	
  	 	int purchaseChk = purchaseMapper.getInfoByUseridProductcd(purchasePram);
  	 	

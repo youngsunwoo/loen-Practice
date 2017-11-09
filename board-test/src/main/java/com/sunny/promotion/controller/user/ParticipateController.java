@@ -26,6 +26,11 @@ public class ParticipateController {
     	
     		String productCode = request.getParameter("productCode");
 		String promoId = request.getParameter("promoId");
+		String prehref = request.getParameter("prehref");
+
+ 	 	System.out.println("ParticipateService > checkAbailabl > productCode > "+productCode);
+ 	 	System.out.println("ParticipateService > checkAbailabl > promoId > "+promoId);
+ 	 	System.out.println("ParticipateService > checkAbailabl > prehref > "+prehref);
 		
 		PurchaseVO purchase = new PurchaseVO(productCode);
     		ParticipateVO participate = new ParticipateVO(promoId);
@@ -40,6 +45,11 @@ public class ParticipateController {
     	
     		String productCode = request.getParameter("productCode");
 		String promoId = request.getParameter("promoId");
+		String prehref = request.getParameter("prehref");
+		
+
+ 	 	System.out.println("ParticipateService > checkAbailabl > prehref > "+prehref);
+		
     		return participateService.checkAbailable(request.getSession(), productCode, promoId);
     }
 }

@@ -45,6 +45,13 @@ public class PromotionController {
     public ModelAndView root() {
          return new ModelAndView("index");        
     }
+    
+
+    @RequestMapping(value="/test22")      
+    public ModelAndView test22() {
+         return new ModelAndView("test2");        
+    }
+
 
     @RequestMapping(value="/test")      
     public ModelAndView test(HttpServletRequest request) {
