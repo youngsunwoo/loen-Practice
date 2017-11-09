@@ -50,9 +50,10 @@ public class UserController {
 	    	
 	        String id = request.getParameter("id");
     			String pw = request.getParameter("pw");
+    			String flag = request.getParameter("flag");
  
     			final Map<String, Object> map = new HashMap<String, Object>();
-    	        map.put("flagdata", userService.getUserByIdPwd ( id, pw, session));
+    	        map.put("flagdata", userService.getUserByIdPwd ( id, pw, flag, session));
     	        
     	        return map;
     	         		

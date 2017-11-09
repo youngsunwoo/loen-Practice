@@ -47,7 +47,7 @@
 	<!-- header -->	
 	<div id="member_header">
 		<!-- GNB -->
-		<div id="gnb"><h1><a href="javascript:" class="logo_original" title="Melon 메인" onclick="MemberEtc.goPage('MAIN');return false;"><img src="https://cdnimg.melon.co.kr/resource/image/web/member/img_logo206x56.png" width="206" height="56" alt="Melon"></a></h1></div>
+		<div id="gnb"><h1><a href="javascript:" class="logo_original" title="Melon 메인" onclick="MemberEtc.goPage('MAIN');return false;"><img src="/img/adminLogo.png" width="206" height="86" alt="Melon"></a></h1></div>
 		<!-- //GNB -->
 	</div>
 
@@ -169,14 +169,13 @@
 				url:"/loginProcess",
 				type:'GET',
 				dataType:'json',
-	             data : {   "id" :  $("#id").val(),
-            					"pw" :  $("#pw").val() ,
-            					"flag" : "0" },	
+	              data : {  "id" :  $("#id").val(),
+            					"pw" :  $("#pw").val(), 
+            					"flag" : "1" },	
 				contentType: 'text/html;charset=UTF-8',
 				mimeType: 'application/json',
 				success:function(data) {
 					if(data.flagdata) {
-
 						history.back();
 						//이전페이지 주소 알아서 redirect해줄것
 					} else {

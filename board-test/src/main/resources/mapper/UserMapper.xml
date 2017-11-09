@@ -6,8 +6,9 @@
     <select id="getUserByIdPwd" parameterType="map" resultType="com.sunny.promotion.vo.UserVO">
         SELECT user_id, user_name, user_pw, age, gender, point
         FROM USER
-   		WHERE user_id = #{user_id}
-        AND   user_pw = #{user_pw}
+   		WHERE user_id = #{userId}
+        AND   user_pw = #{userPw}
+        AND   Auth = #{userAuth}
     </select>
     
      <select id="getUserById" parameterType="map" resultType="com.sunny.promotion.vo.UserVO">

@@ -27,35 +27,23 @@ public class CertificationInterceptor implements HandlerInterceptor {
 		Authentication auth = handerMethod.getMethod().getDeclaredAnnotation(Authentication.class);
 	
 		if(auth != null) { //어노테이션 선언한경우 
-			String attrGubun = "";
+			String attrName = "";
 			String destinationUrl = ""; 
 			
 			if(auth.type().equals("ADMIN")) {  
-				attrGubun = "LoginAdmin";
-				destinationUrl = "admin/login";
+				attrName = "LoginAdmin";
+				destinationUrl = "/admin/login";
 			}
 			else {
-				attrGubun = "LoginUser";
+				attrName = "LoginUser";
 				destinationUrl = "/login";
 			}
 			
 			HttpSession session = request.getSession();
-	        UserVO AuthUser = (UserVO) session.getAttribute(attrGubun);
+	        UserVO AuthUser = (UserVO) session.getAttribute(attrName);
 	        
 	        if(ObjectUtils.isEmpty(AuthUser)){
-	        /*
-				if(auth.type().equals("ADMIN")) {  // --->  순서 
-					//어노테이션 걸려있는애들중에 type가 위 조건으로 걸린애들 분기 
-					//Ex. @authentication(type="JSON") 
-					System.out.println("return ADMIN TEST");
-					
-				request.setAttribute("destination", request.getRequestURI());
-        			RequestDispatcher dispatcher = request.getRequestDispatcher(destinationUrl);
-        			dispatcher.forward(request, response);
-					return false;
-				}
-				
-			*/
+	        	
 				System.out.println("redirect Login Page");
 				
 				if(isAjaxRequest(request)) {
@@ -72,7 +60,6 @@ public class CertificationInterceptor implements HandlerInterceptor {
 	        }
 		}
 			return true;
-		
 		
 		/*
 	    HttpSession session = request.getSession();
@@ -109,8 +96,6 @@ public class CertificationInterceptor implements HandlerInterceptor {
 		// TODO Auto-generated method stub
 
 	}
-	
-	
 	  private boolean isAjaxRequest(HttpServletRequest request) {
 	        String ajaxHeader = "AJAX";
 	        System.out.println("======= call /sessionIntercepter request.getHeader(ajaxHeader) : " + request.getHeader(ajaxHeader) + "=======");

@@ -79,9 +79,14 @@ public class AdminController {
     }
     
 
-    @Authentication(type="ADMIN") 
-    @RequestMapping(value="testAdmin2")      
+    @RequestMapping(value="/admin/login")      
     public ModelAndView test22() {
+        return new ModelAndView("/admin/AdminLoginForm");        
+    }
+    
+    @Authentication(type="ADMIN") 
+    @RequestMapping(value="/admin/searchPromotion")      
+    public ModelAndView searchPromotion() {
         return new ModelAndView("/admin/searchPromo");        
     }
     

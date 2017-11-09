@@ -24,19 +24,25 @@ public class UserService {
 	}
     
     
-    public boolean getUserByIdPwd(String id, String pw, HttpSession session) throws Exception{
+    public boolean getUserByIdPwd(String id, String pw, String flag, HttpSession session) throws Exception{
     	
     	Map<String, Object> para = new HashMap<String, Object>();
-        para.put("user_id", id);
-        para.put("user_pw", pw);
-        
-        UserVO loginUser = userMapper.getUserByIdPwd(para);
-        
-        if (loginUser != null) {
-        		session.setAttribute("LoginUser", loginUser);
-            return true;
+        para.put("userId", id);
+        para.put("userPw", pw);
+        para.put("userAuth", flag);
+        UserVO user = userMapper.getUserByIdPwd(para);
+        if (user != null) {
+
+            System.out.println("flag>> "+ flag);
+        		if ("0".equals(flag)) {
+        	        System.out.println("loginUser>> "+ user.getUser_name());
+        			session.setAttribute("LoginUser", user);
+        		}else if("1".equals(flag)) {
+        	        System.out.println("LoginAdmin>> "+ user.getUser_name());
+        			session.setAttribute("LoginAdmin", user);
+        		}
+        		return true;
         }
-        System.out.println("test");
         return false;
     }
     
