@@ -58,7 +58,7 @@
 		<div id="conts_section">
 		      <div class="box_mem_info">
 						<h2 class="mem_info_title">회원가입</h2>
-						<form name="join_form" method="post">
+						<form name="join_form" id = "join_form" method="post">
 							
 							<input type="hidden" id="memberGender" name="memberGender" >	
 		
@@ -76,7 +76,7 @@
 													<div class="wrap">
 														<div id="memberId_tr" class="wrap_input_info05 d_input_write" style="width:331px;">
 															<div class="wrap_input">
-																<input type="text" id="UserId" name="UserId" title="아이디 입력 편집창" placeholder="25자 이하로 입력" class="text53" style="width:276px;">
+																<input type="text" id="user_id" name=""user_id"" title="아이디 입력 편집창" placeholder="25자 이하로 입력" class="text53" style="width:276px;">
 															</div>
 															<div class="wrap_input_check">
 																<input type="button" id="duplicateCheck" name="duplicateCheck" class="btn btn-default" value = "중복체크" onclick="checkDuplicate()">
@@ -92,7 +92,7 @@
 													<div class="wrap">
 														<div id="memberId_tr" class="wrap_input_info05 d_input_write" style="width:331px;">
 															<div class="wrap_input">
-																<input type="text" id="UserName" name="UserName" title="이름 입력 편집창" placeholder="" class="text53" style="width:276px;">
+																<input type="text" id="user_name" name="user_name" title="이름 입력 편집창" placeholder="" class="text53" style="width:276px;">
 															</div>
 														</div>
 														<p id="memberId_msg" class="txt_error03" style="display:none;"></p>
@@ -215,6 +215,38 @@
 				$("#genderCheckW").addClass("on");
 			}
 		});
+	    
+	    
+	    var formData = $("#join_form").serialize();
+	    
+	    $('join_step').click(function() {
+	    		
+	    	
+			 var formData = $("#Promo_info").serialize();
+				
+	 		 $.ajax({
+	 			url : '/joinProcess',
+                type: "POST",	
+	 			data : formData,
+                dataType : "json",
+                success: function(data) {
+                    if(data == null){
+                    	
+                    }else{
+                    	 alert("프로모션 생성 완료!");
+                    	 openShareWindow(data);
+                    }
+                },
+	 		 	   error:function(xhr, textStatus, error){
+				 		alret( "오류가 발생했습니다. 관리자에게 문의해주세요.")
+				 	 }
+	 		 });
+	 		 
+	    	
+	    	
+	    }
+	    
+	    
 	});
 	    
 	 </script>

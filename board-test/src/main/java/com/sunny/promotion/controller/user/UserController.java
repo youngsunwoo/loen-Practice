@@ -63,7 +63,6 @@ public class UserController {
 	    //회원가입
 	    @RequestMapping(value="joinProcess")//, method = RequestMethod.POST)
 	    public Map<String, Object> joinProcess(HttpSession session, HttpServletRequest request) throws Exception{    
-	    	
 	        ModelAndView mav = new ModelAndView();
 	        mav.setViewName("index");
 	        

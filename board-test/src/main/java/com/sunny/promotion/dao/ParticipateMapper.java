@@ -14,7 +14,7 @@ public interface ParticipateMapper {
     
     public List<Map<String, Object>> getParticipateUserInfo(String promotionId) throws Exception; 
     
-    public List<Map<String, Object>> getParticipateListSearch(Map<String, String> info) throws Exception; 
+    public List<Map<String, Object>> getParticipateListSearch(Map<String, String> info)throws Exception; 
     
     
 }

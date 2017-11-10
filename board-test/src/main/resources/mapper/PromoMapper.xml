@@ -69,7 +69,7 @@
    	   WHERE Promo_id like #{insertDate}
     </select>
     
-    <update id="UpdatePromotionJoinCnt" >
+    <update id="UpdatePromotionJoinCnt" parameterType="String" >
         UPDATE Promotion
         SET join_cnt = join_cnt + 1
         WHERE Promo_id = #{PromoId}
@@ -81,6 +81,14 @@
         (#{promoId},#{createDate},#{userId},#{dueDate},'0',#{promoType},#{benefitCode},#{productCode},#{eventUrl},#{bannerPath},0)
    </insert>
    
+   
+   <update id="terminatePromotion" parameterType="String" >
+        UPDATE Promotion
+        SET state = '1'
+        WHERE Promo_id = #{PromoId}
+    </update>
+    
+    
    
         
    <select id="getPromotionById" parameterType="String" resultType="com.sunny.promotion.vo.PromotionVO">     

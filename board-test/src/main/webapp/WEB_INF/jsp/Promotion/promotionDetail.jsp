@@ -82,6 +82,23 @@
 
 </head>
 <body>
+<div class="modal fade" id="statusModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <center><h2>이미 종료된 프로모션 입니다.</h2></center>
+        </div>
+        <div class="modal-body">
+       		<center><h2>제공된 혜택 내역</h2></center>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="productModalClose">선택완료</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
 
 
 <div class="modal fade" id="productModal" role="dialog">
@@ -205,7 +222,7 @@
 				</form>		 
 				
 				<center>
-					<input type="button" href="#" class="evenvtBt"  onclick="checkAvailable();" value="이벤트참여하기" />
+					<input type="button" id ="participateBt" href="#" class="evenvtBt"  onclick="checkAvailable();" value="이벤트참여하기" />
 					<input type="button" id = "participateListBt" href="#" class="evenvtBt" value="참여자확인하기" class="btn btn-default" />
 				</center>
 			</div>
@@ -219,6 +236,19 @@
 			
 		$(document).ready(function () {
 				
+			
+			
+			
+		       var  status = ${promotion.state}
+		       if (status=='1'){
+		    	   		$("#participateBt").css("background-color", "#929292");
+		    	   		$("#participateBt").attr("disabled","disabled")
+		    	   		
+		    	   		$('#statusModal').modal();
+		       } 
+			
+			
+			
 				// 가져오기   
 			    var benefits = ${benefits} ;
 			    var joinCnt =  ${promotion.joinCnt};
@@ -226,7 +256,6 @@
 			    
 			
 			    var benefit_list_html  = '';
-			
 			    	//혜택 출력하기
 	    			benefit_list_html += '<div class="col-xs-3 bs-wizard-step complete" style="width:'+stepwidth+'px;">';
 				benefit_list_html += '<div class="text-center bs-wizard-stepnum"> START! </div>';
@@ -279,7 +308,6 @@
     						    
     						    $("#prograssBar"+(i+1)).css('width', prograssRate+'%');
     							
-    							alert ('prograssBar i : prograssBar'+i )
     						    
     				    		}else{
     				    			var prograssRate =  ( joinCnt - midCnt ) * (100 / (obj_next.goal_cnt - obj.goal_cnt) )
@@ -287,10 +315,10 @@
     				    				prograssRate = prograssRate*2
     				    			}
 							$("#prograssBar"+(i+2)).css('width', prograssRate+'%');
-        							alert ('prograssBar i+2 : prograssBar'+(i+1) )
     				    		}
     	    				}
 			    	}
+			    
 			    //상품 주의사항 출력
 			    var productCode = ${promotion.productCode}
 			    cautionGubun = productCode.substr(0, 1);
@@ -363,6 +391,8 @@
 		
 		<script type="text/javascript">
 		function checkAvailable(){
+			
+				
 		       if( '${sessionScope.LoginUser.user_id}' == '${promotion.userId}'){
 		            alert("프로모션 주최자는 참여하실 수 없습니다." );
 		            return false;

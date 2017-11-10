@@ -12,4 +12,6 @@ public interface PurchaseMapper {
 
 	   public int getInfoByUseridProductcd(Map info);
 	   
+	   
+	   
 }

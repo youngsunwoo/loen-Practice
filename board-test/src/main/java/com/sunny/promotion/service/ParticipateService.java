@@ -10,11 +10,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import com.sunny.promotion.service.PromoService;
 import com.sunny.promotion.dao.ParticipateMapper;
 import com.sunny.promotion.dao.PromoMapper;
 import com.sunny.promotion.dao.PurchaseMapper;
 import com.sunny.promotion.vo.BenefitVO;
 import com.sunny.promotion.vo.ParticipateVO;
+import com.sunny.promotion.vo.PromotionVO;
 import com.sunny.promotion.vo.PurchaseVO;
 import com.sunny.promotion.vo.UserVO;
 
@@ -30,7 +33,9 @@ public class ParticipateService {
     
     @Autowired
     ParticipateMapper participateMapper;
- 
+    
+    @Autowired
+    PromoService promoService;
 
     
     public int checkAbailable(HttpSession session, String productCd, String promotionId)  throws Exception{
@@ -70,61 +75,68 @@ public class ParticipateService {
     }
    
     public ParticipateVO participatePromotion(HttpSession session, PurchaseVO purchase, ParticipateVO participate) throws Exception{
-    		
-    		//////////////////////////////////
-    		// 		   구매내역 Insert	    	   //
-    		//////////////////////////////////
+    		int result = 0;
     	
-    		//구매 번호 가져오기  : 해당일자의 max PurchaseId 
+		//******************* 구매내역 Insert*******************//
+    		//오늘 날짜 확인
      	java.util.Date date = new java.util.Date(); 
+	    purchase.setPurchaseDate(date);
+	    //구매 번호 가져오기  : 해당일자의 max PurchaseId 
      	java.text.SimpleDateFormat ymd = new java.text.SimpleDateFormat("yyMMdd"); 
      	String insertDate = ymd.format(date) + '%';
-    	
      	String purchaseSeq = String.format("%03d", purchaseMapper.getMaxPurchaseId(insertDate));
-	    String purchaseId =  ymd.format(date) +"_"+purchaseSeq;	   
+	    String purchaseId =  ymd.format(date) +"_"+purchaseSeq;
 	    purchase.setPurchaseId(purchaseId);
-	    
-
-	    purchase.setPurchaseDate(date);
-    	
 	    //로그인한 User정보받아오기 
 	    UserVO loginUser = (UserVO) session.getAttribute("LoginUser");
 	    String loginUserId = loginUser.getUser_id();
 	    purchase.setUserId(loginUserId);
 	    
-	    
-	    System.out.println(purchaseId);
-    		//구매 내역 insert 
-	    System.out.println("purchaseMapper.InsertPurchase(purchase) : " + purchaseMapper.InsertPurchase(purchase));
+	    //구매 내역 insert 
+	    result += purchaseMapper.InsertPurchase(purchase);
+	    System.out.println("result1 >> "+result);
 
-		//////////////////////////////////
-		// 		   조인내역 Insert	    	   //
-		//////////////////////////////////
-	    
-	    
+		//******************* 조인내역 Insert*******************//
 	    participate.setJoinUserId(loginUserId);	    
 	    participate.setPurchaseId(purchaseId);
 	    participate.setJoinDate(date);
 	    
-	    participateMapper.InsertParticipateList(participate);
+	    result  +=  participateMapper.InsertParticipateList(participate);
+	    System.out.println("result2 >> "+result);
 
-		//////////////////////////////////
-		// 		   프로모션 Update	    	   //
-		//////////////////////////////////
-	    
-	    int result = promoMapper.UpdatePromotionJoinCnt(participate.getPromoId());
-		   if (result > 0) {
-		   		return participate;
-		   }
-		   return null;
-	    
+		//*******************프로모션 Cnt Update*******************//
+	    	result +=  promoMapper.UpdatePromotionJoinCnt(participate.getPromoId());
+
+		System.out.println("result3 >> "+result);
+	    //프로모션 혜택 마지막 인원수 검색
+	    if (result > 2) {
+			    PromotionVO promotion = promoMapper.getPromotionById(participate.getPromoId());
+			    List<BenefitVO> benefits = 	promoService.getBenefit(promotion.getPromoType(),   promotion.getBenefitCode());
+			    int maxCnt = benefits.get(benefits.size()-1).getGoal_cnt();
+			    
+				    if  (maxCnt == promotion.getJoinCnt()) {
+				     	result +=  promoMapper.terminatePromotion(participate.getPromoId());
+
+					    System.out.println("result4 >> "+result);
+				     	  if (result > 3) {
+							    return participate;
+				    			}
+				     	  return null;
+				    }
+				    return participate;
+		 }
+		   
+		   
+	  return null;
 }
  
     public List<Map<String, Object>> getParticipateUserInfo(String promotionId) throws Exception{
     		return participateMapper.getParticipateUserInfo(promotionId);
     }
     
-    public List<Map<String, Object>> getParticipateListSearch(Map<String, String> info) throws Exception{
-		return participateMapper.getParticipateListSearch(info);
+    
+    public List<Map<String, Object>> getParticipateListSearch(Map<String, String> param) throws Exception{
+    		return participateMapper.getParticipateListSearch(param);
     }
+    
 }

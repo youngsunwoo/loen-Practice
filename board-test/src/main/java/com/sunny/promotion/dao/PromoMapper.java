@@ -21,6 +21,8 @@ public interface PromoMapper {
     public List<BenefitVO>getBenefit(Map<String, Object> para)throws Exception; 
     
     public int UpdatePromotionJoinCnt(String PromoId)throws Exception; 
+
+    public int terminatePromotion(String PromoId)throws Exception; 
     
     
 }
